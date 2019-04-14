@@ -18,8 +18,7 @@
         /// </summary>
         public enum MezoTipusok { Raktar, Kaszarnya, Foepulet, Buzamezo, Agyagbanya, Faerdo, Ercbanya };
         /// <summary>
-        /// A Programban használt tárolhatóegység típusok Ha új tárolhatóegység fajtát szeretnénk
-        /// létrehozni, bővíteni kell
+        /// A Programban használt tárolhatóegység típusok Ha új tárolhatóegység fajtát szeretnénk létrehozni, bővíteni kell
         /// </summary>
         public enum Tarolhatok { Buza, Agyag, Erc, Fa, Katona };
 
