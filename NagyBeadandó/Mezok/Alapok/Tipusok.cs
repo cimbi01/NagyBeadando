@@ -1,4 +1,4 @@
-﻿namespace NagyBeadandó.Mezok
+﻿namespace NagyBeadandó.Mezok.Alapok
 {
     internal static class Tipusok
     {
