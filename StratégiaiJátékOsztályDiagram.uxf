@@ -998,4 +998,17 @@ Kiválaszt() : void &gt; gomb nyomást kezeli (fel, le, enter, escape) (Enter &g
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>140.0;10.0;10.0;10.0</additional_attributes>
   </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>100</x>
+      <y>895</y>
+      <w>1270</w>
+      <h>420</h>
+    </coordinates>
+    <panel_attributes>Alapok
+--
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
 </diagram>
