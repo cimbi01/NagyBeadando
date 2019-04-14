@@ -1,0 +1,1072 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>546</x>
+      <y>12</y>
+      <w>42</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>type=initial
+Játék
+Kezdete
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>582</x>
+      <y>12</y>
+      <w>78</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+</panel_attributes>
+    <additional_attributes>110.0;30.0;10.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>648</x>
+      <y>18</y>
+      <w>60</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Inicializálás
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>768</x>
+      <y>18</y>
+      <w>60</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Játék
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>822</x>
+      <y>24</y>
+      <w>72</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>100.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLObject</id>
+    <coordinates>
+      <x>528</x>
+      <y>0</y>
+      <w>408</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Játék menete
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>702</x>
+      <y>24</y>
+      <w>78</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>110.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>468</x>
+      <y>102</y>
+      <w>108</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>type=decision
+Játékos él
+ÉS
+Játékos nem lép ki
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>570</x>
+      <y>126</y>
+      <w>246</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+[ JÁTÉKOS ÉL ÉS NEM LÉPETT KI]</panel_attributes>
+    <additional_attributes>390.0;30.0;10.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>804</x>
+      <y>132</y>
+      <w>72</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Termelés
+És fogyasztás
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>870</x>
+      <y>138</y>
+      <w>60</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>918</x>
+      <y>126</y>
+      <w>90</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>Fejlesztés
+Menetelés
+(Támadás, ha odaért)
+bg=cyan</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1002</x>
+      <y>138</y>
+      <w>60</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+</panel_attributes>
+    <additional_attributes>80.0;90.0;80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>996</x>
+      <y>192</y>
+      <w>90</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Játékos1 interakció
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>882</x>
+      <y>12</y>
+      <w>42</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>type=final
+Játék
+Vége
+fg=black
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>366</x>
+      <y>126</y>
+      <w>114</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+[ JÁTÉKOS KILÉP ]</panel_attributes>
+    <additional_attributes>10.0;30.0;170.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>276</x>
+      <y>132</y>
+      <w>96</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Kilépés inicializálás
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLObject</id>
+    <coordinates>
+      <x>252</x>
+      <y>72</y>
+      <w>846</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>Játék
+valign=top
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>120</x>
+      <y>504</y>
+      <w>108</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>160.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>402</x>
+      <y>462</y>
+      <w>192</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>type=decision
+Magtár mincs tele
+ÉS
+Van betakarítatlan búza mező
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>492</x>
+      <y>390</y>
+      <w>54</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+[ IGAZ ]</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>450</x>
+      <y>372</y>
+      <w>138</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Búza mezők[i] betakarítás</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>588</x>
+      <y>492</y>
+      <w>96</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+[ HAMIS ]</panel_attributes>
+    <additional_attributes>140.0;30.0;10.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>426</x>
+      <y>378</y>
+      <w>36</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;200.0;10.0;10.0;40.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>738</x>
+      <y>600</y>
+      <w>102</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Lakos[i] etetése
+(ha nincs kaja meghal)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>492</x>
+      <y>552</y>
+      <w>258</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0;410.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>672</x>
+      <y>492</y>
+      <w>216</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>type=decision
+Van meg nem etett lakos
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>774</x>
+      <y>522</y>
+      <w>54</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+[ IGAZ ]</panel_attributes>
+    <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>1278</x>
+      <y>480</y>
+      <w>66</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>type=flow_final
+bg=light_gray
+Termelés
+ÉS 
+Fogyasztás
+Vége
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>882</x>
+      <y>492</y>
+      <w>132</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+[ HAMIS ]</panel_attributes>
+    <additional_attributes>200.0;30.0;10.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLObject</id>
+    <coordinates>
+      <x>390</x>
+      <y>324</y>
+      <w>510</w>
+      <h>318</h>
+    </coordinates>
+    <panel_attributes>Búzamező betakarítás
+És
+Lakosság fogyasztás
+valign=top
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>1002</x>
+      <y>456</y>
+      <w>168</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>type=decision
+Raktár nyersanyag kapacitás nincs tele
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>990</x>
+      <y>384</y>
+      <w>180</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Nyersanyag betakarítás</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>12</x>
+      <y>468</y>
+      <w>114</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>type=initial
+bg=light_gray
+Termelés
+És
+Lakosság fogyasztás
+Kezdete</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1164</x>
+      <y>492</y>
+      <w>126</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+[ HAMIS ]</panel_attributes>
+    <additional_attributes>190.0;30.0;10.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLObject</id>
+    <coordinates>
+      <x>918</x>
+      <y>354</y>
+      <w>444</w>
+      <h>216</h>
+    </coordinates>
+    <panel_attributes>Nyersanyag betakarítás
+valign=top
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>216</x>
+      <y>498</y>
+      <w>132</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Nyersanyagok termelése</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>342</x>
+      <y>504</y>
+      <w>72</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>100.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLObject</id>
+    <coordinates>
+      <x>192</x>
+      <y>474</y>
+      <w>186</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Termelés
+valign=top
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1080</x>
+      <y>402</y>
+      <w>54</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+[ IGAZ ]</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>948</x>
+      <y>390</y>
+      <w>90</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>130.0;170.0;10.0;10.0;70.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLObject</id>
+    <coordinates>
+      <x>0</x>
+      <y>276</y>
+      <w>1404</w>
+      <h>378</h>
+    </coordinates>
+    <panel_attributes>Termelés
+ÉS
+Fogyasztás
+valign=top
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>432</x>
+      <y>726</y>
+      <w>60</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>type=initial
+bg=light_gray
+Fejlesztés
+Kezdete</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>486</x>
+      <y>750</y>
+      <w>72</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>100.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>546</x>
+      <y>744</y>
+      <w>102</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Tevékenység időtelik</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>642</x>
+      <y>750</y>
+      <w>114</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>170.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>882</x>
+      <y>744</y>
+      <w>72</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Végrehajt</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>996</x>
+      <y>732</y>
+      <w>60</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>type=flow_final
+Fejlesztés
+Vége
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>948</x>
+      <y>750</y>
+      <w>60</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLObject</id>
+    <coordinates>
+      <x>420</x>
+      <y>666</y>
+      <w>672</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>Fejlesztés
+Menetelés
+(Támadás, ha odaért)
+bg=cyan
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>744</x>
+      <y>720</y>
+      <w>60</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>type=decision
+Tevékenység
+Kész
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>798</x>
+      <y>738</y>
+      <w>96</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+[ IGAZ ]</panel_attributes>
+    <additional_attributes>140.0;30.0;10.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>558</x>
+      <y>834</y>
+      <w>78</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>type=initial
+bg=light_gray
+Játékos interakció
+Kezdete</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>630</x>
+      <y>870</y>
+      <w>48</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>60.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>666</x>
+      <y>864</y>
+      <w>96</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Pálya renderelés
+Eddigi infok kiírása</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>756</x>
+      <y>870</y>
+      <w>48</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>60.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>792</x>
+      <y>864</y>
+      <w>60</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Cselekvés</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>846</x>
+      <y>870</y>
+      <w>60</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>894</x>
+      <y>840</y>
+      <w>84</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>type=final
+bg=light_gray
+Játékos interakció
+Vége</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLObject</id>
+    <coordinates>
+      <x>534</x>
+      <y>816</y>
+      <w>456</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>Játékos interakció
+(játékos szám)
+valign=top
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>792</x>
+      <y>192</y>
+      <w>90</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Játékos2 interakció
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>876</x>
+      <y>198</y>
+      <w>132</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;200.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>516</x>
+      <y>180</y>
+      <w>288</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0;460.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>402</x>
+      <y>1020</y>
+      <w>72</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>type=initial
+bg=light_gray
+Inicializálás
+kezdete</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>468</x>
+      <y>1056</y>
+      <w>90</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>130.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>546</x>
+      <y>1050</y>
+      <w>114</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>NyersanyagMezők
+incicializálása</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>654</x>
+      <y>1056</y>
+      <w>66</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>708</x>
+      <y>1050</y>
+      <w>78</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Raktár
+Inicializálás</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>780</x>
+      <y>1056</y>
+      <w>90</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>130.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>858</x>
+      <y>1050</y>
+      <w>114</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>NyersanyagKonténer
+Init</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>966</x>
+      <y>1056</y>
+      <w>78</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>110.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>1032</x>
+      <y>1050</y>
+      <w>84</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Főépület
+Init</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1110</x>
+      <y>1056</y>
+      <w>96</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>140.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>1194</x>
+      <y>1050</y>
+      <w>84</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Kaszárnya
+Init</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>1392</x>
+      <y>1050</y>
+      <w>72</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>KatonaKonténer
+Init</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1272</x>
+      <y>1050</y>
+      <w>132</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+</panel_attributes>
+    <additional_attributes>200.0;30.0;10.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1332</x>
+      <y>1074</y>
+      <w>108</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+</panel_attributes>
+    <additional_attributes>10.0;120.0;160.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>1248</x>
+      <y>1134</y>
+      <w>90</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Konténer
+Init</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>1086</x>
+      <y>1134</y>
+      <w>84</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Játékos
+Init</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1164</x>
+      <y>1146</y>
+      <w>96</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>140.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>876</x>
+      <y>1134</y>
+      <w>84</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Kontroller
+Init</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>954</x>
+      <y>1140</y>
+      <w>144</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>220.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>708</x>
+      <y>1140</y>
+      <w>180</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;280.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>630</x>
+      <y>1134</y>
+      <w>84</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Game
+Init</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>408</x>
+      <y>1110</y>
+      <w>84</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>type=final
+bg=light_gray
+
+Inicializálás
+Vége</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>486</x>
+      <y>1140</y>
+      <w>156</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;240.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLObject</id>
+    <coordinates>
+      <x>384</x>
+      <y>978</y>
+      <w>1110</w>
+      <h>222</h>
+    </coordinates>
+    <panel_attributes>Inicializálás
+valign=top
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

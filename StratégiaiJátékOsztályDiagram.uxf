@@ -1,0 +1,1058 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>5</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1260</x>
+      <y>1410</y>
+      <w>320</w>
+      <h>225</h>
+    </coordinates>
+    <panel_attributes>NyersanyagMező : ITárolóTermelő
+Feladata:
+Nyersanyag Termelése
+Nyersanyag Betakaríthatósága
+-
+-tároló : Tároló &gt; kapacitás = 50
+-
++Név{+get;-set} : string
+-
++NyersanyagMező()
++NyersanyagMező(típus : enum)
++NyersanyagMező(mező : NyersanyagMező) &gt; fejlesztésnél 
+-
++Termel() : void &gt; tároltmennyiség = kapacitás
++FejlesztIndít() : void &gt; Elindítja a fejlesztést
++FejlesztVégrehajt() &gt; 
+{innerclass
+InteraktívNyersanyagMező
+-
+Név = "Nyersanyagmező" + típus
+Szint = 1
+Paraméterek = tároltmennyiség, kapacitás
+dictionary &gt; üres
+innerclass}</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>15</x>
+      <y>1415</y>
+      <w>415</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>Tároló : IMező
+Feladata:
+Tárolni a anyagokat
+Lekérni a különböző anyagokat
+-
+#kapacitás: Dictionary&lt;enum, int&gt; &gt; anyag típusonként
+#tároltmannyiség : Dictionary&lt;enum, int&gt; &gt; anyag típusonként
+#név : string
+-
++Tároló(név : string, kapacitás : int, params enum[] típusok) &gt; milyen típusokat tárol
+-
++Kapacitás{+get; #set;} : Dictionary&lt;enum, int&gt;
++TárolMennyiség{+get; #set;} : Dictionary&lt;enum, int&gt;
++MegVanTelve{+get; - set;} : bool
++Kivesz(enum mit, int mennyit) : int &gt; visszaad mennyit &gt; ha van annyi tárolva
++MegVanTelve(típus : enum) : bool &gt; visszaadja, hogy a típus-ból kapacitásnyi van e a dictionary-ben
+{innerclass
++InteraktívTároló : IInteraktívMező
+Feladata:
+Console-nak metódusokat és szövegeiket átadni
+-
+-Dictionary&lt;string, Action&gt; &gt; a metódusok listája &gt; üres, mivel ő nem kommunikál a külvilággal
+innerclass}
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>450</x>
+      <y>1435</y>
+      <w>435</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>Kaszárnya : ITárolóTermelő
+Feladata:
+Katonatípusok meghatározása
+Katonák "termelése"
+-
+tároló : Tároló &gt; kapacitás = 10
+-
++Kaszárnya() &gt; beállítja a tárolót
+-
++Termel(Katonatípus : enum) : void &gt; kiképez és hozzáad egy katonát a tárolóhoz
+{innerclass
+InterAktívKaszárnya : IInteraktívMező
+-
+-kaszárnya: Kaszárnya
+-
+Név = "Kaszárnya"
+Szint = 1
+Paraméterek = tárolt katonák mennyisége, név, szint
+-
+KatonaAdatBekérés() : void &gt; Bekéri Katona adatait (tíusát/nevét, stb.)
+Kiképzés() : void &gt; kiképzés indtása előtt bekéri az adatokat majd meghívja a kiképzést
+dictionary &gt; Kiképzés
+innerclass}</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1560</x>
+      <y>395</y>
+      <w>400</w>
+      <h>125</h>
+    </coordinates>
+    <panel_attributes>NyersanyagKonténer
+Tárolja nyersanyagok mennyiségét
+Tárolja a Nyersanyagmezőket
+Tárolja Raktára(kat)
+Termel
+-
+-nyersanyagmező : List&lt;Nyersanyag&gt;
+-raktár : Tároló
+-
+Mezők{+get; -set} : List&lt;IInteraktívMező&gt; &gt; összesmező
+-
++MindenMezőnTermel() : void &gt; minden mezőn végrahajtja a termel-t
++RaktárNyersanyagFeltöltés() : void &gt; minden nem búzát betakarít
++RaktárBúzaFeltöltés() : void &gt; feltölti a a raktár búza részét</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>900</x>
+      <y>1470</y>
+      <w>325</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>FőÉpület : ITárolóTermelő
+Feladata:
+Lakosokat tárol
+Lakosokat termel &gt; körönként termelést-nyit ad tárolthoz telésig
+-
+-tároló : Tároló &gt; kapacitás = 10
+-termelés : int &gt; mennyit termel egy körben
+-
++Termel() : void &gt; tároltmennyiség = kapacitás
+{innerclass
+InterAktívFőépület : IInterAktív
+-
+név = "Főépület"
+Szint = 1
+Paraméterek = tárolt lakosok, max lakosság
+dictionary &gt; üres
+innerclass}</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1780</x>
+      <y>1045</y>
+      <w>360</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Lakos
+Feladata:
+Fogyasztás, meghalás
+-
+#fogyasztás : int &gt; mennyi búzát fogyaszt
+#megvanetetve : bool &gt; megvanetetve
+#id : int &gt; ID a megkülönböztetés miatt, hogy ki tudják nyírni, stb.
+-
++Lakos()
++Lakos(_fogyasztás : int)
+-
+MegVanEtetve{+get; -set} : bool
+-
++Fogyaszt() : void &gt; megeteti &gt; átállítja megvanetetve true-ra
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1780</x>
+      <y>1205</y>
+      <w>360</w>
+      <h>235</h>
+    </coordinates>
+    <panel_attributes>Katona : Lakos
+Feladata:
+Hadászati értékek tárolása
+(Élet-halál ciklus?)
+-
+-támadóérték : int
+-védőérték : int
+-rombolóérték : int
+-menetsebesség : int
+-itthon : bool = true &gt; katona itthon van-e
+-típus : enum &gt; a katona típusa
+-
++Katona()
++Katona(_fogyasztás : int)
+-
+TámadóÉrték{+get; #set} : int
+VédőÉrték{+get; #set} : int
+RombolóÉrték{+get; #set} : int
+MenetSebesség{+get; -set} : int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1865</x>
+      <y>1160</y>
+      <w>15</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>0</x>
+      <y>840</y>
+      <w>1675</w>
+      <h>935</h>
+    </coordinates>
+    <panel_attributes>Mezők
+--
+bg=orange
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>1745</x>
+      <y>980</y>
+      <w>415</w>
+      <h>505</h>
+    </coordinates>
+    <panel_attributes>Lakosok
+--
+bg=orange
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>2230</x>
+      <y>1135</y>
+      <w>1695</w>
+      <h>640</h>
+    </coordinates>
+    <panel_attributes>tevékenységek
+--
+bg=orange
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>800</x>
+      <y>340</y>
+      <w>390</w>
+      <h>95</h>
+    </coordinates>
+    <panel_attributes>_Game_
+Feladata:
+Játékmenet biztosítása:
+Inicializálás, Fejlesztések lefuttatása körönként, játékosok interakcióit kezelni körönként
+Amíg meg nem hal
+-
+_-játékosok : List&lt;Játékos&gt;_
+-
+_+Play() : void &gt; elindítja a játékot_
+_-GetPlayer(név : string) &gt; visszaad egy játékost akinek a neve név_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2140</x>
+      <y>50</y>
+      <w>630</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>Játékos
+-
+-név : string
+-konténer  : konténer
+-tevékenység_kontroller : TevékenységKontroller
+-kontroller : Kontroller
+-
++Név{+get; -set} : string
++Mezők{+get} : List&lt;IInteraktívMezők&gt; &gt; konténer.mezők
+-
++Termel() : void &gt; egész termelési ciklus
++Támad(List&lt;Katona&gt;) : void &gt; Támadás indítása &gt; katona_konténer.Támad()
++Védekezik() : void &gt; katona_konténer.Védekezik()
++VanElég(típus : enum, int mennyi) : bool &gt; van típusból minimum mennyi
++KatonaMeghal(katona : Katona,itthon : bool) : void &gt; elvesz egy katonát (itthon/távol listából + kaszárnyából)
++RandomÉpületRombolása() &gt; egy random épületet elvesz minden listából ID szerint (random kiválaszt egyet lekéri ID-t majd az alapján mindenhol kinyírja)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>400</x>
+      <y>280</y>
+      <w>805</w>
+      <h>355</h>
+    </coordinates>
+    <panel_attributes>Utility
+--
+bg=orange
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>415</x>
+      <y>475</y>
+      <w>390</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>_Render_
+Feladata:
+Renderelés Console-ra
+-
+_+RenderMezők(List&lt;IInteraktívMező&gt;) : void &gt; ki listázza a mezőket_
+_+RenderOpciók(Dictionary&lt;string, Action&gt;) : void &gt; kiírja, hogy a mezőkhöz tartozó opcókat_
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>1445</x>
+      <y>0</y>
+      <w>1765</w>
+      <h>610</h>
+    </coordinates>
+    <panel_attributes>Player
+--
+bg=orange
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>1485</x>
+      <y>250</y>
+      <w>1710</w>
+      <h>345</h>
+    </coordinates>
+    <panel_attributes>Konténer
+--
+bg=orange
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2720</x>
+      <y>390</y>
+      <w>455</w>
+      <h>185</h>
+    </coordinates>
+    <panel_attributes>KatonaKonténer
+Feladata:
+Tárolja katonákat
+(Tárolja felszereléseket)
+Tárolja a katonai épületeket
+Támadást indít
+Védekezést generál
+Fogyasztást felügyeli 
+-
+-lakosság : List&lt;Lakos&gt; &gt; összlakosság aki itthon van, benne katona, nem katona
+-katonák_távol : List&lt;Katona&gt; &gt; kaszárnyák összes nem itthoni katonája
+-katonák_itthon : List&lt;Katona&gt; kaszárnyák összes itthoni katonája
+-katonai_épületek : List&lt;ITárolóTermelő&gt;
+-
++JátékosLakosságKonténer()
+-
++Etetés() : void &gt; Etetik az itthon lakosokat
++KatonaMeghal(katona : Katona,itthon : bool) : void &gt; elvesz egy katonát (itthon/távol listából + kaszárnyából)
++Támad(List&lt;Katona&gt;) : void &gt; Támadás indítása
+Védekezik() : védekezik &gt; Védekezést generál ittoniakból</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2390</x>
+      <y>1450</y>
+      <w>300</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>Csata
+Feladata:
+Csata lefolyása:
+Csatázás, ha Támadó nyert, Rombolás, majd megszűnés
+Katonák hazaszállítása
+-
+-Támadás : Támadás
+-Védekezés : KatonaiEgység
+-SikeresTámadás : bool
+-
++Csata(támadás : Támadás, védekezés : Védekezés)
+-
+Csatázás() :void &gt; Összecsapás, ha támadó nyert, Rombolás
+Összecsapás() : void &gt; támadók-ból védő erőnyit levenni, védőkből támadónyit
+Rombolás() : void &gt; Védő mezeiből levenni</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2385</x>
+      <y>1175</y>
+      <w>525</w>
+      <h>175</h>
+    </coordinates>
+    <panel_attributes>KatonaiEgység
+Feladata:
+DRY (Kódismétlés elkerülése Védekezés, és támadás esetén)
+Katonák tárolása
+Hadászati értékek tárolása
+-
+#erő : int
+#támad : bool
+#katonák : List&lt;Katona&gt;
+-
+Erő{+get;} : int
+Támad{+get;} : bool
+Katonák{+get} : List&lt;Katona&gt;
+-
++KatonaiEgység()
++KatonaiEgység(támad : bool, katonák : List&lt;Katona&gt;, lakosság_konténer : JátékosLAkosságKonténer)
+-
+-ErőSzámítás() : void &gt; kiszámítja az erőt &gt; támad : bool fgv-ben</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>510</x>
+      <y>915</y>
+      <w>290</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>IMező
+--
+Név{+get; -set;} : string
+StringParameters{+get; -set} : string
+Szint{+get; -set} : int
+InterAktívMező{+get; -set} : IInterAktívMező
+ID : int &gt; 0-tól induló ID, rombolásnál, stb. megkülönböztethető legyen</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1855</x>
+      <y>1375</y>
+      <w>15</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>2945</x>
+      <y>1640</y>
+      <w>200</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>Tartalmazhatná a támadás a KatonaiEgységet
+Mert nincs erős is-a kapcsolat a kettő között
+Inkább csak has-a</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3020</x>
+      <y>1590</y>
+      <w>15</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>910</x>
+      <y>1060</y>
+      <w>375</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>IInteraktívMező
+--
+Metódusok{+get} : Dictionary&lt;string, Action&gt; minden metódusnak van egy string-je amit kiír
+VanBennePublikusMetódus : bool &gt; van e publikus metódusa </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2085</x>
+      <y>275</y>
+      <w>480</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>Konténer
+Feladata:
+Mindent tárol (katonai, mező dolgokat stb)
+Termelés Fogyasztás ciklust felügyeli
+-
+-mennyisegek : Dictionary&lt;string, int&gt;  &gt; mindenről eltárolja, hogy hány db van (minden tárolótól, és tárolótermelőtől)
+-katona_konténer : KatonaKonténer
+-nyersanyag_konténer : NyersanyagKonténer
+-mezők : List&lt;IInteraktívMező&gt; &gt; játékos összes mezeje
+-
++Konténet() &gt; beiállítja mezőket konténerek szerint, felépíti mennyiségeket
+-
++Mezők{+get} : List&lt;IInteraktívMezők&gt; &gt; mezők
++Mennyiség(nev : string) : int &gt; visszadja mennyisegekben név-hez mennyi az int
+-
++Termel() : void &gt; egész termelési ciklus
++Támad(List&lt;Katona&gt;) : void &gt; Támadás indítása &gt; katona_konténer.Támad()
++Védekezik() : void &gt; katona_konténer.Védekezik()
++VanElég(típus : enum, int mennyi) : bool &gt; van típusból minimum mennyi
++KatonaMeghal(katona : Katona,itthon : bool) : void &gt; elvesz egy katonát (itthon/távol listából + kaszárnyából)
++RandomÉpületRombolása() &gt; egy random épületet elvesz minden listából ID szerint (random kiválaszt egyet lekéri ID-t majd az alapján mindenhol kinyírja)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>590</x>
+      <y>1115</y>
+      <w>140</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>ITermelő
+--
+Termel(params enum[] mit) : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>605</x>
+      <y>1220</y>
+      <w>110</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>ITárolóTermelő : ITermelő
+Feladata:
+Tárolót tárolni
+Termelni
+-
+Tároló{+get,-set} : Tároló</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>655</x>
+      <y>1230</y>
+      <w>20</w>
+      <h>215</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>20.0;10.0;10.0;410.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>660</x>
+      <y>1225</y>
+      <w>420</w>
+      <h>255</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;820.0;490.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>660</x>
+      <y>1225</y>
+      <w>775</w>
+      <h>195</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;1530.0;370.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>55</x>
+      <y>985</y>
+      <w>290</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>_Típusok_
+_tárolhatók : enum &gt; Anyagok amiket lehet tárolni _
+_katonatípusok : enum &gt; Katonák típusai _
+_épületek : enum &gt; Épületek típusai _
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>650</x>
+      <y>925</y>
+      <w>455</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;890.0;280.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>650</x>
+      <y>925</y>
+      <w>20</w>
+      <h>205</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;20.0;390.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>655</x>
+      <y>1125</y>
+      <w>15</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;200.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2665</x>
+      <y>1345</y>
+      <w>260</w>
+      <h>115</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;500.0;210.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>205</x>
+      <y>920</y>
+      <w>455</w>
+      <h>505</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>890.0;10.0;10.0;990.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>3390</x>
+      <y>1445</y>
+      <w>420</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>Fejlesztés : Fejleszt
+-
+-Tevékenység : Tevékenység &gt; idő telésért felel
+-szükségesanyagok : Dictionary&lt;enum, int&gt; &gt; nyersanyagok típus szerint mennyi kell
+-
++Fejlesztés(_action : Action, szükséges anyagok) &gt; FejlesztésEllenőrzés() &gt; new Tevékenység
++FejleszésEllenőrzés() : bool
+&gt; van-e fejlesztés ehhez a típushoz &gt; NemFejleeszthetőKivétel
+&gt; van-e elég anyag a fejlesztéshez &gt; NincsElégAnyagKivétel</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>955</x>
+      <y>1190</y>
+      <w>70</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>IFejleszthető
+--
+Fejleszt() : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>275</x>
+      <y>1195</y>
+      <w>720</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>1420.0;10.0;10.0;440.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>990</x>
+      <y>1195</y>
+      <w>450</w>
+      <h>225</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;880.0;430.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>985</x>
+      <y>1200</y>
+      <w>110</w>
+      <h>280</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;200.0;540.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>680</x>
+      <y>1200</y>
+      <w>315</w>
+      <h>245</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>610.0;10.0;10.0;470.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>3000</x>
+      <y>1175</y>
+      <w>390</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>Tevékenység
+Feladata:
+Időben lefolyó tevékenységek végrehajtása
+Miután az idő lejárt
+-
+-végrehajt : Action
+-idő : int &gt; a tevékenység mennyi időbetelik
+-játékosnév : string &gt; melyik játékosé a Tevékenység
+-
+Idő{+get} : int
+-
++Tevékenység()
++Tevékenység(_idő : int, _végrehajt : Action)
+-
++Időtelik() : void &gt; idő--, 
++TevékenységVégreHajt() : void &gt; ha idő = 0, akkor meghívja végrehajt.ot (végrehajt.invoke()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2750</x>
+      <y>1450</y>
+      <w>530</w>
+      <h>145</h>
+    </coordinates>
+    <panel_attributes>Támadás
+Feladata:
+Katonák tárolása
+Hadászati értékek számítása
+Menetelés indítása &gt; Tevékenység indítása, Csata indítása
+-
+-katonaiegység : KatonaiEgység
+-menetidő : int
+-tevékenység : Tevékenység &gt; idő = mmenetidő, végrehajt = TámadásIndítás
+-támadott : string
+-
++Támadás()
++Támadás(katonák : List&lt;Katona&gt;, támadott : string) &gt; menetidőt, támadóértéket állít
+-
+-Menetidőszámítás() : void &gt; kiszámítja a menetidőt
+-TámadásIndítás() : void &gt; Tevékenység ezt hívja meg, amikor kész  &gt; kér egy védekezést a támadott-tól, majd Csatát indít</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>410</x>
+      <y>340</y>
+      <w>380</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>TevékenységKontroller
+Feladata:
+Tevékenységek végrehajtása, görgetése (időtelik)
+-
+_-tevékenységek : List&lt;Tevékenység&gt;_
+-
+_-AddTevékenység(Tevékenység) : void &gt; Hozzáadja a tevékenységet a tevékenységlistához_
+_-TevékenységIdőTelik() : void &gt;Tevékenységek idője telik, ha letelt, végrehajt_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>825</x>
+      <y>455</y>
+      <w>370</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Kontroller
+Feladata:
+Tárolja, hogy a Render mit renderel ki
+Irányítja a kurzort, és az entert, escape-t
+-
+-Játékos &gt; interaktív mezők, név, adatok, üzenetek
+-interaktív_mezők : List&lt;IInteraktívMező&gt;
+-escaped : bool &gt; játékos játszik-e még
+-mezőben : bool &gt; mező menüben van-e
+-
+Renderel() : void &gt; Kiírja nevet, adatokat, üzeneteket, és a mezőket
+Kiválaszt() : void &gt; gomb nyomást kezeli (fel, le, enter, escape) (Enter &gt; kiírja az adait, metódusait)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2365</x>
+      <y>175</y>
+      <w>15</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;200.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1735</x>
+      <y>335</y>
+      <w>360</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>700.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2560</x>
+      <y>340</y>
+      <w>390</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;760.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>600</x>
+      <y>415</y>
+      <w>2590</w>
+      <h>770</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;5160.0;1520.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>785</x>
+      <y>375</y>
+      <w>25</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>30.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>585</x>
+      <y>545</y>
+      <w>520</w>
+      <h>530</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;1020.0;1040.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1190</x>
+      <y>140</y>
+      <w>960</w>
+      <h>380</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>1900.0;10.0;10.0;740.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1185</x>
+      <y>100</y>
+      <w>965</w>
+      <h>275</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;530.0;1910.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1025</x>
+      <y>560</y>
+      <w>85</w>
+      <h>515</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;150.0;1010.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1445</x>
+      <y>515</y>
+      <w>335</w>
+      <h>905</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>650.0;10.0;10.0;1790.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1095</x>
+      <y>515</y>
+      <w>715</w>
+      <h>560</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>1410.0;10.0;10.0;1100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>360</x>
+      <y>515</y>
+      <w>1315</w>
+      <h>910</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>2610.0;10.0;10.0;1800.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2000</x>
+      <y>570</y>
+      <w>995</w>
+      <h>485</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>1970.0;10.0;10.0;950.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1920</x>
+      <y>565</y>
+      <w>1120</w>
+      <h>650</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>2220.0;10.0;10.0;1280.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>655</x>
+      <y>570</y>
+      <w>2190</w>
+      <h>675</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>4360.0;10.0;10.0;1330.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3220</x>
+      <y>1330</y>
+      <w>330</w>
+      <h>125</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;</panel_attributes>
+    <additional_attributes>640.0;230.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3010</x>
+      <y>1330</y>
+      <w>165</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>310.0;10.0;10.0;240.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2540</x>
+      <y>1345</y>
+      <w>45</w>
+      <h>115</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>70.0;10.0;10.0;210.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2680</x>
+      <y>1510</y>
+      <w>80</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>140.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>
