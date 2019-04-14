@@ -1,5 +1,8 @@
 ﻿namespace NagyBeadandó.Mezok.Alapok
 {
+    /// <summary>
+    /// Feladata, hogy tárolja  Programban használt típusokat, hogy ne legyen elírás
+    /// </summary>
     internal static class Tipusok
     {
         /// <summary>

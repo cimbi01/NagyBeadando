@@ -1,5 +1,8 @@
 ﻿namespace NagyBeadandó.Mezok.Alapok
 {
+    /// <summary>
+    /// Feladata, hogy a Termelésért felelős osztályoknak adjon metódust, amivel a külövilág tud kommunikálni
+    /// </summary>
     internal interface ITermelo
     {
         #region Public Methods

@@ -1,5 +1,8 @@
 ﻿namespace NagyBeadandó.Mezok.Alapok
 {
+    /// <summary>
+    /// Feladata, hogy minden Mezőnek adjon egy általános Interface-t amit implementálhatnak
+    /// </summary>
     internal interface IMezo
     {
         #region Public Properties
@@ -9,6 +12,10 @@
         /// </summary>
         int ID { get; }
         IInteraktivMezo InteraktivMezo { get; }
+        /// <summary>
+        /// Visszaadja a mező típusát
+        /// </summary>
+        Tipusok.MezoTipusok MezoTipus { get; }
         /// <summary>
         /// "Renderelésnél" fontos, hogy ki tudja írni a mező nevét
         /// </summary>
