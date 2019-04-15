@@ -42,10 +42,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Kivételek\MezoKivetelek\NemTartalmazTarolhatotException.cs" />
+    <Compile Include="Kivételek\MezoKivetelek\NincsElegTarolhatoException.cs" />
+    <Compile Include="Kivételek\MezoKivetelek\TarolhatoExceptions.cs" />
     <Compile Include="Mezok\Alapok\IInteraktivMezo.cs" />
     <Compile Include="Mezok\Alapok\IMezo.cs" />
     <Compile Include="Mezok\Alapok\ITermelo.cs" />
     <Compile Include="Mezok\Alapok\Mezo.cs" />
+    <Compile Include="Mezok\Alapok\ITarolo.cs" />
     <Compile Include="Mezok\Tarolo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

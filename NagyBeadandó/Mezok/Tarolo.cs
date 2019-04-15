@@ -1,4 +1,5 @@
-﻿using NagyBeadandó.Mezok.Alapok;
+﻿using NagyBeadandó.Kivételek.MezoKivetelek;
+using NagyBeadandó.Mezok.Alapok;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,8 +10,41 @@ namespace NagyBeadandó.Mezok
     // Tárolni a különböző tárolható típusokat
     // Lekérni a különböző tárolható típusokból
     /// </summary>
-    public class Tarolo : Mezo
+    public class Tarolo : Mezo, ITarolo
     {
+        #region Public Methods
+
+        /// <summary>
+        /// Visszaadja mmenyit-nyit a Tárolhato-ból
+        /// </summary>
+        /// <param name="tarolhato">A típus, amiből lekérjük a mennyiséget</param>
+        /// <param name="mennyit">A mennyiség, hogy mennyit szeretne kivenni a tárolóból</param>
+        /// <returns>Visszaad mennyit-nyit, ha van belőle mennyit-nyi a kapacitásban, ellenkező esetben dob egy NincsElégTarolhatoException-t</returns>
+        public int Kivesz(Tipusok.Tarolhatok tarolhato, int mennyit)
+        {
+            if (!Kapacitas.TryGetValue(tarolhato, out int[] tarolt_mennyiseg))
+            {
+                throw new NemTartalmazTarolhatotException(tarolhato);
+            }
+            else if (tarolt_mennyiseg[0] >= mennyit)
+            {
+                tarolt_mennyiseg[0] -= mennyit;
+                return mennyit;
+            }
+            throw new NincsElegTarolhatoException(tarolhato);
+        }
+        /// <summary>
+        /// Visszaadja, hogy az adott tipusból a tárolt mennyiség egyenlő-e a maxkapacitással
+        /// </summary>
+        /// <param name="tarolhato">A tárolt tipus fajtája</param>
+        /// <returns>Igazat ad vissza, ha a tárolható típusból maxkapacitásnyi van, minden más esetben hamist</returns>
+        public bool MegVanTelve(Tipusok.Tarolhatok tarolhato)
+        {
+            return Kapacitas[tarolhato][0] == Kapacitas[tarolhato][1];
+        }
+
+        #endregion Public Methods
+
         #region Public Constructors
 
         public Tarolo()
