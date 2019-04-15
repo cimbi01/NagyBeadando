@@ -13,7 +13,7 @@ namespace NagyBeadandó.Mezok.Alapok
         /// <summary>
         /// Tárolja az osztályban található metódusokat és egy szöveget hozzá A szöveget írja ki a console-ra
         /// </summary>
-        Dictionary<string, Action> Metódusok { get; }
+        Dictionary<string, Action> Metodusok { get; }
         /// <summary>
         /// Segít "Renderelésnél", hogy van-e az osztálynak publikus metódusa, azaz hogy a metódus tartalmaz-e párt
         /// </summary>

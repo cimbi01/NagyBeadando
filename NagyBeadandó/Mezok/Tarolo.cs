@@ -6,9 +6,10 @@ using System.Text;
 
 namespace NagyBeadandó.Mezok
 {
-    /// <summary>Feladata:
-    // Tárolni a különböző tárolható típusokat
-    // Lekérni a különböző tárolható típusokból
+    /// <summary>
+    /// Feladata:
+    /// Tárolni a különböző tárolható típusokat
+    /// Lekérni a különböző tárolható típusokból
     /// </summary>
     public class Tarolo : Mezo, ITarolo
     {
@@ -57,7 +58,7 @@ namespace NagyBeadandó.Mezok
         /// <param name="kapacitas">Mezo tarolhatok szerinti tipusa</param>
         public Tarolo(int id, Tipusok.MezoTipusok mezotipus, Dictionary<Tipusok.Tarolhatok, int[]> kapacitas) : base(id, mezotipus)
         {
-            // paraméterek StringBuilder-e (kevesebbet erőforrást igényel a hasznáalta, mint ha mindig hozzáadogatnék a string-hez)
+            // paraméterek StringBuilder-e (kevesebbet erőforrást igényel a használata, mint ha mindig hozzáadogatnék a string-hez)
             StringBuilder stringBuilder = new StringBuilder();
             Kapacitas = kapacitas;
             stringBuilder.AppendLine();
@@ -106,15 +107,16 @@ namespace NagyBeadandó.Mezok
             public InteraktívTarolo(Tarolo tarolo) : base(tarolo)
             {
                 InteraktivMezo = this;
+                VanBennePublikusMetodus = Metodusok.Count == 0;
             }
 
             #endregion Public Constructors
 
             #region Public Properties
 
-            public Dictionary<string, Action> Metódusok { get; private set; } = new Dictionary<string, Action>();
+            public Dictionary<string, Action> Metodusok { get; private set; } = new Dictionary<string, Action>();
 
-            public bool VanBennePublikusMetodus { get; private set; } = false;
+            public bool VanBennePublikusMetodus { get; private set; }
 
             #endregion Public Properties
         }

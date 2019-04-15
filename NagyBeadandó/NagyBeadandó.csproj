@@ -51,6 +51,7 @@
     <Compile Include="Mezok\Alapok\ITermelo.cs" />
     <Compile Include="Mezok\Alapok\Mezo.cs" />
     <Compile Include="Mezok\Alapok\ITarolo.cs" />
+    <Compile Include="Mezok\NyersanyagMezo.cs" />
     <Compile Include="Mezok\Tarolo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
