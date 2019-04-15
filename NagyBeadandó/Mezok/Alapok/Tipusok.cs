@@ -3,7 +3,7 @@
     /// <summary>
     /// Feladata, hogy tárolja  Programban használt típusokat, hogy ne legyen elírás
     /// </summary>
-    internal static class Tipusok
+    public static class Tipusok
     {
         /// <summary>
         /// Elírások elkerüléséért használom Programon belül ha típusokat szeretnénk kifejezni csak

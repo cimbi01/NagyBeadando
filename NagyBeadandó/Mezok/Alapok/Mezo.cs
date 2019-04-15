@@ -6,7 +6,7 @@ namespace NagyBeadandó.Mezok.Alapok
     /// Minden mező ős osztálya
     /// IMező azért kell, mert minden  osztálynak csak egy őse lehet.
     /// </summary>
-    internal abstract class Mezo : IMezo
+    public abstract class Mezo : IMezo
     {
         #region Public Properties
 
@@ -26,16 +26,6 @@ namespace NagyBeadandó.Mezok.Alapok
 
         #region Protected Constructors
 
-        protected Mezo()
-        {
-        }
-        // <summary>
-        /// Inicializalja az osszes mezejet
-        /// </summary>
-        /// <param name="id">Mezo ID-je</param>
-        /// <param name="mezotipus">Mezo tipusa</param>
-        /// <param name="kapacitas">Mezo tarolhatok szerinti tipusa</param>
-
         protected Mezo(int id, Tipusok.MezoTipusok mezotipus)
         {
             ID = id;
@@ -47,6 +37,15 @@ namespace NagyBeadandó.Mezok.Alapok
             stringBuilder.Append("Szint : " + Szint);
             Parameterek = stringBuilder.ToString();
         }
+        protected Mezo()
+        {
+        }
+        // <summary>
+        /// Inicializalja az osszes mezejet
+        /// </summary>
+        /// <param name="id">Mezo ID-je</param>
+        /// <param name="mezotipus">Mezo tipusa</param>
+        /// <param name="kapacitas">Mezo tarolhatok szerinti tipusa</param>
 
         #endregion Protected Constructors
     }

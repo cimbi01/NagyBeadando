@@ -6,7 +6,7 @@ namespace NagyBeadandó.Mezok.Alapok
     /// <summary>
     /// Feladata, hogy a Renderlésnél felhasználja a mezők tulajdonságait
     /// </summary>
-    internal interface IInteraktivMezo : IMezo
+    public interface IInteraktivMezo : IMezo
     {
         #region Public Properties
 

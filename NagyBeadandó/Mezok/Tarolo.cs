@@ -9,7 +9,7 @@ namespace NagyBeadandó.Mezok
     // Tárolni a különböző tárolható típusokat
     // Lekérni a különböző tárolható típusokból
     /// </summary>
-    internal class Tarolo : Mezo
+    public class Tarolo : Mezo
     {
         #region Public Constructors
 
@@ -26,10 +26,10 @@ namespace NagyBeadandó.Mezok
             // paraméterek StringBuilder-e (kevesebbet erőforrást igényel a hasznáalta, mint ha mindig hozzáadogatnék a string-hez)
             StringBuilder stringBuilder = new StringBuilder();
             Kapacitas = kapacitas;
+            stringBuilder.AppendLine();
             stringBuilder.Append("Tárolt típusok: ");
             foreach (Tipusok.Tarolhatok item in kapacitas.Keys)
             {
-                stringBuilder.AppendLine();
                 stringBuilder.Append("Típus: ");
                 stringBuilder.Append(item.ToString());
                 stringBuilder.Append(" Mennyiség: ");
@@ -38,6 +38,7 @@ namespace NagyBeadandó.Mezok
                 stringBuilder.Append(", Kapacitás: ");
                 stringBuilder.Append(value[1].ToString());
                 stringBuilder.Append(";");
+                stringBuilder.AppendLine();
             }
             Parameterek += stringBuilder.ToString();
             InteraktivMezo = new InteraktívTarolo(this);
@@ -70,7 +71,6 @@ namespace NagyBeadandó.Mezok
 
             public InteraktívTarolo(Tarolo tarolo) : base(tarolo)
             {
-                VanBennePublikusMetodus = false;
                 InteraktivMezo = this;
             }
 
@@ -80,7 +80,7 @@ namespace NagyBeadandó.Mezok
 
             public Dictionary<string, Action> Metódusok { get; private set; } = new Dictionary<string, Action>();
 
-            public bool VanBennePublikusMetodus { get; private set; }
+            public bool VanBennePublikusMetodus { get; private set; } = false;
 
             #endregion Public Properties
         }

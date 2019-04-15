@@ -3,7 +3,7 @@
     /// <summary>
     /// Feladata, hogy minden Mezőnek adjon egy általános Interface-t amit implementálhatnak
     /// </summary>
-    internal interface IMezo
+    public interface IMezo
     {
         #region Public Properties
 
