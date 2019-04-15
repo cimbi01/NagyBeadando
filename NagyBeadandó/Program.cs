@@ -2,7 +2,7 @@
 
 namespace NagyBeadandó
 {
-    internal class Program
+    internal static class Program
     {
         #region Private Methods
 

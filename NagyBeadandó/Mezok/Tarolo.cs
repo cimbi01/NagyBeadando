@@ -1,5 +1,6 @@
 ﻿using NagyBeadandó.Mezok.Alapok;
 using System.Collections.Generic;
+using System.Text;
 
 namespace NagyBeadandó.Mezok
 {
@@ -7,21 +8,8 @@ namespace NagyBeadandó.Mezok
     // Tárolni a különböző tárolható típusokat
     // Lekérni a különböző tárolható típusokból
     /// </summary>
-    internal class Tarolo : IMezo
+    internal class Tarolo : Mezo
     {
-        #region Public Properties
-
-        public int ID { get; private set; }
-        public IInteraktivMezo InteraktivMezo { get; private set; }
-        public Dictionary<Tipusok.Tarolhatok, int> Kapacitás { get; private set; } = new Dictionary<Tipusok.Tarolhatok, int>();
-        public Tipusok.MezoTipusok MezoTipus { get; private set; }
-        public string Név { get; private set; }
-        public string Parameterek { get; private set; }
-        public int Szint { get; private set; }
-        public Dictionary<Tipusok.Tarolhatok, int> TároltMennyiseg { get; private set; } = new Dictionary<Tipusok.Tarolhatok, int>();
-
-        #endregion Public Properties
-
         #region Public Constructors
 
         public Tarolo()
@@ -32,13 +20,41 @@ namespace NagyBeadandó.Mezok
         /// <param name="id">Mezo ID-je</param>
         /// <param name="mezotipus">Mezo tipusa</param>
         /// <param name="kapacitas">Mezo tarolhatok szerinti tipusa</param>
-        public Tarolo(int id, Tipusok.MezoTipusok mezotipus, Dictionary<Tipusok.Tarolhatok, int> kapacitas)
+        public Tarolo(int id, Tipusok.MezoTipusok mezotipus, Dictionary<Tipusok.Tarolhatok, int[]> kapacitas) : base(id, mezotipus)
         {
-            ID = id;
-            MezoTipus = mezotipus;
+            // paraméterek StringBuilder-e (kevesebbet erőforrást igényel a hasznáalta, mint ha mindig hozzáadogatnék a string-hez)
+            StringBuilder stringBuilder = new StringBuilder();
             Kapacitás = kapacitas;
+            stringBuilder.Append("Tárolt típusok: ");
+            foreach (Tipusok.Tarolhatok item in kapacitas.Keys)
+            {
+                stringBuilder.AppendLine();
+                stringBuilder.Append("Típus: ");
+                stringBuilder.Append(item.ToString());
+                stringBuilder.Append(" Mennyiség: ");
+                kapacitas.TryGetValue(item, out int[] value);
+                stringBuilder.Append(value[0].ToString());
+                stringBuilder.Append(", Kapacitás: ");
+                stringBuilder.Append(value[1].ToString());
+                stringBuilder.Append(";");
+            }
+            Parameterek += stringBuilder.ToString();
+            // PARAMÉTEREK BEÁLLÍTÁSA
+            // IINTERAKTÍVMEZŐ BEÁLLÍTÁSA
+            // MEZŐ ABSTRACT OSZTÁLY ALAPNAK
         }
 
         #endregion Public Constructors
+
+        #region Public Properties
+
+        /// <summary>
+        /// Minden típushoz tárolja, hogy mennyit tárol és hogy mennyit tárolhat
+        /// A tömb első eleme a mennyiség
+        /// Második eleme a maximum kapacitás
+        /// </summary>
+        public Dictionary<Tipusok.Tarolhatok, int[]> Kapacitás { get; private set; } = new Dictionary<Tipusok.Tarolhatok, int[]>();
+
+        #endregion Public Properties
     }
 }

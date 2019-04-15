@@ -5,11 +5,12 @@ VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NagyBeadandó", "NagyBeadandó\NagyBeadandó.csproj", "{A60813F4-1C53-4FA3-B856-504F03EE26CE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3EDB871D-1269-47AA-95E0-8D89800343DB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D0B36732-AA12-43EB-BFF1-82B3BBB4A1FE}"
 	ProjectSection(SolutionItems) = preProject
 		StatégiaiJáték.pptx = StatégiaiJáték.pptx
 		StratégiaijátékMenete.uxf = StratégiaijátékMenete.uxf
 		StratégiaiJátékOsztályDiagram.uxf = StratégiaiJátékOsztályDiagram.uxf
+		StratégiaiJátékOsztályDiagram_backup.uxf = StratégiaiJátékOsztályDiagram_backup.uxf
 	EndProjectSection
 EndProject
 Global
