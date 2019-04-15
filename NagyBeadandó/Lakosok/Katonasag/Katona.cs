@@ -2,7 +2,7 @@
 
 namespace NagyBeadandó.Lakosok.Katonasag
 {
-    internal class Katona : Lakos
+    public class Katona : Lakos
     {
         #region Public Constructors
 

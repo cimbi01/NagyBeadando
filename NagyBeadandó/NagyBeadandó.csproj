@@ -46,6 +46,7 @@
     <Compile Include="Kivételek\MezoKivetelek\NincsElegTarolhatoException.cs" />
     <Compile Include="Kivételek\MezoKivetelek\TarolhatoExceptions.cs" />
     <Compile Include="Lakosok\Katonasag\Katona.cs" />
+    <Compile Include="Lakosok\Katonasag\KatonaiEgyseg.cs" />
     <Compile Include="Lakosok\Lakos.cs" />
     <Compile Include="Mezok\Alapok\IInteraktivMezo.cs" />
     <Compile Include="Mezok\Alapok\IMezo.cs" />
