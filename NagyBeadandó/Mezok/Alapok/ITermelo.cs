@@ -3,7 +3,7 @@
     /// <summary>
     /// Feladata, hogy a Termelésért felelős osztályoknak adjon metódust, amivel a külövilág tud kommunikálni
     /// </summary>
-    internal interface ITermelo
+    public interface ITermelo
     {
         #region Public Methods
 
