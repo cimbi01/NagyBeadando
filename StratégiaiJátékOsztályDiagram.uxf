@@ -4,7 +4,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1260</x>
+      <x>1295</x>
       <y>1410</y>
       <w>320</w>
       <h>225</h>
@@ -38,7 +38,7 @@ innerclass}</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>15</x>
+      <x>50</x>
       <y>1415</y>
       <w>415</w>
       <h>190</h>
@@ -72,7 +72,7 @@ innerclass}
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>450</x>
+      <x>485</x>
       <y>1435</y>
       <w>435</w>
       <h>170</h>
@@ -105,7 +105,7 @@ innerclass}</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1560</x>
+      <x>1595</x>
       <y>395</y>
       <w>400</w>
       <h>125</h>
@@ -129,7 +129,7 @@ Mezők{+get; -set} : List&lt;IInteraktívMező&gt; &gt; összesmező
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>900</x>
+      <x>935</x>
       <y>1470</y>
       <w>325</w>
       <h>135</h>
@@ -156,7 +156,7 @@ innerclass}</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1780</x>
+      <x>1815</x>
       <y>1045</y>
       <w>360</w>
       <h>120</h>
@@ -181,7 +181,7 @@ MegVanEtetve{+get; -set} : bool
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1780</x>
+      <x>1815</x>
       <y>1205</y>
       <w>360</w>
       <h>235</h>
@@ -210,7 +210,7 @@ MenetSebesség{+get; -set} : int</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1865</x>
+      <x>1900</x>
       <y>1160</y>
       <w>15</w>
       <h>55</h>
@@ -222,7 +222,7 @@ MenetSebesség{+get; -set} : int</panel_attributes>
     <id>UMLPackage</id>
     <coordinates>
       <x>0</x>
-      <y>840</y>
+      <y>845</y>
       <w>1675</w>
       <h>935</h>
     </coordinates>
@@ -235,7 +235,7 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>1745</x>
+      <x>1780</x>
       <y>980</y>
       <w>415</w>
       <h>505</h>
@@ -249,7 +249,7 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>2230</x>
+      <x>2265</x>
       <y>1135</y>
       <w>1695</w>
       <h>640</h>
@@ -263,7 +263,7 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>800</x>
+      <x>835</x>
       <y>340</y>
       <w>390</w>
       <h>95</h>
@@ -283,7 +283,7 @@ _-GetPlayer(név : string) &gt; visszaad egy játékost akinek a neve név_</pan
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2140</x>
+      <x>2175</x>
       <y>50</y>
       <w>630</w>
       <h>130</h>
@@ -309,7 +309,7 @@ _-GetPlayer(név : string) &gt; visszaad egy játékost akinek a neve név_</pan
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>400</x>
+      <x>435</x>
       <y>280</y>
       <w>805</w>
       <h>355</h>
@@ -323,7 +323,7 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>415</x>
+      <x>450</x>
       <y>475</y>
       <w>390</w>
       <h>75</h>
@@ -340,7 +340,7 @@ _+RenderOpciók(Dictionary&lt;string, Action&gt;) : void &gt; kiírja, hogy a me
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>1445</x>
+      <x>1480</x>
       <y>0</y>
       <w>1765</w>
       <h>610</h>
@@ -354,7 +354,7 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>1485</x>
+      <x>1520</x>
       <y>250</y>
       <w>1710</w>
       <h>345</h>
@@ -368,7 +368,7 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2720</x>
+      <x>2755</x>
       <y>390</y>
       <w>455</w>
       <h>185</h>
@@ -398,7 +398,7 @@ Védekezik() : védekezik &gt; Védekezést generál ittoniakból</panel_attribu
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2390</x>
+      <x>2425</x>
       <y>1450</y>
       <w>300</w>
       <h>135</h>
@@ -423,7 +423,7 @@ Rombolás() : void &gt; Védő mezeiből levenni</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2385</x>
+      <x>2420</x>
       <y>1175</y>
       <w>525</w>
       <h>175</h>
@@ -451,7 +451,7 @@ Katonák{+get} : List&lt;Katona&gt;
   <element>
     <id>UMLInterface</id>
     <coordinates>
-      <x>510</x>
+      <x>545</x>
       <y>915</y>
       <w>290</w>
       <h>90</h>
@@ -468,7 +468,7 @@ ID : int &gt; 0-tól induló ID, rombolásnál, stb. megkülönböztethető legy
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1855</x>
+      <x>1890</x>
       <y>1375</y>
       <w>15</w>
       <h>15</h>
@@ -479,7 +479,7 @@ ID : int &gt; 0-tól induló ID, rombolásnál, stb. megkülönböztethető legy
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>2945</x>
+      <x>2980</x>
       <y>1640</y>
       <w>200</w>
       <h>75</h>
@@ -492,7 +492,7 @@ Inkább csak has-a</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>3020</x>
+      <x>3055</x>
       <y>1590</y>
       <w>15</w>
       <h>60</h>
@@ -503,7 +503,7 @@ Inkább csak has-a</panel_attributes>
   <element>
     <id>UMLInterface</id>
     <coordinates>
-      <x>910</x>
+      <x>945</x>
       <y>1060</y>
       <w>375</w>
       <h>60</h>
@@ -517,7 +517,7 @@ VanBennePublikusMetódus : bool &gt; van e publikus metódusa </panel_attributes
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2085</x>
+      <x>2120</x>
       <y>275</y>
       <w>480</w>
       <h>210</h>
@@ -548,7 +548,7 @@ Termelés Fogyasztás ciklust felügyeli
   <element>
     <id>UMLInterface</id>
     <coordinates>
-      <x>590</x>
+      <x>625</x>
       <y>1115</y>
       <w>140</w>
       <h>50</h>
@@ -559,58 +559,9 @@ Termel(params enum[] mit) : void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLInterface</id>
-    <coordinates>
-      <x>605</x>
-      <y>1220</y>
-      <w>110</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>ITárolóTermelő : ITermelő
-Feladata:
-Tárolót tárolni
-Termelni
--
-Tároló{+get,-set} : Tároló</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>655</x>
-      <y>1230</y>
-      <w>20</w>
-      <h>215</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>20.0;10.0;10.0;410.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>660</x>
-      <y>1225</y>
-      <w>420</w>
-      <h>255</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;820.0;490.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>660</x>
-      <y>1225</y>
-      <w>775</w>
-      <h>195</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;1530.0;370.0</additional_attributes>
-  </element>
-  <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>55</x>
+      <x>90</x>
       <y>985</y>
       <w>290</w>
       <h>55</h>
@@ -625,7 +576,7 @@ _épületek : enum &gt; Épületek típusai _
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>650</x>
+      <x>685</x>
       <y>925</y>
       <w>455</w>
       <h>150</h>
@@ -636,7 +587,7 @@ _épületek : enum &gt; Épületek típusai _
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>650</x>
+      <x>685</x>
       <y>925</y>
       <w>20</w>
       <h>205</h>
@@ -647,7 +598,7 @@ _épületek : enum &gt; Épületek típusai _
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>655</x>
+      <x>690</x>
       <y>1125</y>
       <w>15</w>
       <h>110</h>
@@ -658,7 +609,7 @@ _épületek : enum &gt; Épületek típusai _
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2665</x>
+      <x>2700</x>
       <y>1345</y>
       <w>260</w>
       <h>115</h>
@@ -669,7 +620,7 @@ _épületek : enum &gt; Épületek típusai _
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>205</x>
+      <x>240</x>
       <y>920</y>
       <w>455</w>
       <h>505</h>
@@ -680,7 +631,7 @@ _épületek : enum &gt; Épületek típusai _
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>3390</x>
+      <x>3425</x>
       <y>1445</y>
       <w>420</w>
       <h>105</h>
@@ -699,7 +650,7 @@ _épületek : enum &gt; Épületek típusai _
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>3000</x>
+      <x>3035</x>
       <y>1175</y>
       <w>390</w>
       <h>160</h>
@@ -725,7 +676,7 @@ Idő{+get} : int
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2750</x>
+      <x>2785</x>
       <y>1450</y>
       <w>530</w>
       <h>145</h>
@@ -751,7 +702,7 @@ Menetelés indítása &gt; Tevékenység indítása, Csata indítása
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>410</x>
+      <x>445</x>
       <y>340</y>
       <w>380</w>
       <h>80</h>
@@ -769,7 +720,7 @@ _-TevékenységIdőTelik() : void &gt;Tevékenységek idője telik, ha letelt, v
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>825</x>
+      <x>860</x>
       <y>455</y>
       <w>370</w>
       <h>110</h>
@@ -792,7 +743,7 @@ Kiválaszt() : void &gt; gomb nyomást kezeli (fel, le, enter, escape) (Enter &g
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2365</x>
+      <x>2400</x>
       <y>175</y>
       <w>15</w>
       <h>110</h>
@@ -803,7 +754,7 @@ Kiválaszt() : void &gt; gomb nyomást kezeli (fel, le, enter, escape) (Enter &g
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1735</x>
+      <x>1770</x>
       <y>335</y>
       <w>360</w>
       <h>70</h>
@@ -814,7 +765,7 @@ Kiválaszt() : void &gt; gomb nyomást kezeli (fel, le, enter, escape) (Enter &g
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2560</x>
+      <x>2595</x>
       <y>340</y>
       <w>390</w>
       <h>60</h>
@@ -825,7 +776,7 @@ Kiválaszt() : void &gt; gomb nyomást kezeli (fel, le, enter, escape) (Enter &g
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>600</x>
+      <x>635</x>
       <y>415</y>
       <w>2590</w>
       <h>770</h>
@@ -836,7 +787,7 @@ Kiválaszt() : void &gt; gomb nyomást kezeli (fel, le, enter, escape) (Enter &g
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>785</x>
+      <x>820</x>
       <y>375</y>
       <w>25</w>
       <h>15</h>
@@ -847,7 +798,7 @@ Kiválaszt() : void &gt; gomb nyomást kezeli (fel, le, enter, escape) (Enter &g
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>585</x>
+      <x>620</x>
       <y>545</y>
       <w>520</w>
       <h>530</h>
@@ -858,7 +809,7 @@ Kiválaszt() : void &gt; gomb nyomást kezeli (fel, le, enter, escape) (Enter &g
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1190</x>
+      <x>1225</x>
       <y>140</y>
       <w>960</w>
       <h>380</h>
@@ -869,7 +820,7 @@ Kiválaszt() : void &gt; gomb nyomást kezeli (fel, le, enter, escape) (Enter &g
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1185</x>
+      <x>1220</x>
       <y>100</y>
       <w>965</w>
       <h>275</h>
@@ -880,7 +831,7 @@ Kiválaszt() : void &gt; gomb nyomást kezeli (fel, le, enter, escape) (Enter &g
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1025</x>
+      <x>1060</x>
       <y>560</y>
       <w>85</w>
       <h>515</h>
@@ -891,7 +842,7 @@ Kiválaszt() : void &gt; gomb nyomást kezeli (fel, le, enter, escape) (Enter &g
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1445</x>
+      <x>1480</x>
       <y>515</y>
       <w>335</w>
       <h>905</h>
@@ -902,7 +853,7 @@ Kiválaszt() : void &gt; gomb nyomást kezeli (fel, le, enter, escape) (Enter &g
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1095</x>
+      <x>1130</x>
       <y>515</y>
       <w>715</w>
       <h>560</h>
@@ -913,7 +864,7 @@ Kiválaszt() : void &gt; gomb nyomást kezeli (fel, le, enter, escape) (Enter &g
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>360</x>
+      <x>395</x>
       <y>515</y>
       <w>1315</w>
       <h>910</h>
@@ -924,7 +875,7 @@ Kiválaszt() : void &gt; gomb nyomást kezeli (fel, le, enter, escape) (Enter &g
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2000</x>
+      <x>2035</x>
       <y>570</y>
       <w>995</w>
       <h>485</h>
@@ -935,7 +886,7 @@ Kiválaszt() : void &gt; gomb nyomást kezeli (fel, le, enter, escape) (Enter &g
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1920</x>
+      <x>1955</x>
       <y>565</y>
       <w>1120</w>
       <h>650</h>
@@ -946,18 +897,7 @@ Kiválaszt() : void &gt; gomb nyomást kezeli (fel, le, enter, escape) (Enter &g
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>655</x>
-      <y>570</y>
-      <w>2190</w>
-      <h>675</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>4360.0;10.0;10.0;1330.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>3220</x>
+      <x>3255</x>
       <y>1330</y>
       <w>330</w>
       <h>125</h>
@@ -968,7 +908,7 @@ Kiválaszt() : void &gt; gomb nyomást kezeli (fel, le, enter, escape) (Enter &g
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>3010</x>
+      <x>3045</x>
       <y>1330</y>
       <w>165</w>
       <h>130</h>
@@ -979,7 +919,7 @@ Kiválaszt() : void &gt; gomb nyomást kezeli (fel, le, enter, escape) (Enter &g
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2540</x>
+      <x>2575</x>
       <y>1345</y>
       <w>45</w>
       <h>115</h>
@@ -990,7 +930,7 @@ Kiválaszt() : void &gt; gomb nyomást kezeli (fel, le, enter, escape) (Enter &g
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2680</x>
+      <x>2715</x>
       <y>1510</y>
       <w>80</w>
       <h>15</h>
@@ -1001,7 +941,7 @@ Kiválaszt() : void &gt; gomb nyomást kezeli (fel, le, enter, escape) (Enter &g
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>45</x>
+      <x>80</x>
       <y>895</y>
       <w>1270</w>
       <h>420</h>
@@ -1009,6 +949,66 @@ Kiválaszt() : void &gt; gomb nyomást kezeli (fel, le, enter, escape) (Enter &g
     <panel_attributes>Alapok
 --
 bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>795</x>
+      <y>1220</y>
+      <w>675</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;1330.0;380.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>795</x>
+      <y>1220</y>
+      <w>320</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;620.0;500.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>795</x>
+      <y>570</y>
+      <w>2085</w>
+      <h>675</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>4150.0;10.0;10.0;1330.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>690</x>
+      <y>1220</y>
+      <w>120</w>
+      <h>225</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>220.0;10.0;10.0;430.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>745</x>
+      <y>1220</y>
+      <w>115</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>ITárolóTermelő : ITermelő
+Feladata:
+Tárolót tárolni
+Termelni
+-
+Tároló{+get,-set} : Tároló</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>

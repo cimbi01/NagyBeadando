@@ -10,7 +10,7 @@
         /// <summary>
         /// Termelést indít a termelő osztályon
         /// </summary>
-        void Termel();
+        void Termel(Tipusok.Tarolhatok tarolhato);
 
         #endregion Public Methods
     }
