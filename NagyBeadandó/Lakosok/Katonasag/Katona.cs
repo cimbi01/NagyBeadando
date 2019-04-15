@@ -1,6 +1,6 @@
 ﻿using NagyBeadandó.Mezok.Alapok;
 
-namespace NagyBeadandó.Lakosok
+namespace NagyBeadandó.Lakosok.Katonasag
 {
     internal class Katona : Lakos
     {

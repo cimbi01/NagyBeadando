@@ -45,7 +45,7 @@
     <Compile Include="Kivételek\MezoKivetelek\NemTartalmazTarolhatotException.cs" />
     <Compile Include="Kivételek\MezoKivetelek\NincsElegTarolhatoException.cs" />
     <Compile Include="Kivételek\MezoKivetelek\TarolhatoExceptions.cs" />
-    <Compile Include="Lakosok\Katona.cs" />
+    <Compile Include="Lakosok\Katonasag\Katona.cs" />
     <Compile Include="Lakosok\Lakos.cs" />
     <Compile Include="Mezok\Alapok\IInteraktivMezo.cs" />
     <Compile Include="Mezok\Alapok\IMezo.cs" />
@@ -63,5 +63,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
