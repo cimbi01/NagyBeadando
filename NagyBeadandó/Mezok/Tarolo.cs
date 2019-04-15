@@ -27,12 +27,12 @@ namespace NagyBeadandó.Mezok
             {
                 throw new NemTartalmazTarolhatotException(tarolhato);
             }
-            else if (tarolt_mennyiseg[0] >= mennyit)
+            else if (tarolt_mennyiseg[0] < mennyit)
             {
-                tarolt_mennyiseg[0] -= mennyit;
-                return mennyit;
+                throw new NincsElegTarolhatoException(tarolhato);
             }
-            throw new NincsElegTarolhatoException(tarolhato);
+            tarolt_mennyiseg[0] -= mennyit;
+            return mennyit;
         }
         /// <summary>
         /// Visszaadja, hogy az adott tipusból a tárolt mennyiség egyenlő-e a maxkapacitással
