@@ -20,7 +20,7 @@ namespace NagyBeadandó.Mezok.Alapok
 
         public string Parameterek { get; protected set; }
 
-        public int Szint { get; protected set; } = 0;
+        public int Szint { get; protected set; } = 1;
 
         #endregion Public Properties
 
@@ -41,7 +41,6 @@ namespace NagyBeadandó.Mezok.Alapok
             ID = id;
             MezoTipus = mezotipus;
             Név = mezotipus.ToString() + ID.ToString();
-            Szint++;
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append("Név : " + Név);
             stringBuilder.AppendLine();

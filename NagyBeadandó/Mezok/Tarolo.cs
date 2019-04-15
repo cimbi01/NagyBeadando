@@ -1,4 +1,5 @@
 ﻿using NagyBeadandó.Mezok.Alapok;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -24,7 +25,7 @@ namespace NagyBeadandó.Mezok
         {
             // paraméterek StringBuilder-e (kevesebbet erőforrást igényel a hasznáalta, mint ha mindig hozzáadogatnék a string-hez)
             StringBuilder stringBuilder = new StringBuilder();
-            Kapacitás = kapacitas;
+            Kapacitas = kapacitas;
             stringBuilder.Append("Tárolt típusok: ");
             foreach (Tipusok.Tarolhatok item in kapacitas.Keys)
             {
@@ -39,9 +40,13 @@ namespace NagyBeadandó.Mezok
                 stringBuilder.Append(";");
             }
             Parameterek += stringBuilder.ToString();
-            // PARAMÉTEREK BEÁLLÍTÁSA
-            // IINTERAKTÍVMEZŐ BEÁLLÍTÁSA
-            // MEZŐ ABSTRACT OSZTÁLY ALAPNAK
+            InteraktivMezo = new InteraktívTarolo(this);
+        }
+        public Tarolo(Tarolo tarolo) : base(tarolo.ID, tarolo.MezoTipus)
+        {
+            Kapacitas = tarolo.Kapacitas;
+            Parameterek = tarolo.Parameterek;
+            InteraktivMezo = tarolo.InteraktivMezo;
         }
 
         #endregion Public Constructors
@@ -53,8 +58,33 @@ namespace NagyBeadandó.Mezok
         /// A tömb első eleme a mennyiség
         /// Második eleme a maximum kapacitás
         /// </summary>
-        public Dictionary<Tipusok.Tarolhatok, int[]> Kapacitás { get; private set; } = new Dictionary<Tipusok.Tarolhatok, int[]>();
+        public Dictionary<Tipusok.Tarolhatok, int[]> Kapacitas { get; private set; } = new Dictionary<Tipusok.Tarolhatok, int[]>();
 
         #endregion Public Properties
+
+        #region Private Classes
+
+        private class InteraktívTarolo : Tarolo, IInteraktivMezo
+        {
+            #region Public Constructors
+
+            public InteraktívTarolo(Tarolo tarolo) : base(tarolo)
+            {
+                VanBennePublikusMetodus = false;
+                InteraktivMezo = this;
+            }
+
+            #endregion Public Constructors
+
+            #region Public Properties
+
+            public Dictionary<string, Action> Metódusok { get; private set; } = new Dictionary<string, Action>();
+
+            public bool VanBennePublikusMetodus { get; private set; }
+
+            #endregion Public Properties
+        }
+
+        #endregion Private Classes
     }
 }
