@@ -60,6 +60,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Mezok\Alapok\Tipusok.cs" />
+    <Compile Include="Tevekenyseg\Tamadas.cs" />
+    <Compile Include="Tevekenyseg\Tevekenyseg.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
