@@ -4,16 +4,14 @@
     {
         #region Public Properties
 
-        public Lakos()
-        {
-        }
-        public Lakos(int id, int _Fogyasztas)
+        public Lakos(int id, int _Fogyasztas = 1)
         {
             Fogyasztas = _Fogyasztas;
             ID = id;
         }
         public int Fogyasztas { get; protected set; }
         public int ID { get; protected set; }
+        public bool Katona { get; protected set; } = false;
         public bool MegVanEtetve { get; set; } = false;
         public int VedoErtek { get; protected set; } = 1;
 

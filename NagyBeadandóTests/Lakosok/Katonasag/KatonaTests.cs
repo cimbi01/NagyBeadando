@@ -11,7 +11,7 @@ namespace NagyBeadandó.Lakosok.Katonasag.Tests
         [TestMethod()]
         public void KatonaTest()
         {
-            Katona katona = new Katona(ID, this.katona_tipus);
+            Katona katona = new Katona(lakos, this.katona_tipus);
             Assert.AreEqual(5, katona.MenetSebesseg);
             Assert.AreEqual(10, katona.RomboloErtek);
             Assert.AreEqual(10, katona.TamadoErtek);
@@ -23,6 +23,7 @@ namespace NagyBeadandó.Lakosok.Katonasag.Tests
         #region Private Fields
 
         private static readonly int ID = 0;
+        private static readonly Lakos lakos = new Lakos(ID);
         private readonly Tipusok.KatonaTipusok katona_tipus = Tipusok.KatonaTipusok.Gyalogos;
 
         #endregion Private Fields

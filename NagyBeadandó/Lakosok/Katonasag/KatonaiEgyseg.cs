@@ -6,7 +6,7 @@ namespace NagyBeadandó.Lakosok.Katonasag
     {
         #region Public Constructors
 
-        public KatonaiEgyseg(bool tamad, List<Katona> katonak)
+        public KatonaiEgyseg(bool tamad, List<Lakos> katonak)
         {
             Katonak = katonak;
             Tamad = tamad;
@@ -21,7 +21,7 @@ namespace NagyBeadandó.Lakosok.Katonasag
         /// Egység ereje támadás/védekezés függvényében
         /// </summary>
         public int Erő { get; protected set; }
-        public List<Katona> Katonak { get; protected set; }
+        public List<Lakos> Katonak { get; protected set; }
         public bool Tamad { get; protected set; }
 
         #endregion Public Properties
@@ -30,13 +30,13 @@ namespace NagyBeadandó.Lakosok.Katonasag
 
         private void EroSzamitas()
         {
-            foreach (Katona item in Katonak)
+            foreach (Lakos item in Katonak)
             {
                 Erő += item.VedoErtek;
                 if (Tamad)
                 {
                     Erő -= item.VedoErtek;
-                    Erő += item.TamadoErtek;
+                    Erő += (item as Katona).TamadoErtek;
                 }
             }
         }

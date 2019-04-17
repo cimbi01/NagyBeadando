@@ -18,9 +18,9 @@ namespace NagyBeadandó.Lakosok.Katonasag
         /// KatonaTípus alapján beállít mindent
         /// </summary>
         /// <param name="katona_tipus">Katona Típusa</param>
-        public Katona(int id, Tipusok.KatonaTipusok katona_tipus)
+        public Katona(Lakos lakos, Tipusok.KatonaTipusok katona_tipus) : base(lakos.ID)
         {
-            ID = id;
+            ID = lakos.ID;
             KatonaTipus = katona_tipus;
             int[] ertekek = katona_ertekek[KatonaTipus];
             MenetSebesseg = ertekek[0];

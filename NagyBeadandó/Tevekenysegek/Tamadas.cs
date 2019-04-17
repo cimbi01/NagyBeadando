@@ -1,4 +1,5 @@
-﻿using NagyBeadandó.Lakosok.Katonasag;
+﻿using NagyBeadandó.Lakosok;
+using NagyBeadandó.Lakosok.Katonasag;
 
 namespace NagyBeadandó.Tevekenysegek
 {
@@ -35,11 +36,11 @@ namespace NagyBeadandó.Tevekenysegek
         /// </summary>
         private void MenetidoSzamitas()
         {
-            foreach (Katona item in this.katonaiEgyseg.Katonak)
+            foreach (Lakos item in this.katonaiEgyseg.Katonak)
             {
-                if (item.MenetSebesseg > 0)
+                if ((item as Katona).MenetSebesseg > 0)
                 {
-                    this.menetido = item.MenetSebesseg;
+                    this.menetido = (item as Katona).MenetSebesseg;
                 }
             }
         }
