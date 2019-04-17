@@ -23,7 +23,7 @@
         /// <summary>
         /// A Programban használt tárolhatóegység típusok Ha új tárolhatóegység fajtát szeretnénk létrehozni, bővíteni kell
         /// </summary>
-        public enum Tarolhatok { Buza, Agyag, Erc, Fa, Katona };
+        public enum Tarolhatok { Buza, Agyag, Erc, Fa, Katona, Lakos };
 
         #endregion Public Enums
     }

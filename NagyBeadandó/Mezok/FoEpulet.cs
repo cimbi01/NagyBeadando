@@ -8,7 +8,7 @@ namespace NagyBeadandó.Mezok
     {
         #region Public Constructors
 
-        public FoEpulet(int id, Tipusok.MezoTipusok mezotipus, Dictionary<Tipusok.Tarolhatok, int[]> kapacitas) : base(id, mezotipus, kapacitas)
+        public FoEpulet(int id) : base(id, Tipusok.MezoTipusok.Foepulet, new Dictionary<Tipusok.Tarolhatok, int[]>() { [Tipusok.Tarolhatok.Lakos] = new int[2] { 0, 10 } })
         {
             InteraktivMezo = new InteraktivFoEpulet(this);
         }
