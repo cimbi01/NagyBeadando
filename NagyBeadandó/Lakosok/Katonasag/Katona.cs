@@ -1,9 +1,17 @@
 ﻿using NagyBeadandó.Mezok.Alapok;
+using System.Collections.Generic;
 
 namespace NagyBeadandó.Lakosok.Katonasag
 {
     public class Katona : Lakos
     {
+        #region Private Fields
+
+        private static readonly Dictionary<Tipusok.KatonaTipusok, int[]> katona_ertekek = new Dictionary<Tipusok.KatonaTipusok, int[]>()
+        { [Tipusok.KatonaTipusok.Gyalogos] = new int[4] { 5, 10, 10, 10 } };
+
+        #endregion Private Fields
+
         #region Public Constructors
 
         /// <summary>
@@ -14,13 +22,18 @@ namespace NagyBeadandó.Lakosok.Katonasag
         {
             ID = id;
             KatonaTipus = katona_tipus;
+            int[] ertekek = katona_ertekek[KatonaTipus];
+            MenetSebesseg = ertekek[0];
+            RomboloErtek = ertekek[1];
+            TamadoErtek = ertekek[2];
+            VedoErtek = ertekek[3];
         }
 
         #endregion Public Constructors
 
         #region Public Properties
 
-        public bool ItthonVan { get; private set; } = true;
+        public bool ItthonVan { get; set; } = true;
         public Tipusok.KatonaTipusok KatonaTipus { get; private set; }
         public int MenetSebesseg { get; private set; }
         public int RomboloErtek { get; private set; }
