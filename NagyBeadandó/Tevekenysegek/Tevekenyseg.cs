@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NagyBeadandó.Tevekenyseg
+namespace NagyBeadandó.Tevekenysegek
 {
     /// <summary>
     /// Feladata:

@@ -1,6 +1,6 @@
 ﻿using NagyBeadandó.Lakosok.Katonasag;
 
-namespace NagyBeadandó.Tevekenyseg
+namespace NagyBeadandó.Tevekenysegek
 {
     /// <summary>
     /// Feladata:
@@ -24,7 +24,7 @@ namespace NagyBeadandó.Tevekenyseg
 
         private readonly KatonaiEgyseg katonaiEgyseg;
         private readonly Tevekenyseg tevekenyseg;
-        private int menetido;
+        private int menetido = 0;
 
         #endregion Private Fields
 
@@ -35,7 +35,6 @@ namespace NagyBeadandó.Tevekenyseg
         /// </summary>
         private void MenetidoSzamitas()
         {
-            this.menetido = 0;
             foreach (Katona item in this.katonaiEgyseg.Katonak)
             {
                 if (item.MenetSebesseg > 0)

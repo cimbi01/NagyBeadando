@@ -17,6 +17,9 @@ namespace NagyBeadandó.Lakosok.Katonasag
 
         #region Public Properties
 
+        /// <summary>
+        /// Egység ereje támadás/védekezés függvényében
+        /// </summary>
         public int Erő { get; protected set; }
         public List<Katona> Katonak { get; protected set; }
         public bool Tamad { get; protected set; }
