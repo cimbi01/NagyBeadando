@@ -17,6 +17,11 @@ namespace NagyBeadandó.Utility
                 Console.WriteLine(item.Nev);
             }
         }
+        /// <summary>
+        /// Kezeli az entert
+        /// Ha mezőben van, akkor meghívja az kurzor helyén levo szöveg action párját
+        /// Ha nem mezőben akkor belép a mezőbe és kiírja az adatait
+        /// </summary>
         private static void Enter()
         {
             if (!mezoben)
@@ -30,6 +35,11 @@ namespace NagyBeadandó.Utility
                 Jatekos.InteraktivMezok[mezoindex].Metodusok[array[Console.CursorTop]].Invoke();
             }
         }
+        /// <summary>
+        /// Kezeli az Escape billentyűt
+        /// Ha mezoben van, akkor kilép a játékos-hoz és kiírja a játékos mezőit
+        /// Ha nem mezőben van, akkor az escaped true
+        /// </summary>
         private static void Escape()
         {
             if (!mezoben)
@@ -50,7 +60,6 @@ namespace NagyBeadandó.Utility
             RenderCurrentLine(true);
             switch (ck)
             {
-                // W-nél egy-el feljebb megy a cursor és azt írja ki más színnel ami ott van
                 case ConsoleKey.W:
                     W();
                     break;
@@ -63,8 +72,15 @@ namespace NagyBeadandó.Utility
                 case ConsoleKey.Escape:
                     Escape();
                     break;
+                default:
+                    RenderCurrentLine(false);
+                    break;
             }
         }
+        /// <summary>
+        /// Kiírja az interaktív mező metódusainak nevét
+        /// </summary>
+        /// <param name="index"></param>
         private static void InteraktivMezoRender(int index)
         {
             Console.Clear();
@@ -75,6 +91,10 @@ namespace NagyBeadandó.Utility
                 Console.WriteLine(item);
             }
         }
+        /// <summary>
+        /// Kirendereli a jelenlegi sort
+        /// </summary>
+        /// <param name="eredeti">Ha igaz, akkor a háttérszínt nem vátloztatja meg, ha hamis, akkor a háttérszínt fehérre változtatja</param>
         private static void RenderCurrentLine(bool eredeti)
         {
             Console.SetCursorPosition(0, Console.CursorTop);
@@ -85,20 +105,27 @@ namespace NagyBeadandó.Utility
             Console.Write(Jatekos.InteraktivMezok[Console.CursorTop].Nev);
             Console.BackgroundColor = ConsoleColor.Black;
         }
+        /// <summary>
+        /// S megnyomását kezeli
+        /// Egyel lejebb ugrik a "kurzor", ha van lejebb
+        /// </summary>
         private static void S()
         {
             if (Console.CursorTop < Jatekos.InteraktivMezok.Count)
             {
                 Console.CursorTop++;
-                Console.Write(Jatekos.InteraktivMezok[Console.CursorTop].Nev);
             }
         }
+
+        /// <summary>
+        /// W megnyomását kezeli:
+        /// Egyel feljebb ugrik, ha van feljebb
+        /// </summary>
         private static void W()
         {
             if (Console.CursorTop > 0)
             {
                 Console.CursorTop--;
-                RenderCurrentLine(false);
             }
         }
 
@@ -112,6 +139,9 @@ namespace NagyBeadandó.Utility
 
         #region Public Methods
 
+        /// <summary>
+        /// Kezeli a játékos interakciójának életciklusát
+        /// </summary>
         public static void Render()
         {
             AlapRender();
