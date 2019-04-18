@@ -65,6 +65,7 @@
     <Compile Include="Mezok\Alapok\Tipusok.cs" />
     <Compile Include="Tevekenysegek\Tamadas.cs" />
     <Compile Include="Tevekenysegek\Tevekenyseg.cs" />
+    <Compile Include="Utility\Controller.cs" />
     <Compile Include="Utility\Jatekos.cs" />
     <Compile Include="Utility\TevekenysegController.cs" />
   </ItemGroup>
