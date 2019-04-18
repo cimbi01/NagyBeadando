@@ -17,6 +17,7 @@
         }
         public int Fogyasztas { get; protected set; }
         public int ID { get; protected set; }
+        public bool ItthonVan { get; set; } = true;
         public bool Katona { get; protected set; } = false;
         public bool MegVanEtetve { get; set; } = false;
         public int VedoErtek { get; protected set; } = 1;

@@ -33,7 +33,6 @@ namespace NagyBeadandó.Lakosok.Katonasag
 
         #region Public Properties
 
-        public bool ItthonVan { get; set; } = true;
         public Tipusok.KatonaTipusok KatonaTipus { get; private set; }
         public int MenetSebesseg { get; private set; }
         public int RomboloErtek { get; private set; }
