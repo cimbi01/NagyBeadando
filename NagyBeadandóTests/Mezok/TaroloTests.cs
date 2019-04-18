@@ -44,7 +44,6 @@ namespace NagyBeadandó.Mezok.Tests
         [TestMethod()]
         public void TaroloTest()
         {
-            Assert.AreEqual(0, tarolo.ID);
             Assert.AreEqual(mezotipus, tarolo.MezoTipus);
             Assert.AreEqual(kapacitas, tarolo.Kapacitas);
         }
