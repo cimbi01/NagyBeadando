@@ -2,12 +2,19 @@
 {
     public class Lakos
     {
+        #region Private Fields
+
+        private static int currentId = 0;
+
+        #endregion Private Fields
+
         #region Public Properties
 
-        public Lakos(int id, int _Fogyasztas = 1)
+        public Lakos(int _Fogyasztas = 1)
         {
             Fogyasztas = _Fogyasztas;
-            ID = id;
+            ID = currentId;
+            currentId++;
         }
         public int Fogyasztas { get; protected set; }
         public int ID { get; protected set; }

@@ -1,10 +1,11 @@
-﻿using NagyBeadandó.Mezok.Alapok;
+﻿using NagyBeadandó.Lakosok;
+using NagyBeadandó.Mezok.Alapok;
 using System;
 using System.Collections.Generic;
 
 namespace NagyBeadandó.Mezok
 {
-    public class FoEpulet : Tarolo, ITaroloTermelo
+    public class FoEpulet : Tarolo, ITipusTaroloTermelo<Lakos>
     {
         #region Public Constructors
 
@@ -19,24 +20,37 @@ namespace NagyBeadandó.Mezok
 
         #region Private Fields
 
+        public Dictionary<Tipusok.Tarolhatok, List<Lakos>> Lista { get; private set; } = new Dictionary<Tipusok.Tarolhatok, List<Lakos>>()
+        { [Tipusok.Tarolhatok.Lakos] = new List<Lakos>() };
         private readonly int termeles = 10;
 
         #endregion Private Fields
 
         #region Public Methods
 
+        public List<Lakos> Kivesz(Lakos tipus, int mennyit)
+        {
+            List<Lakos> katonak = new List<Lakos>();
+            for (int i = 0; i < mennyit; i++)
+            {
+                katonak.Add(Lista[Tipusok.Tarolhatok.Lakos][0]);
+                Lista[Tipusok.Tarolhatok.Lakos].Remove(katonak[i]);
+            }
+            return katonak;
+        }
+        public override bool MegVanTelve(Tipusok.Tarolhatok tarolhato)
+        {
+            return Lista[Tipusok.Tarolhatok.Lakos].Count == Kapacitas[Tipusok.Tarolhatok.Lakos][1];
+        }
         /// <summary>
         /// termeles-nyit termel pluszban a meglevohoz a tarolhato-bol
         /// </summary>
         /// <param name="tarolhato">A tarolhato tipusa, amibol termel</param>
         public void Termel(Tipusok.Tarolhatok tarolhato)
         {
-            // növeli a tarolt mennyiseget
-            Kapacitas[tarolhato][0] += this.termeles;
-            // ha a taroltmennyiseg > mint a maxkapactitás, akkor egyenlővé teszi vele
-            if (Kapacitas[tarolhato][0] > Kapacitas[tarolhato][1])
+            for (int i = 0; i < this.termeles && Lista[tarolhato].Count < Kapacitas[tarolhato][1]; i++)
             {
-                Kapacitas[tarolhato][0] = Kapacitas[tarolhato][1];
+                Lista[tarolhato].Add(new Lakos());
             }
         }
 

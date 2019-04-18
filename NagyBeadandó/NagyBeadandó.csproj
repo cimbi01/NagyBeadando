@@ -50,11 +50,13 @@
     <Compile Include="Lakosok\Lakos.cs" />
     <Compile Include="Mezok\Alapok\IInteraktivMezo.cs" />
     <Compile Include="Mezok\Alapok\IMezo.cs" />
+    <Compile Include="Mezok\Alapok\ITipusTaroloTermelo.cs.cs" />
     <Compile Include="Mezok\Alapok\ITaroloTermelo.cs" />
     <Compile Include="Mezok\Alapok\ITermelo.cs" />
     <Compile Include="Mezok\Alapok\Mezo.cs" />
     <Compile Include="Mezok\Alapok\ITarolo.cs" />
     <Compile Include="Mezok\FoEpulet.cs" />
+    <Compile Include="Mezok\Kaszarnya.cs" />
     <Compile Include="Mezok\NyersanyagMezo.cs" />
     <Compile Include="Mezok\Tarolo.cs" />
     <Compile Include="Program.cs" />

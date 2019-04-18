@@ -39,7 +39,7 @@ namespace NagyBeadandó.Mezok
         /// </summary>
         /// <param name="tarolhato">A tárolt tipus fajtája</param>
         /// <returns>Igazat ad vissza, ha a tárolható típusból maxkapacitásnyi van, minden más esetben hamist</returns>
-        public bool MegVanTelve(Tipusok.Tarolhatok tarolhato)
+        public virtual bool MegVanTelve(Tipusok.Tarolhatok tarolhato)
         {
             return Kapacitas[tarolhato][0] == Kapacitas[tarolhato][1];
         }
