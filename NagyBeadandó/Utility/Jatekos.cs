@@ -246,7 +246,7 @@ namespace NagyBeadandó.Utility
 
         public string Adatok { get; private set; } = "";
         public int Id { get; private set; }
-        public List<IInteraktivMezo> InteraktivMezok { get; private set; }
+        public List<IInteraktivMezo> InteraktivMezok { get; private set; } = new List<IInteraktivMezo>();
         public bool Vesztett { get; private set; } = false;
 
         #endregion Public Properties

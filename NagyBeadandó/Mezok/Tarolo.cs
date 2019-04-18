@@ -73,6 +73,7 @@ namespace NagyBeadandó.Mezok
             Kapacitas = kapacitas;
             stringBuilder.AppendLine();
             stringBuilder.Append("Tárolt típusok: ");
+            stringBuilder.AppendLine();
             foreach (Tipusok.Tarolhatok item in kapacitas.Keys)
             {
                 stringBuilder.Append("Típus: ");
@@ -104,20 +105,45 @@ namespace NagyBeadandó.Mezok
         /// A tömb első eleme a mennyiség
         /// Második eleme a maximum kapacitás
         /// </summary>
-        public Dictionary<Tipusok.Tarolhatok, int[]> Kapacitas { get; private set; } = new Dictionary<Tipusok.Tarolhatok, int[]>();
+        public Dictionary<Tipusok.Tarolhatok, int[]> Kapacitas { get; private set; }
 
         #endregion Public Properties
 
         #region Private Classes
 
+        public override string Parameterek
+        {
+            get
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append("Név : " + Nev);
+                stringBuilder.AppendLine();
+                stringBuilder.Append("Szint : " + Szint);
+                stringBuilder.AppendLine();
+                stringBuilder.Append("Tárolt típusok: ");
+                stringBuilder.AppendLine();
+                foreach (Tipusok.Tarolhatok item in Kapacitas.Keys)
+                {
+                    stringBuilder.Append("Típus: ");
+                    stringBuilder.Append(item.ToString());
+                    stringBuilder.Append(" Mennyiség: ");
+                    Kapacitas.TryGetValue(item, out int[] value);
+                    stringBuilder.Append(value[0].ToString());
+                    stringBuilder.Append(", Kapacitás: ");
+                    stringBuilder.Append(value[1].ToString());
+                    stringBuilder.Append(";");
+                    stringBuilder.AppendLine();
+                }
+                return stringBuilder.ToString();
+            }
+        }
         private class InteraktívTarolo : Tarolo, IInteraktivMezo
         {
             #region Public Constructors
 
             public InteraktívTarolo(Tarolo tarolo) : base(tarolo)
             {
-                InteraktivMezo = this;
-                VanBennePublikusMetodus = Metodusok.Count == 0;
+                VanBennePublikusMetodus = Metodusok.Count != 0;
             }
 
             #endregion Public Constructors

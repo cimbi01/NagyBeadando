@@ -1,6 +1,5 @@
 ﻿using NagyBeadandó.Lakosok;
 using NagyBeadandó.Mezok.Alapok;
-using System;
 using System.Collections.Generic;
 
 namespace NagyBeadandó.Mezok
@@ -9,9 +8,8 @@ namespace NagyBeadandó.Mezok
     {
         #region Public Constructors
 
-        public FoEpulet() : base(Tipusok.MezoTipusok.Foepulet, new Dictionary<Tipusok.Tarolhatok, int[]>() { [Tipusok.Tarolhatok.Lakos] = new int[2] { 0, 10 } })
+        public FoEpulet() : base(Tipusok.MezoTipusok.Foepulet, new Dictionary<Tipusok.Tarolhatok, int[]>() { [Tipusok.Tarolhatok.Lakos] = new int[2] { 0, 1000 } })
         {
-            InteraktivMezo = new InteraktivFoEpulet(this);
         }
         public FoEpulet(FoEpulet fep) : base(fep)
         { }
@@ -59,30 +57,5 @@ namespace NagyBeadandó.Mezok
         }
 
         #endregion Public Methods
-
-        #region Private Classes
-
-        private class InteraktivFoEpulet : FoEpulet, IInteraktivMezo
-        {
-            #region Public Constructors
-
-            public InteraktivFoEpulet(FoEpulet fep) : base(fep)
-            {
-                InteraktivMezo = this;
-                VanBennePublikusMetodus = Metodusok.Count == 0;
-            }
-
-            #endregion Public Constructors
-
-            #region Public Properties
-
-            public Dictionary<string, Action> Metodusok { get; private set; } = new Dictionary<string, Action>();
-
-            public bool VanBennePublikusMetodus { get; private set; }
-
-            #endregion Public Properties
-        }
-
-        #endregion Private Classes
     }
 }

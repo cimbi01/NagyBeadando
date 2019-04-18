@@ -24,7 +24,7 @@ namespace NagyBeadandó.Mezok.Alapok
 
         public string Nev { get; protected set; }
 
-        public string Parameterek { get; protected set; }
+        public virtual string Parameterek { get; protected set; }
 
         public int Szint { get; protected set; } = 1;
 

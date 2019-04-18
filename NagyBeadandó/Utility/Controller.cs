@@ -16,6 +16,7 @@ namespace NagyBeadandó.Utility
             {
                 Console.WriteLine(item.Nev);
             }
+            Console.CursorTop--;
         }
         /// <summary>
         /// Kezeli az entert
@@ -28,7 +29,7 @@ namespace NagyBeadandó.Utility
             {
                 InteraktivMezoRender(Console.CursorTop);
             }
-            else
+            else if (Jatekos.InteraktivMezok[mezoindex].Metodusok.Count > 0)
             {
                 string[] array = new string[Jatekos.InteraktivMezok[mezoindex].Metodusok.Count];
                 Jatekos.InteraktivMezok[mezoindex].Metodusok.Keys.CopyTo(array, 0);
@@ -48,6 +49,7 @@ namespace NagyBeadandó.Utility
             }
             else
             {
+                mezoben = false;
                 AlapRender();
             }
         }
@@ -72,10 +74,8 @@ namespace NagyBeadandó.Utility
                 case ConsoleKey.Escape:
                     Escape();
                     break;
-                default:
-                    RenderCurrentLine(false);
-                    break;
             }
+            RenderCurrentLine(false);
         }
         /// <summary>
         /// Kiírja az interaktív mező metódusainak nevét
@@ -86,10 +86,12 @@ namespace NagyBeadandó.Utility
             Console.Clear();
             mezoindex = index;
             mezoben = true;
+            Console.WriteLine(Jatekos.InteraktivMezok[index].Parameterek);
             foreach (string item in Jatekos.InteraktivMezok[index].Metodusok.Keys)
             {
                 Console.WriteLine(item);
             }
+            Console.CursorTop--;
         }
         /// <summary>
         /// Kirendereli a jelenlegi sort
@@ -100,10 +102,22 @@ namespace NagyBeadandó.Utility
             Console.SetCursorPosition(0, Console.CursorTop);
             if (!eredeti)
             {
-                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.Red;
             }
-            Console.Write(Jatekos.InteraktivMezok[Console.CursorTop].Nev);
-            Console.BackgroundColor = ConsoleColor.Black;
+            if (!mezoben)
+            {
+                Console.Write(Jatekos.InteraktivMezok[Console.CursorTop].Nev);
+            }
+            else
+            {
+                if (Jatekos.InteraktivMezok[mezoindex].Metodusok.Count > 0)
+                {
+                    string[] array = new string[Jatekos.InteraktivMezok[mezoindex].Metodusok.Count];
+                    Jatekos.InteraktivMezok[mezoindex].Metodusok.Keys.CopyTo(array, 0);
+                    Console.Write(array[Console.CursorTop - Jatekos.InteraktivMezok[mezoindex].Parameterek.Split('\n').Length]);
+                }
+            }
+            Console.ForegroundColor = ConsoleColor.White;
         }
         /// <summary>
         /// S megnyomását kezeli
@@ -111,7 +125,17 @@ namespace NagyBeadandó.Utility
         /// </summary>
         private static void S()
         {
-            if (Console.CursorTop < Jatekos.InteraktivMezok.Count)
+            int hatar = 0;
+            if (!mezoben)
+            {
+                hatar = Jatekos.InteraktivMezok.Count - 1;
+            }
+            else
+            {
+                hatar = Jatekos.InteraktivMezok[mezoindex].Parameterek.Split('\n').Length
+                    + Jatekos.InteraktivMezok[mezoindex].Metodusok.Count - 1;
+            }
+            if (Console.CursorTop < hatar)
             {
                 Console.CursorTop++;
             }
@@ -123,7 +147,12 @@ namespace NagyBeadandó.Utility
         /// </summary>
         private static void W()
         {
-            if (Console.CursorTop > 0)
+            int hatar = 1;
+            if (mezoben)
+            {
+                hatar = Jatekos.InteraktivMezok[mezoindex].Parameterek.Split('\n').Length + 1;
+            }
+            if (Console.CursorTop >= hatar)
             {
                 Console.CursorTop--;
             }
@@ -144,11 +173,16 @@ namespace NagyBeadandó.Utility
         /// </summary>
         public static void Render()
         {
+            Console.CursorVisible = false;
             AlapRender();
+            escaped = false;
             while (!escaped)
             {
                 InterAkcio();
             }
+            Console.Clear();
+            Console.WriteLine("Következő játékos");
+            System.Threading.Thread.Sleep(500);
         }
 
         #endregion Public Methods

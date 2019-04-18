@@ -9,7 +9,9 @@ namespace NagyBeadandó.Mezok
     {
         #region Private Fields
 
-        public Kaszarnya(Tipusok.MezoTipusok mezotipus, Dictionary<Tipusok.Tarolhatok, int[]> kapacitas) : base(mezotipus, kapacitas)
+        public Kaszarnya() : base(Tipusok.MezoTipusok.Kaszarnya, new Dictionary<Tipusok.Tarolhatok, int[]>()
+        { [Tipusok.Tarolhatok.Gyalogos] = new int[2] { 0, 1000 } }
+        )
         { }
         public static Dictionary<Tipusok.KatonaTipusok, Tipusok.Tarolhatok> Tarolhato_katonatipusok { get; private set; } =
             new Dictionary<Tipusok.KatonaTipusok, Tipusok.Tarolhatok>()
