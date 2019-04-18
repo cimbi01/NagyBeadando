@@ -45,6 +45,7 @@
     <Compile Include="Kivételek\MezoKivetelek\NemTartalmazTarolhatotException.cs" />
     <Compile Include="Kivételek\MezoKivetelek\NincsElegTarolhatoException.cs" />
     <Compile Include="Kivételek\MezoKivetelek\TarolhatoExceptions.cs" />
+    <Compile Include="Kivételek\MezoKivetelek\TaroloTulCsordultException.cs" />
     <Compile Include="Lakosok\Katonasag\Katona.cs" />
     <Compile Include="Lakosok\Katonasag\KatonaiEgyseg.cs" />
     <Compile Include="Lakosok\Lakos.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Mezok\Alapok\Tipusok.cs" />
     <Compile Include="Tevekenysegek\Tamadas.cs" />
     <Compile Include="Tevekenysegek\Tevekenyseg.cs" />
+    <Compile Include="Utility\Jatekos.cs" />
     <Compile Include="Utility\TevekenysegController.cs" />
   </ItemGroup>
   <ItemGroup>

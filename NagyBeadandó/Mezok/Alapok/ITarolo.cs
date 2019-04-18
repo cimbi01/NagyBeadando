@@ -2,7 +2,7 @@
 
 namespace NagyBeadandó.Mezok.Alapok
 {
-    public interface ITarolo
+    public interface ITarolo : IMezo
     {
         #region Public Properties
 
@@ -12,6 +12,7 @@ namespace NagyBeadandó.Mezok.Alapok
 
         #region Public Methods
 
+        void Betesz(Tipusok.Tarolhatok tarolhato, int mennyit);
         int Kivesz(Tipusok.Tarolhatok tarolhato, int mennyit);
         bool MegVanTelve(Tipusok.Tarolhatok tarolhato);
 

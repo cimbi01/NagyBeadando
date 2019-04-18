@@ -15,6 +15,18 @@ namespace NagyBeadandó.Mezok
     {
         #region Public Methods
 
+        public void Betesz(Tipusok.Tarolhatok tarolhato, int mennyit)
+        {
+            if (!Kapacitas.ContainsKey(tarolhato))
+            {
+                throw new NemTartalmazTarolhatotException(tarolhato);
+            }
+            Kapacitas[tarolhato][0] += mennyit;
+            if (Kapacitas[tarolhato][0] > Kapacitas[tarolhato][1])
+            {
+                throw new TaroloTulCsordultException(tarolhato, mennyit, Kapacitas[tarolhato][1]);
+            }
+        }
         /// <summary>
         /// Visszaadja mmenyit-nyit a Tárolhato-ból
         /// </summary>
