@@ -3,7 +3,10 @@ using System;
 
 namespace NagyBeadandó.Kivételek.MezoKivetelek
 {
+#pragma warning disable S3925 // "ISerializable" should be implemented correctly
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2237:MarkISerializableTypesWithSerializable")]
     public abstract class TarolhatoException : Exception
+#pragma warning restore S3925 // "ISerializable" should be implemented correctly
     {
         #region Public Constructors
 

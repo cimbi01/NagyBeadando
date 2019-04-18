@@ -28,13 +28,17 @@ namespace NagyBeadandó.Mezok
 
         #region Public Methods
 
-        public List<Lakos> Kivesz(Lakos tipus, int mennyit)
+        public void Eltávolit(Lakos tipus)
+        {
+            Lista[Tipusok.Tarolhatok.Lakos].Remove(tipus);
+        }
+        public List<Lakos> KiveszTipus(Tipusok.Tarolhatok tipus, int mennyit)
         {
             List<Lakos> katonak = new List<Lakos>();
             for (int i = 0; i < mennyit; i++)
             {
-                katonak.Add(Lista[Tipusok.Tarolhatok.Lakos][0]);
-                Lista[Tipusok.Tarolhatok.Lakos].Remove(katonak[i]);
+                katonak.Add(Lista[tipus][0]);
+                Lista[tipus].Remove(katonak[i]);
             }
             return katonak;
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NagyBeadandó.Utility;
+using System;
 
 namespace NagyBeadandó.Tevekenysegek
 {
@@ -33,6 +34,7 @@ namespace NagyBeadandó.Tevekenysegek
         {
             Ido = _ido;
             VegreHajt = _vegrehajt;
+            TevekenysegController.AddTevekenyseg(this);
         }
 
         #endregion Public Constructors
