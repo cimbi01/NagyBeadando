@@ -60,15 +60,13 @@ namespace NagyBeadandó.Mezok
 
         #region Public Constructors
 
-        public Tarolo()
-        { }
         // <summary>
         /// Inicializalja az osszes mezejet
         /// </summary>
         /// <param name="id">Mezo ID-je</param>
         /// <param name="mezotipus">Mezo tipusa</param>
         /// <param name="kapacitas">Mezo tarolhatok szerinti tipusa</param>
-        public Tarolo(int id, Tipusok.MezoTipusok mezotipus, Dictionary<Tipusok.Tarolhatok, int[]> kapacitas) : base(id, mezotipus)
+        public Tarolo(Tipusok.MezoTipusok mezotipus, Dictionary<Tipusok.Tarolhatok, int[]> kapacitas) : base(mezotipus)
         {
             // paraméterek StringBuilder-e (kevesebbet erőforrást igényel a használata, mint ha mindig hozzáadogatnék a string-hez)
             StringBuilder stringBuilder = new StringBuilder();

@@ -14,7 +14,7 @@ namespace NagyBeadandó.Mezok.Tests
         static TaroloTests()
         {
             kapacitas.Add(Tipusok.Tarolhatok.Agyag, kapacitasok);
-            tarolo = new Tarolo(id, mezotipus, kapacitas);
+            tarolo = new Tarolo(mezotipus, kapacitas);
         }
 #pragma warning restore S3963 // "static" fields should be initialized inline
 
@@ -32,7 +32,6 @@ namespace NagyBeadandó.Mezok.Tests
 
         #region Private Fields
 
-        private static readonly int id = 0;
         private static readonly int[] kapacitasok = new int[] { 0, 1 };
         private static readonly Tipusok.MezoTipusok mezotipus = Tipusok.MezoTipusok.Agyagbanya;
         private static Dictionary<Tipusok.Tarolhatok, int[]> kapacitas = new Dictionary<Tipusok.Tarolhatok, int[]>();
@@ -45,7 +44,7 @@ namespace NagyBeadandó.Mezok.Tests
         [TestMethod()]
         public void TaroloTest()
         {
-            Assert.AreEqual(id, tarolo.ID);
+            Assert.AreEqual(0, tarolo.ID);
             Assert.AreEqual(mezotipus, tarolo.MezoTipus);
             Assert.AreEqual(kapacitas, tarolo.Kapacitas);
         }

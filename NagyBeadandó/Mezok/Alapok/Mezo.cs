@@ -8,6 +8,12 @@ namespace NagyBeadandó.Mezok.Alapok
     /// </summary>
     public abstract class Mezo : IMezo
     {
+        #region Private Fields
+
+        private static int currentId = 0;
+
+        #endregion Private Fields
+
         #region Public Properties
 
         public int ID { get; protected set; }
@@ -26,6 +32,17 @@ namespace NagyBeadandó.Mezok.Alapok
 
         #region Protected Constructors
 
+        protected Mezo(Tipusok.MezoTipusok mezotipus)
+        {
+            ID = currentId++;
+            MezoTipus = mezotipus;
+            Név = mezotipus.ToString() + ID.ToString();
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append("Név : " + Név);
+            stringBuilder.AppendLine();
+            stringBuilder.Append("Szint : " + Szint);
+            Parameterek = stringBuilder.ToString();
+        }
         protected Mezo(int id, Tipusok.MezoTipusok mezotipus)
         {
             ID = id;
@@ -36,9 +53,6 @@ namespace NagyBeadandó.Mezok.Alapok
             stringBuilder.AppendLine();
             stringBuilder.Append("Szint : " + Szint);
             Parameterek = stringBuilder.ToString();
-        }
-        protected Mezo()
-        {
         }
         // <summary>
         /// Inicializalja az osszes mezejet

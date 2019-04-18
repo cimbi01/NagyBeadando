@@ -6,16 +6,11 @@ namespace NagyBeadandó.Mezok
 {
     public class Kaszarnya : Tarolo, ITipusTaroloTermelo<Katona>
     {
-        #region Public Constructors
-
-        public Kaszarnya()
-        {
-        }
-
-        #endregion Public Constructors
-
         #region Private Fields
 
+        public Kaszarnya(Tipusok.MezoTipusok mezotipus, Dictionary<Tipusok.Tarolhatok, int[]> kapacitas) : base(mezotipus, kapacitas)
+        {
+        }
         private static readonly Dictionary<Tipusok.KatonaTipusok, Tipusok.Tarolhatok> tarolhato_katonatipusok =
             new Dictionary<Tipusok.KatonaTipusok, Tipusok.Tarolhatok>()
             { [Tipusok.KatonaTipusok.Gyalogos] = Tipusok.Tarolhatok.Gyalogos };

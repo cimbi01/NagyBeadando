@@ -11,8 +11,9 @@ namespace NagyBeadandó.Utility
         /// <summary>
         /// Minden Lakost megetet, ha van annyi búza a raktárban, amennyi a fogyasztása a katonának
         /// </summary>
-        private void EtetniProbal()
+        private bool EtetniProbal()
         {
+            bool van_nem_megetetett = false;
             foreach (Tipusok.Tarolhatok item in this.kaszarnya.Lista.Keys)
             {
                 foreach (Lakosok.Katonasag.Katona item2 in this.kaszarnya.Lista[item])
@@ -26,7 +27,7 @@ namespace NagyBeadandó.Utility
                         }
                         catch (Kivételek.MezoKivetelek.NincsElegTarolhatoException)
                         {
-                            // nem sikerult megetetni, mert nem volt elég búza a raktárban
+                            van_nem_megetetett = true;
                         }
                     }
                 }
@@ -44,11 +45,12 @@ namespace NagyBeadandó.Utility
                         }
                         catch (Kivételek.MezoKivetelek.NincsElegTarolhatoException)
                         {
-                            // nem sikerult megetetni, mert nem volt elég búza a raktárban
+                            van_nem_megetetett = true;
                         }
                     }
                 }
             }
+            return van_nem_megetetett;
         }
         /// <summary>
         /// Minden Mezőn végrehajtja a termel-t
@@ -92,7 +94,7 @@ namespace NagyBeadandó.Utility
             }
         }
         /// <summary>
-        /// Búzán kívül minden nyersanyagot betakarít
+        /// Minden nyersanyagot betakarít
         /// </summary>
         private void RaktarNyersanyagFeltolt()
         {
@@ -100,29 +102,49 @@ namespace NagyBeadandó.Utility
             {
                 foreach (Tipusok.Tarolhatok item2 in item.Kapacitas.Keys)
                 {
-                    if (item2 != Tipusok.Tarolhatok.Buza)
+                    int mennyit;
+                    int tarolo_maradekhely = this.tarolo.Kapacitas[item2][1] - this.tarolo.Kapacitas[item2][0];
+                    // ha a mezőben több a teremtl anyag, mint amekkkora a maradék hely, akkor csak maradekhelynyit kér le
+                    if (item.Kapacitas[item2][0] > tarolo_maradekhely)
                     {
-                        int mennyit;
-                        int tarolo_maradekhely = this.tarolo.Kapacitas[item2][1] - this.tarolo.Kapacitas[item2][0];
-                        // ha a mezőben több a teremtl anyag, mint amekkkora a maradék hely, akkor csak maradekhelynyit kér le
-                        if (item.Kapacitas[item2][0] > tarolo_maradekhely)
-                        {
-                            mennyit = tarolo_maradekhely;
-                        }
-                        // ellenkező esetben az egészet, amit tárol
-                        else
-                        {
-                            mennyit = item.Kapacitas[item2][0];
-                        }
-                        // majd kiveszi és beteszi a tárolóba
-                        int kivett = item.Kivesz(item2, mennyit);
-                        this.tarolo.Betesz(item2, kivett);
+                        mennyit = tarolo_maradekhely;
                     }
+                    // ellenkező esetben az egészet, amit tárol
+                    else
+                    {
+                        mennyit = item.Kapacitas[item2][0];
+                    }
+                    // majd kiveszi és beteszi a tárolóba
+                    int kivett = item.Kivesz(item2, mennyit);
+                    this.tarolo.Betesz(item2, kivett);
                 }
             }
         }
 
         #endregion Private Methods
+
+        #region Public Methods
+
+        /// <summary>
+        /// Termelési ciklusért felel:
+        /// Minden mezőn termel
+        /// Betakarítja a termelt anyagot
+        /// Ciklikusan, amíg mindenki meg nincs etetve:
+        /// Megeteti a lakosokat
+        /// Betakarítja a Búzát
+        /// </summary>
+        public void EtetTermel()
+        {
+            MindenMezonTermel();
+            RaktarNyersanyagFeltolt();
+            while (EtetniProbal())
+            {
+                RaktarBuzaFeltoltes();
+            }
+            RaktarBuzaFeltoltes();
+        }
+
+        #endregion Public Methods
 
         #region Public Constructors
 

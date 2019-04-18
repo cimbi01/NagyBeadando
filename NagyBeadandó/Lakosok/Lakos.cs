@@ -4,7 +4,7 @@
     {
         #region Private Fields
 
-        private static int currentId = 0;
+        private static int CurrentId = 0;
 
         #endregion Private Fields
 
@@ -13,8 +13,7 @@
         public Lakos(int _Fogyasztas = 1)
         {
             Fogyasztas = _Fogyasztas;
-            ID = currentId;
-            currentId++;
+            ID = CurrentId++;
         }
         public int Fogyasztas { get; protected set; }
         public int ID { get; protected set; }

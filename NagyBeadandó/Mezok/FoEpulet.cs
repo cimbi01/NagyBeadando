@@ -9,11 +9,11 @@ namespace NagyBeadandó.Mezok
     {
         #region Public Constructors
 
-        public FoEpulet(int id) : base(id, Tipusok.MezoTipusok.Foepulet, new Dictionary<Tipusok.Tarolhatok, int[]>() { [Tipusok.Tarolhatok.Lakos] = new int[2] { 0, 10 } })
+        public FoEpulet() : base(Tipusok.MezoTipusok.Foepulet, new Dictionary<Tipusok.Tarolhatok, int[]>() { [Tipusok.Tarolhatok.Lakos] = new int[2] { 0, 10 } })
         {
             InteraktivMezo = new InteraktivFoEpulet(this);
         }
-        public FoEpulet(FoEpulet fep) : base(fep.ID, fep.MezoTipus, fep.Kapacitas)
+        public FoEpulet(FoEpulet fep) : base(fep)
         { }
 
         #endregion Public Constructors

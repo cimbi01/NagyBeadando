@@ -13,7 +13,7 @@ namespace NagyBeadandó.Mezok.Tests
         static FoEpuletTests()
         {
             kapacitas.Add(Tipusok.Tarolhatok.Katona, kapacitasok);
-            fepulet = new FoEpulet(id);
+            fepulet = new FoEpulet();
         }
 #pragma warning restore S3963 // "static" fields should be initialized inline
 
@@ -21,7 +21,6 @@ namespace NagyBeadandó.Mezok.Tests
 
         #region Private Fields
 
-        private static readonly int id = 0;
         private static readonly Dictionary<Tipusok.Tarolhatok, int[]> kapacitas = new Dictionary<Tipusok.Tarolhatok, int[]>();
         private static readonly int[] kapacitasok = new int[] { 0, 1 };
         private static readonly FoEpulet fepulet;
