@@ -19,7 +19,7 @@
         /// <summary>
         /// "Renderelésnél" fontos, hogy ki tudja írni a mező nevét
         /// </summary>
-        string Név { get; }
+        string Nev { get; }
         /// <summary>
         /// "Renderelésnél" fontos, hogy ki tudja írni a mező szintjét
         /// </summary>

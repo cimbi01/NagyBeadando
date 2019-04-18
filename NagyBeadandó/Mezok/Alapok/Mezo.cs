@@ -22,7 +22,7 @@ namespace NagyBeadandó.Mezok.Alapok
 
         public Tipusok.MezoTipusok MezoTipus { get; protected set; }
 
-        public string Név { get; protected set; }
+        public string Nev { get; protected set; }
 
         public string Parameterek { get; protected set; }
 
@@ -36,9 +36,9 @@ namespace NagyBeadandó.Mezok.Alapok
         {
             ID = currentId++;
             MezoTipus = mezotipus;
-            Név = mezotipus.ToString() + ID.ToString();
+            Nev = mezotipus.ToString() + ID.ToString();
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append("Név : " + Név);
+            stringBuilder.Append("Név : " + Nev);
             stringBuilder.AppendLine();
             stringBuilder.Append("Szint : " + Szint);
             Parameterek = stringBuilder.ToString();
@@ -47,9 +47,9 @@ namespace NagyBeadandó.Mezok.Alapok
         {
             ID = id;
             MezoTipus = mezotipus;
-            Név = mezotipus.ToString() + ID.ToString();
+            Nev = mezotipus.ToString() + ID.ToString();
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append("Név : " + Név);
+            stringBuilder.Append("Név : " + Nev);
             stringBuilder.AppendLine();
             stringBuilder.Append("Szint : " + Szint);
             Parameterek = stringBuilder.ToString();
