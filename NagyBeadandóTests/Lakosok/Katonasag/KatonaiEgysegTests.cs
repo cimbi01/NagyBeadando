@@ -34,7 +34,7 @@ namespace NagyBeadandó.Lakosok.Katonasag.Tests
         [TestMethod()]
         public void KatonaiEgysegTest()
         {
-            KatonaiEgyseg katonaiEgyseg = new KatonaiEgyseg(tamad, katonak);
+            KatonaiEgyseg katonaiEgyseg = new KatonaiEgyseg(tamad, katonak, 0);
             Assert.AreEqual(tamad, katonaiEgyseg.Tamad);
             Assert.AreEqual(katonak, katonaiEgyseg.Katonak);
             Assert.AreEqual(ero, katonaiEgyseg.Erő);

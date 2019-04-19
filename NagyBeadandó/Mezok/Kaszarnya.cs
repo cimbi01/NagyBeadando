@@ -32,17 +32,34 @@ namespace NagyBeadandó.Mezok
         {
             Lista[Tarolhato_katonatipusok[tipus.KatonaTipus]].Remove(tipus);
         }
+        public int ItthonLevok(Tipusok.Tarolhatok tipus)
+        {
+            int itthon = 0;
+            foreach (Katona item in Lista[tipus])
+            {
+                if (item.ItthonVan)
+                {
+                    itthon++;
+                }
+            }
+            return itthon;
+        }
         public List<Katona> KiveszTipus(Tipusok.Tarolhatok tipus, int mennyit)
         {
             List<Katona> katonak = new List<Katona>();
-            if (Lista[tipus].Count < mennyit)
+            // itthon levok
+            int itthon = ItthonLevok(tipus);
+            if (itthon < mennyit)
             {
                 throw new NincsElegTarolhatoException(tipus);
             }
-            for (int i = 0; i < mennyit; i++)
+            for (int i = 0; i < Lista[tipus].Count && mennyit > 0; i++)
             {
-                katonak.Add(Lista[tipus][0]);
-                Lista[tipus].Remove(katonak[i]);
+                if (Lista[tipus][i].ItthonVan)
+                {
+                    katonak.Add(Lista[tipus][i]);
+                    mennyit--;
+                }
             }
             return katonak;
         }

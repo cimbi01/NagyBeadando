@@ -32,7 +32,7 @@ namespace NagyBeadandó.Mezok.Tests
         {
             foreach (Tipusok.Tarolhatok item in fepulet.Kapacitas.Keys)
             {
-                for (int i = 0; i < 100; i++)
+                for (int i = 0; i < 10; i++)
                 {
                     Assert.AreEqual(false, fepulet.MegVanTelve(item));
                     fepulet.Termel(item);

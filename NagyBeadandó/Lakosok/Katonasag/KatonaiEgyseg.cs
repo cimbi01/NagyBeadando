@@ -6,8 +6,9 @@ namespace NagyBeadandó.Lakosok.Katonasag
     {
         #region Public Constructors
 
-        public KatonaiEgyseg(bool tamad, List<Lakos> katonak)
+        public KatonaiEgyseg(bool tamad, List<Lakos> katonak, int jatekos_id)
         {
+            Jatekos_Id = jatekos_id;
             Katonak = katonak;
             Tamad = tamad;
             EroSzamitas();
@@ -21,6 +22,7 @@ namespace NagyBeadandó.Lakosok.Katonasag
         /// Egység ereje támadás/védekezés függvényében
         /// </summary>
         public int Erő { get; protected set; }
+        public int Jatekos_Id { get; private set; }
         public List<Lakos> Katonak { get; protected set; }
         public bool Tamad { get; protected set; }
 

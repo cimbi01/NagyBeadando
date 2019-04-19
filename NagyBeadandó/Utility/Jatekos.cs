@@ -2,6 +2,7 @@
 using NagyBeadandó.Lakosok.Katonasag;
 using NagyBeadandó.Mezok;
 using NagyBeadandó.Mezok.Alapok;
+using NagyBeadandó.Tevekenysegek;
 using System.Collections.Generic;
 
 namespace NagyBeadandó.Utility
@@ -176,12 +177,47 @@ namespace NagyBeadandó.Utility
         {
             Vesztett = true;
         }
-        public void KatonaMeghal(Katona katona)
+        public void KatonakHazaternek(KatonaiEgyseg katonaiEgyseg)
         {
-            this.kaszarnya.Lista[Kaszarnya.Tarolhato_katonatipusok[katona.KatonaTipus]].Remove(katona);
+            foreach (Lakos item in katonaiEgyseg.Katonak)
+            {
+                item.ItthonVan = true;
+            }
         }
+        public void KatonaMeghal(Lakos katona)
+        {
+            if (katona is Katona)
+            {
+                Katona converted_katona = katona as Katona;
+                this.kaszarnya.Lista[Kaszarnya.Tarolhato_katonatipusok[converted_katona.KatonaTipus]].Remove(converted_katona);
+            }
+            else
+            {
+                this.foEpulet.Eltávolit(katona);
+            }
+        }
+        /// <summary>
+        /// Minden itthon tartozkodo katonat elkuld
+        /// </summary>
         public void Tamad()
         {
+            List<Katona> katonak = this.kaszarnya.KiveszTipus(
+                                Tipusok.Tarolhatok.Gyalogos,
+                                this.kaszarnya.ItthonLevok(
+                                    Tipusok.Tarolhatok.Gyalogos));
+            List<Lakos> lakos_katonak = new List<Lakos>();
+            foreach (Katona item in katonak)
+            {
+                lakos_katonak.Add(item);
+            }
+#pragma warning disable S1848 // Objects should not be created to be dropped immediately without being used
+            new Tamadas(
+                new KatonaiEgyseg(
+                    true,
+                    katonak: lakos_katonak,
+                    jatekos_id: Id),
+                (Id + 1) % 2);
+#pragma warning restore S1848 // Objects should not be created to be dropped immediately without being used
         }
         /// <summary>
         /// Visszaadja, hogy egy tárolhatóból van-e a táróbólban mennyiseg
@@ -215,7 +251,7 @@ namespace NagyBeadandó.Utility
                     itthon.Add(item);
                 }
             }
-            katonaiEgyseg = new KatonaiEgyseg(false, itthon);
+            katonaiEgyseg = new KatonaiEgyseg(false, itthon, Id);
             return katonaiEgyseg;
         }
 
@@ -225,7 +261,9 @@ namespace NagyBeadandó.Utility
 
         public Jatekos(Tarolo _tarolo, List<NyersanyagMezo> _nyersanyagMezok, Kaszarnya _kaszarnya, FoEpulet _foEpulet)
         {
+#pragma warning disable S3010 // Static fields should not be updated in constructors
             Id = CurrentId++;
+#pragma warning restore S3010 // Static fields should not be updated in constructors
             this.tarolo = _tarolo;
             this.nyersanyagMezok = _nyersanyagMezok;
             this.kaszarnya = _kaszarnya;

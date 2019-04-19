@@ -20,7 +20,7 @@ namespace NagyBeadandó.Mezok
 
         public Dictionary<Tipusok.Tarolhatok, List<Lakos>> Lista { get; private set; } = new Dictionary<Tipusok.Tarolhatok, List<Lakos>>()
         { [Tipusok.Tarolhatok.Lakos] = new List<Lakos>() };
-        private readonly int termeles = 10;
+        private readonly int termeles = 100;
 
         #endregion Private Fields
 
