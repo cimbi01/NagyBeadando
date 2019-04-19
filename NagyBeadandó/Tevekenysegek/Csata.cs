@@ -26,6 +26,10 @@ namespace NagyBeadandó.Tevekenysegek
                     Jatek.JatekosById(this.vedekezes.Jatekos_Id).KatonaMeghal(this.vedekezes.Katonak[i]);
                 }
             }
+
+            // visszatérés
+            Jatek.JatekosById(this.tamadas.KatonaiEgyseg.Jatekos_Id).KatonakHazaternek(this.tamadas.KatonaiEgyseg);
+            Jatek.JatekosById(this.vedekezes.Jatekos_Id).KatonakHazaternek(this.vedekezes);
         }
 
         #endregion Private Methods

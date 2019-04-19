@@ -24,6 +24,15 @@ namespace NagyBeadandó.Mezok
             new Dictionary<Tipusok.Tarolhatok, List<Katona>>()
             { [Tipusok.Tarolhatok.Gyalogos] = new List<Katona>() };
 
+        public void BeteszTipus(Tipusok.Tarolhatok tipus, Katona betevendo)
+        {
+            Lista[tipus].Add(betevendo);
+            if (Lista[tipus].Count > Kapacitas[tipus][1])
+            {
+                throw new TaroloTulCsordultException(tipus, 1, Kapacitas[tipus][1]);
+            }
+        }
+
         #endregion Public Properties
 
         #region Public Methods
@@ -65,6 +74,7 @@ namespace NagyBeadandó.Mezok
         }
         public void Termel(Tipusok.Tarolhatok tarolhato)
         {
+            // ezt a jatekos csinalja
         }
 
         #endregion Public Methods

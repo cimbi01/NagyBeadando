@@ -7,6 +7,7 @@ namespace NagyBeadandó.Mezok.Alapok
         #region Public Properties
 
         Dictionary<Tipusok.Tarolhatok, List<T>> Lista { get; }
+        void BeteszTipus(Tipusok.Tarolhatok tipus, T betevendo);
         void Eltávolit(T tipus);
         List<T> KiveszTipus(Tipusok.Tarolhatok tipus, int mennyit);
 

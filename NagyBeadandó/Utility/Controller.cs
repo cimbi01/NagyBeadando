@@ -27,7 +27,10 @@ namespace NagyBeadandó.Utility
         {
             if (!mezoben)
             {
-                InteraktivMezoRender(Console.CursorTop);
+                if (Jatekos.InteraktivMezok[Console.CursorTop].VanBennePublikusMetodus)
+                {
+                    InteraktivMezoRender(Console.CursorTop);
+                }
             }
             else if (Jatekos.InteraktivMezok[mezoindex].Metodusok.Count > 0)
             {

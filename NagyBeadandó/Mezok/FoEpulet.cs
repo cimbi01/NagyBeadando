@@ -1,4 +1,5 @@
-﻿using NagyBeadandó.Lakosok;
+﻿using NagyBeadandó.Kivételek.MezoKivetelek;
+using NagyBeadandó.Lakosok;
 using NagyBeadandó.Mezok.Alapok;
 using System.Collections.Generic;
 
@@ -26,6 +27,10 @@ namespace NagyBeadandó.Mezok
 
         #region Public Methods
 
+        public void BeteszTipus(Tipusok.Tarolhatok tipus, Lakos betevendo)
+        {
+            Lista[tipus].Add(betevendo);
+        }
         public void Eltávolit(Lakos tipus)
         {
             Lista[Tipusok.Tarolhatok.Lakos].Remove(tipus);
@@ -33,6 +38,10 @@ namespace NagyBeadandó.Mezok
         public List<Lakos> KiveszTipus(Tipusok.Tarolhatok tipus, int mennyit)
         {
             List<Lakos> katonak = new List<Lakos>();
+            if (Lista[tipus].Count < mennyit)
+            {
+                throw new NincsElegTarolhatoException(tipus);
+            }
             for (int i = 0; i < mennyit; i++)
             {
                 katonak.Add(Lista[tipus][0]);

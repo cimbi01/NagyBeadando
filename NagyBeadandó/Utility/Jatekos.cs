@@ -1,8 +1,10 @@
-﻿using NagyBeadandó.Lakosok;
+﻿using NagyBeadandó.Kivételek.MezoKivetelek;
+using NagyBeadandó.Lakosok;
 using NagyBeadandó.Lakosok.Katonasag;
 using NagyBeadandó.Mezok;
 using NagyBeadandó.Mezok.Alapok;
 using NagyBeadandó.Tevekenysegek;
+using System;
 using System.Collections.Generic;
 
 namespace NagyBeadandó.Utility
@@ -253,6 +255,36 @@ namespace NagyBeadandó.Utility
             }
             katonaiEgyseg = new KatonaiEgyseg(false, itthon, Id);
             return katonaiEgyseg;
+        }
+        public void KatonaTermel()
+        {
+            // bekéri mennyi katonat szeretne gyartani
+            System.Console.WriteLine("Mennyi katonat szeretnel gyartani");
+            int katonak_szama = Convert.ToInt32(Console.ReadLine());
+#pragma warning disable S1848 // Objects should not be created to be dropped immediately without being used
+            new Fejlesztes(Tipusok.Fejleszthetok.Gyalogos, Id, Termel);
+#pragma warning restore S1848 // Objects should not be created to be dropped immediately without being used
+            void Termel()
+            {
+                // kivesz főépuletből annyi lakost, amennnyire szükség van
+                try
+                {
+                    List<Lakos> lakosok = this.foEpulet.KiveszTipus(Tipusok.Tarolhatok.Lakos, katonak_szama);
+                    foreach (Lakos item in lakosok)
+                    {
+                        // lakosokból katonát készít és beteszi a kaszarnyaba
+                        this.kaszarnya.BeteszTipus(Tipusok.Tarolhatok.Gyalogos, new Katona(item, Tipusok.KatonaTipusok.Gyalogos));
+                    }
+                }
+                catch (NincsElegTarolhatoException e)
+                {
+                    throw new NincsElegTarolhatoException(e.Tarolhato);
+                }
+                catch (TaroloTulCsordultException e)
+                {
+                    throw new TaroloTulCsordultException(e.Tarolhato, katonak_szama, e.MaxKapacitas);
+                }
+            }
         }
 
         #endregion Public Methods

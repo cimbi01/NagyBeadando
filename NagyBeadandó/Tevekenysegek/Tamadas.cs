@@ -12,6 +12,8 @@ namespace NagyBeadandó.Tevekenysegek
     /// </summary>
     public class Tamadas
     {
+        private readonly int tavolsag = 5;
+
         #region Public Properties
 
         public KatonaiEgyseg KatonaiEgyseg { get; private set; }
@@ -40,15 +42,20 @@ namespace NagyBeadandó.Tevekenysegek
 
         /// <summary>
         /// Katonaiegyésg katonái között menetidők maximumát keresi > az a menetidő
+        /// v = s/t > t = s/v
+        /// s = 5
+        /// v = menetsebesseg
+        /// t = v/s
         /// </summary>
         private int MenetidoSzamitas()
         {
             int menetido = 0;
             foreach (Lakos item in KatonaiEgyseg.Katonak)
             {
-                if ((item as Katona).MenetSebesseg > 0)
+                int tmp_menet_ido = this.tavolsag / (item as Katona).MenetSebesseg;
+                if (tmp_menet_ido > 0)
                 {
-                    menetido = (item as Katona).MenetSebesseg;
+                    menetido = tmp_menet_ido;
                 }
             }
             return menetido;

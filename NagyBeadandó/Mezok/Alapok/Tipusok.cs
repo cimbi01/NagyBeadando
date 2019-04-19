@@ -12,6 +12,7 @@
 
         #region Public Enums
 
+        public enum Fejleszthetok { Gyalogos };
         /// <summary>
         /// A Programban használt katona típusok Ha új katona fajtát szeretnénk létrehozni, bővíteni kell
         /// </summary>
