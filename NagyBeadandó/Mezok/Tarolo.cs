@@ -1,6 +1,5 @@
 ﻿using NagyBeadandó.Kivételek.MezoKivetelek;
 using NagyBeadandó.Mezok.Alapok;
-using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,7 +10,7 @@ namespace NagyBeadandó.Mezok
     /// Tárolni a különböző tárolható típusokat
     /// Lekérni a különböző tárolható típusokból
     /// </summary>
-    public class Tarolo : Mezo, ITarolo
+    public class Tarolo : Mezo
     {
         #region Public Methods
 
@@ -69,13 +68,13 @@ namespace NagyBeadandó.Mezok
         public Tarolo(Tipusok.MezoTipusok mezotipus, Dictionary<Tipusok.Tarolhatok, int[]> kapacitas) : base(mezotipus)
         {
             Kapacitas = kapacitas;
-            InteraktivMezo = new InteraktívTarolo(this);
+            VanBennePublikusMetodus = Metodusok.Count != 0;
         }
-        public Tarolo(Tarolo tarolo) : base(tarolo.ID, tarolo.MezoTipus)
+        public Tarolo(Tarolo tarolo) : base(tarolo.MezoTipus)
         {
             Kapacitas = tarolo.Kapacitas;
             Parameterek = tarolo.Parameterek;
-            InteraktivMezo = tarolo.InteraktivMezo;
+            VanBennePublikusMetodus = Metodusok.Count != 0;
         }
 
         #endregion Public Constructors
@@ -91,16 +90,12 @@ namespace NagyBeadandó.Mezok
 
         #endregion Public Properties
 
-        #region Private Classes
-
         public override string Parameterek
         {
             get
             {
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.Append("Név : " + Nev);
-                stringBuilder.AppendLine();
-                stringBuilder.Append("Szint : " + Szint);
                 stringBuilder.AppendLine();
                 stringBuilder.Append("Tárolt típusok: ");
                 stringBuilder.AppendLine();
@@ -119,26 +114,5 @@ namespace NagyBeadandó.Mezok
                 return stringBuilder.ToString();
             }
         }
-        private class InteraktívTarolo : Tarolo, IInteraktivMezo
-        {
-            #region Public Constructors
-
-            public InteraktívTarolo(Tarolo tarolo) : base(tarolo)
-            {
-                VanBennePublikusMetodus = Metodusok.Count != 0;
-            }
-
-            #endregion Public Constructors
-
-            #region Public Properties
-
-            public Dictionary<string, Action> Metodusok { get; private set; } = new Dictionary<string, Action>();
-
-            public bool VanBennePublikusMetodus { get; private set; }
-
-            #endregion Public Properties
-        }
-
-        #endregion Private Classes
     }
 }

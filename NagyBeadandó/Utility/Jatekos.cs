@@ -253,11 +253,11 @@ namespace NagyBeadandó.Utility
             this.tarolo = _tarolo;
             this.nyersanyagMezok = _nyersanyagMezok;
             this.foEpulet = _foEpulet;
-            InteraktivMezok.Add(this.foEpulet.InteraktivMezo);
-            InteraktivMezok.Add(this.tarolo.InteraktivMezo);
+            InteraktivMezok.Add(this.foEpulet);
+            InteraktivMezok.Add(this.tarolo);
             foreach (NyersanyagMezo item in this.nyersanyagMezok)
             {
-                InteraktivMezok.Add(item.InteraktivMezo);
+                InteraktivMezok.Add(item);
             }
             InteraktivMezok.Add(new InteraktivJatekos(this));
         }
@@ -265,7 +265,7 @@ namespace NagyBeadandó.Utility
         #endregion Public Constructors
 
         #region Public Properties
-        
+
         public int Id { get; private set; }
         public List<IInteraktivMezo> InteraktivMezok { get; private set; } = new List<IInteraktivMezo>();
         public bool Vesztett { get; private set; } = false;
@@ -280,7 +280,7 @@ namespace NagyBeadandó.Utility
         /// <summary>
         /// Tárolók, amik csak tárolnak (pl. Raktár)
         /// </summary>
-        private readonly ITarolo tarolo;
+        private readonly Tarolo tarolo;
 
         #endregion Private Fields
     }

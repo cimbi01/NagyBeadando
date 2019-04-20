@@ -8,7 +8,7 @@ namespace NagyBeadandó.Mezok
     /// Nyersanyag Termelése
     /// Nyersanyag Betakaríthatósága
     /// </summary>
-    public class NyersanyagMezo : Tarolo, ITaroloTermelo
+    public class NyersanyagMezo : Tarolo
     {
         #region Public Constructors
 

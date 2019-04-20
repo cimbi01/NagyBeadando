@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace NagyBeadandó.Mezok
 {
-    public class FoEpulet : Tarolo, ITipusTaroloTermelo<Lakos>
+    public class FoEpulet : Tarolo
     {
         #region Public Constructors
 

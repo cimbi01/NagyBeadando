@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace NagyBeadandó.Mezok.Alapok
 {
@@ -6,27 +8,21 @@ namespace NagyBeadandó.Mezok.Alapok
     /// Minden mező ős osztálya
     /// IMező azért kell, mert minden  osztálynak csak egy őse lehet.
     /// </summary>
-    public abstract class Mezo : IMezo
+    public abstract class Mezo : IInteraktivMezo
     {
-        #region Private Fields
-
-        private static int currentId = 0;
-
-        #endregion Private Fields
-
         #region Public Properties
 
-        public int ID { get; protected set; }
-
-        public IInteraktivMezo InteraktivMezo { get; protected set; }
-
+        /// <summary>
+        /// Tárolja az osztályban található metódusokat és egy szöveget hozzá A szöveget írja ki a console-ra
+        /// </summary>
+        public Dictionary<string, Action> Metodusok { get; protected set; } = new Dictionary<string, Action>();
         public Tipusok.MezoTipusok MezoTipus { get; protected set; }
-
         public string Nev { get; protected set; }
-
         public virtual string Parameterek { get; protected set; }
-
-        public int Szint { get; protected set; } = 1;
+        /// <summary>
+        /// Segít "Renderelésnél", hogy van-e az osztálynak publikus metódusa, azaz hogy a metódus tartalmaz-e párt
+        /// </summary>
+        public bool VanBennePublikusMetodus { get; protected set; }
 
         #endregion Public Properties
 
@@ -34,32 +30,13 @@ namespace NagyBeadandó.Mezok.Alapok
 
         protected Mezo(Tipusok.MezoTipusok mezotipus)
         {
-            ID = currentId++;
             MezoTipus = mezotipus;
-            Nev = mezotipus.ToString() + ID.ToString();
+            Nev = mezotipus.ToString();
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append("Név : " + Nev);
             stringBuilder.AppendLine();
-            stringBuilder.Append("Szint : " + Szint);
             Parameterek = stringBuilder.ToString();
         }
-        protected Mezo(int id, Tipusok.MezoTipusok mezotipus)
-        {
-            ID = id;
-            MezoTipus = mezotipus;
-            Nev = mezotipus.ToString() + ID.ToString();
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append("Név : " + Nev);
-            stringBuilder.AppendLine();
-            stringBuilder.Append("Szint : " + Szint);
-            Parameterek = stringBuilder.ToString();
-        }
-        // <summary>
-        /// Inicializalja az osszes mezejet
-        /// </summary>
-        /// <param name="id">Mezo ID-je</param>
-        /// <param name="mezotipus">Mezo tipusa</param>
-        /// <param name="kapacitas">Mezo tarolhatok szerinti tipusa</param>
 
         #endregion Protected Constructors
     }
