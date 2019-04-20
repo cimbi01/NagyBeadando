@@ -64,7 +64,7 @@ namespace NagyBeadandó.Tevekenysegek
         private void TamadasInditas()
         {
 #pragma warning disable S1848 // Objects should not be created to be dropped immediately without being used
-            new Csata(
+            Csata.Csatazas(
                 this,
                 Jatek.JatekosById(Tamadott_id).Vedekezik());
 #pragma warning restore S1848 // Objects should not be created to be dropped immediately without being used

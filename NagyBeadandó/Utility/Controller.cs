@@ -183,7 +183,7 @@ namespace NagyBeadandó.Utility
         /// </summary>
         public static void Render()
         {
-            if (!Jatekos.Vesztett)
+            if (!Jatek.JatekVege())
             {
                 Console.CursorVisible = false;
                 AlapRender();

@@ -25,6 +25,17 @@ namespace NagyBeadandó.Utility
             }
             return jatekosok[1];
         }
+        public static bool JatekVege()
+        {
+            foreach (Jatekos item in jatekosok)
+            {
+                if (item.Vesztett)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         /// <summary>
         /// Játék
         /// </summary>
@@ -42,10 +53,9 @@ namespace NagyBeadandó.Utility
                 jatekosok[index % 2].EtetTermel();
                 Controller.Render();
                 index++;
-            } while (!jatekosok[(index + 1) % 2].Vesztett);
+            } while (JatekVege());
             System.Console.WriteLine("Játék vége");
         }
-
         /// <summary>
         /// Inicializálja a játékot:
         /// Két Játékost:

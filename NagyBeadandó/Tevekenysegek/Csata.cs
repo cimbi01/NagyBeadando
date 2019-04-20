@@ -4,60 +4,44 @@ using System;
 
 namespace NagyBeadandó.Tevekenysegek
 {
-    internal class Csata
+    public static class Csata
     {
-        #region Private Methods
+        #region Public Methods
 
         /// <summary>
         /// Csata lemeneteléért felel:
         /// Ha a védő erő kisebb mint a támadó, akkor támadó nyert
         /// Ellenkező esetben védő nyert
         /// </summary>
-        private void Csatazas()
+        public static void Csatazas(Tamadas tamadas, KatonaiEgyseg vedekezes)
         {
-            if (this.tamadas.KatonaiEgyseg.Erő > this.vedekezes.Erő)
+            Jatekos tamado = Jatek.JatekosById(tamadas.KatonaiEgyseg.Jatekos_Id);
+            Jatekos vedekezo = Jatek.JatekosById(vedekezes.Jatekos_Id);
+            if (tamadas.KatonaiEgyseg.Erő > vedekezes.Erő)
             {
-                Jatek.JatekosById(this.tamadas.Tamadott_id).FoEpuletLeRombol();
+                Jatek.JatekosById(tamadas.Tamadott_id).FoEpuletLeRombol();
                 Console.Clear();
-                Console.WriteLine("Támadó játékos ID: {0} nyert", this.tamadas.KatonaiEgyseg.Jatekos_Id);
+                Console.WriteLine("Támadó játékos ID: {0} nyert", tamadas.KatonaiEgyseg.Jatekos_Id);
                 System.Threading.Thread.Sleep(1000);
                 Console.Clear();
             }
             else
             {
                 Console.Clear();
-                Console.WriteLine("Támadó játékos ID: {0} vesztett", this.tamadas.KatonaiEgyseg.Jatekos_Id);
+                Console.WriteLine("Támadó játékos ID: {0} vesztett", tamadas.KatonaiEgyseg.Jatekos_Id);
                 System.Threading.Thread.Sleep(1000);
                 Console.Clear();
-                for (int i = 0; i < this.tamadas.KatonaiEgyseg.Katonak.Count; i++)
+                for (int i = 0; i < tamadas.KatonaiEgyseg.Katonak.Count; i++)
                 {
-                    Jatek.JatekosById(this.tamadas.KatonaiEgyseg.Jatekos_Id).KatonaMeghal(this.tamadas.KatonaiEgyseg.Katonak[i]);
-                    Jatek.JatekosById(this.vedekezes.Jatekos_Id).KatonaMeghal(this.vedekezes.Katonak[i]);
-                    // visszatérés
-                    Jatek.JatekosById(this.tamadas.KatonaiEgyseg.Jatekos_Id).KatonakHazaternek(this.tamadas.KatonaiEgyseg);
-                    Jatek.JatekosById(this.vedekezes.Jatekos_Id).KatonakHazaternek(this.vedekezes);
+                    tamado.KatonaMeghal(tamadas.KatonaiEgyseg.Katonak[i]);
+                    vedekezo.KatonaMeghal(vedekezes.Katonak[i]);
                 }
+                // visszatérés
+                Jatek.JatekosById(tamadas.KatonaiEgyseg.Jatekos_Id).KatonakHazaternek(tamadas.KatonaiEgyseg);
+                Jatek.JatekosById(vedekezes.Jatekos_Id).KatonakHazaternek(vedekezes);
             }
         }
 
-        #endregion Private Methods
-
-        #region Public Constructors
-
-        public Csata(Tamadas _tamadas, KatonaiEgyseg _vedekezes)
-        {
-            this.tamadas = _tamadas;
-            this.vedekezes = _vedekezes;
-            Csatazas();
-        }
-
-        #endregion Public Constructors
-
-        #region Private Fields
-
-        private readonly Tamadas tamadas;
-        private readonly KatonaiEgyseg vedekezes;
-
-        #endregion Private Fields
+        #endregion Public Methods
     }
 }

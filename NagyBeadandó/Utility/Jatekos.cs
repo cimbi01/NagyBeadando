@@ -1,4 +1,5 @@
-﻿using NagyBeadandó.Lakosok;
+﻿using NagyBeadandó.Kivételek.MezoKivetelek;
+using NagyBeadandó.Lakosok;
 using NagyBeadandó.Lakosok.Katonasag;
 using NagyBeadandó.Mezok;
 using NagyBeadandó.Mezok.Alapok;
@@ -39,12 +40,26 @@ namespace NagyBeadandó.Utility
 
         #region Private Methods
 
+        private bool VanMegNemEtetett()
+        {
+            foreach (Tipusok.Tarolhatok item in this.foEpulet.Lista.Keys)
+            {
+                foreach (Lakosok.Lakos item2 in this.foEpulet.Lista[item])
+                {
+                    if (!item2.MegVanEtetve)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
         /// <summary>
         /// Minden Lakost megetet, ha van annyi búza a raktárban, amennyi a fogyasztása a katonának
         /// </summary>
-        private bool EtetniProbal()
+        private void EtetniProbal()
         {
-            bool van_nem_megetetett = false;
             foreach (Tipusok.Tarolhatok item in this.foEpulet.Lista.Keys)
             {
                 foreach (Lakosok.Lakos item2 in this.foEpulet.Lista[item])
@@ -58,22 +73,23 @@ namespace NagyBeadandó.Utility
                         }
                         catch (Kivételek.MezoKivetelek.NincsElegTarolhatoException)
                         {
-                            van_nem_megetetett = true;
+                            return;
                         }
                     }
                 }
             }
-            return van_nem_megetetett;
         }
         private void MegNemEtetettMegol()
         {
             foreach (Tipusok.Tarolhatok item in this.foEpulet.Lista.Keys)
             {
-                foreach (Lakosok.Lakos item2 in this.foEpulet.Lista[item])
+                for (int i = 0; i < this.foEpulet.Lista[item].Count; i++)
                 {
+                    Lakosok.Lakos item2 = this.foEpulet.Lista[item][i];
                     if (!item2.MegVanEtetve)
                     {
                         this.foEpulet.Eltávolit(item2);
+                        i--;
                     }
                 }
             }
@@ -92,12 +108,26 @@ namespace NagyBeadandó.Utility
                 }
             }
         }
+        private bool VanBeNemTakaritottBuzaMezo()
+        {
+            foreach (NyersanyagMezo item in this.nyersanyagMezok)
+            {
+                if (item.Kapacitas.ContainsKey(Tipusok.Tarolhatok.Buza))
+                {
+                    Tipusok.Tarolhatok buzatarolhato = Tipusok.Tarolhatok.Buza;
+                    if (item.Kapacitas[buzatarolhato][0] > 0)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
         /// <summary>
         /// Feltolti a raktár Búza részét
         /// </summary>
-        private bool RaktarBuzaFeltoltes()
+        private void RaktarBuzaFeltoltes()
         {
-            bool benemtakaritott = false;
             foreach (NyersanyagMezo item in this.nyersanyagMezok)
             {
                 if (item.Kapacitas.ContainsKey(Tipusok.Tarolhatok.Buza))
@@ -109,7 +139,6 @@ namespace NagyBeadandó.Utility
                     if (item.Kapacitas[buzatarolhato][0] > tarolo_maradekhely)
                     {
                         mennyit = tarolo_maradekhely;
-                        benemtakaritott = true;
                     }
                     // ellenkező esetben az egészet, amit tárol
                     else
@@ -118,10 +147,16 @@ namespace NagyBeadandó.Utility
                     }
                     // majd kiveszi és beteszi a tárolóba
                     int kivett = item.Kivesz(buzatarolhato, mennyit);
-                    this.tarolo.Betesz(buzatarolhato, kivett);
+                    try
+                    {
+                        this.tarolo.Betesz(buzatarolhato, kivett);
+                    }
+                    catch (TaroloTulCsordultException)
+                    {
+                        return;
+                    }
                 }
             }
-            return benemtakaritott;
         }
         /// <summary>
         /// Minden nyersanyagot betakarít
@@ -167,8 +202,10 @@ namespace NagyBeadandó.Utility
         {
             MindenMezonTermel();
             RaktarNyersanyagFeltolt();
-            while (EtetniProbal() && RaktarBuzaFeltoltes())
+            while (VanMegNemEtetett() && VanBeNemTakaritottBuzaMezo())
             {
+                RaktarBuzaFeltoltes();
+                EtetniProbal();
                 // etet és búzát tölt
             }
             MegNemEtetettMegol();
