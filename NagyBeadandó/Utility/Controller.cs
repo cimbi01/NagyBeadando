@@ -22,6 +22,7 @@ namespace NagyBeadandó.Utility
                 Console.WriteLine(item.Nev);
             }
             RenderCurrentLine(false);
+            kurzorhelye = Console.CursorTop;
         }
         /// <summary>
         /// Kezeli az entert
@@ -106,7 +107,6 @@ namespace NagyBeadandó.Utility
         private static void InteraktivMezoRender(int index)
         {
             render = true;
-            Logger.Log("Mezőbe lépve");
             Console.Clear();
             mezoindex = index;
             mezoben = true;
@@ -116,6 +116,7 @@ namespace NagyBeadandó.Utility
                 Console.WriteLine(item);
             }
             Console.CursorTop--;
+            kurzorhelye = Console.CursorTop;
         }
         /// <summary>
         /// Kirendereli a jelenlegi sort
@@ -141,6 +142,7 @@ namespace NagyBeadandó.Utility
                     Console.Write(array[kurzorhelye - Jatekos.InteraktivMezok[mezoindex].Parameterek.Split('\n').Length]);
                 }
             }
+            kurzorhelye = Console.CursorTop;
             Console.ForegroundColor = ConsoleColor.White;
         }
         /// <summary>
@@ -149,6 +151,7 @@ namespace NagyBeadandó.Utility
         /// </summary>
         private static void S()
         {
+            kurzorhelye = Console.CursorTop;
             Logger.Log("S leütve");
             int hatar = 0;
             if (!mezoben)
@@ -227,6 +230,7 @@ namespace NagyBeadandó.Utility
                 {
                     AlapRender();
                 }
+                RenderCurrentLine(true);
             }
         }
 

@@ -18,7 +18,7 @@ namespace NagyBeadandó.Utility
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.White;
             System.Console.WriteLine(szoveg);
-            System.Threading.Thread.Sleep(100);
+            System.Threading.Thread.Sleep(300);
             Console.Clear();
             Controller.Render();
         }

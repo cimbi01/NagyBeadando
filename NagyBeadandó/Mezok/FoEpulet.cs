@@ -140,7 +140,6 @@ namespace NagyBeadandó.Mezok
         {
             for (int i = 0; i < this.termeles && Lista.Count < Kapacitas[Tipusok.Tarolhatok.Lakos][1]; i++)
             {
-                System.Threading.Thread.Sleep(1);
                 Lista.Add(new Lakos());
             }
             MinimumKivalasztasosRendezes();
