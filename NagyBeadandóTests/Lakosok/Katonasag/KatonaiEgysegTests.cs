@@ -13,8 +13,8 @@ namespace NagyBeadandó.Lakosok.Katonasag.Tests
         {
             for (int i = 0; i < 10; i++)
             {
-                katonak.Add(new Katona(new Lakos(i), Mezok.Alapok.Tipusok.KatonaTipusok.Gyalogos));
-                ero += (katonak[i] as Katona).TamadoErtek;
+                katonak.Add(new Lakos(i));
+                ero += katonak[i].TamadoErtek;
             }
         }
 #pragma warning restore S3963 // "static" fields should be initialized inline

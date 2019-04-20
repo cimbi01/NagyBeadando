@@ -32,7 +32,7 @@ namespace NagyBeadandó.Utility
         {
             Init();
             int index = 0;
-            while (!jatekosok[(index + 1) % 2].Vesztett)
+            do
             {
                 if (index % 2 == 0)
                 {
@@ -42,7 +42,7 @@ namespace NagyBeadandó.Utility
                 jatekosok[index % 2].EtetTermel();
                 Controller.Render();
                 index++;
-            }
+            } while (!jatekosok[(index + 1) % 2].Vesztett);
             System.Console.WriteLine("Játék vége");
         }
 
@@ -73,7 +73,6 @@ namespace NagyBeadandó.Utility
                 [Tipusok.Tarolhatok.Fa] = new int[2] { 0, 1000 }
             };
             Tarolo raktar = new Tarolo(Tipusok.MezoTipusok.Raktar, kapacitas_raktar);
-            Kaszarnya kaszarnya = new Kaszarnya();
             FoEpulet fep = new FoEpulet();
             List<NyersanyagMezo> _nyersanyagMezok = new List<NyersanyagMezo>()
             {   new NyersanyagMezo(Tipusok.MezoTipusok.Agyagbanya,
@@ -84,7 +83,7 @@ namespace NagyBeadandó.Utility
                     new Dictionary<Tipusok.Tarolhatok, int[]> { [Tipusok.Tarolhatok.Erc] = new int[2] { 0, 1000} }),
                 new NyersanyagMezo(Tipusok.MezoTipusok.Faerdo,
                     new Dictionary<Tipusok.Tarolhatok, int[]> { [Tipusok.Tarolhatok.Fa] = new int[2] { 0, 1000} })};
-            jatekosok[index] = new Jatekos(raktar, _nyersanyagMezok, kaszarnya, fep);
+            jatekosok[index] = new Jatekos(raktar, _nyersanyagMezok, fep);
         }
 
         #endregion Public Methods

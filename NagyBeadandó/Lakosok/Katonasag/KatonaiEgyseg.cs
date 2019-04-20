@@ -38,7 +38,7 @@ namespace NagyBeadandó.Lakosok.Katonasag
                 if (Tamad)
                 {
                     Erő -= item.VedoErtek;
-                    Erő += (item as Katona).TamadoErtek;
+                    Erő += item.TamadoErtek;
                 }
             }
         }

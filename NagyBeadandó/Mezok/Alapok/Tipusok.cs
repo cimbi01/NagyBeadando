@@ -12,11 +12,6 @@
 
         #region Public Enums
 
-        public enum Fejleszthetok { Gyalogos };
-        /// <summary>
-        /// A Programban használt katona típusok Ha új katona fajtát szeretnénk létrehozni, bővíteni kell
-        /// </summary>
-        public enum KatonaTipusok { Gyalogos };
         /// <summary>
         /// A Programban használt Mező típusok Ha új mező fajtát szeretnénk létrehozni, bővíteni kell
         /// </summary>
@@ -24,7 +19,7 @@
         /// <summary>
         /// A Programban használt tárolhatóegység típusok Ha új tárolhatóegység fajtát szeretnénk létrehozni, bővíteni kell
         /// </summary>
-        public enum Tarolhatok { Buza, Agyag, Erc, Fa, Katona, Lakos, Gyalogos };
+        public enum Tarolhatok { Buza, Agyag, Erc, Fa, Katona, Lakos };
 
         #endregion Public Enums
     }

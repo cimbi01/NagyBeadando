@@ -21,7 +21,7 @@
         /// </summary>
         string Nev { get; }
         /// <summary>
-        /// "Renderelésnél" fontos, hogy ki tudja írni a mező szintjét
+        /// "Renderelésnél" fontos, hogy ki tudja írni a mező szintjét, adatait
         /// </summary>
         string Parameterek { get; }
         /// <summary>

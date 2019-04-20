@@ -1,5 +1,6 @@
 ﻿using NagyBeadandó.Lakosok.Katonasag;
 using NagyBeadandó.Utility;
+using System;
 
 namespace NagyBeadandó.Tevekenysegek
 {
@@ -17,19 +18,26 @@ namespace NagyBeadandó.Tevekenysegek
             if (this.tamadas.KatonaiEgyseg.Erő > this.vedekezes.Erő)
             {
                 Jatek.JatekosById(this.tamadas.Tamadott_id).FoEpuletLeRombol();
+                Console.Clear();
+                Console.WriteLine("Támadó játékos ID: {0} nyert", this.tamadas.KatonaiEgyseg.Jatekos_Id);
+                System.Threading.Thread.Sleep(1000);
+                Console.Clear();
             }
             else
             {
+                Console.Clear();
+                Console.WriteLine("Támadó játékos ID: {0} vesztett", this.tamadas.KatonaiEgyseg.Jatekos_Id);
+                System.Threading.Thread.Sleep(1000);
+                Console.Clear();
                 for (int i = 0; i < this.tamadas.KatonaiEgyseg.Katonak.Count; i++)
                 {
                     Jatek.JatekosById(this.tamadas.KatonaiEgyseg.Jatekos_Id).KatonaMeghal(this.tamadas.KatonaiEgyseg.Katonak[i]);
                     Jatek.JatekosById(this.vedekezes.Jatekos_Id).KatonaMeghal(this.vedekezes.Katonak[i]);
+                    // visszatérés
+                    Jatek.JatekosById(this.tamadas.KatonaiEgyseg.Jatekos_Id).KatonakHazaternek(this.tamadas.KatonaiEgyseg);
+                    Jatek.JatekosById(this.vedekezes.Jatekos_Id).KatonakHazaternek(this.vedekezes);
                 }
             }
-
-            // visszatérés
-            Jatek.JatekosById(this.tamadas.KatonaiEgyseg.Jatekos_Id).KatonakHazaternek(this.tamadas.KatonaiEgyseg);
-            Jatek.JatekosById(this.vedekezes.Jatekos_Id).KatonakHazaternek(this.vedekezes);
         }
 
         #endregion Private Methods

@@ -12,8 +12,6 @@ namespace NagyBeadandó.Tevekenysegek
     /// </summary>
     public class Tamadas
     {
-        private readonly int tavolsag = 5;
-
         #region Public Properties
 
         public KatonaiEgyseg KatonaiEgyseg { get; private set; }
@@ -52,8 +50,8 @@ namespace NagyBeadandó.Tevekenysegek
             int menetido = 0;
             foreach (Lakos item in KatonaiEgyseg.Katonak)
             {
-                int tmp_menet_ido = this.tavolsag / (item as Katona).MenetSebesseg;
-                if (tmp_menet_ido > 0)
+                int tmp_menet_ido = Tamadas.tavolsag / item.MenetSebesseg;
+                if (tmp_menet_ido > menetido)
                 {
                     menetido = tmp_menet_ido;
                 }
@@ -70,5 +68,7 @@ namespace NagyBeadandó.Tevekenysegek
         }
 
         #endregion Private Methods
+
+        private const int tavolsag = 5;
     }
 }

@@ -12,11 +12,13 @@ namespace NagyBeadandó.Utility
         private static void AlapRender()
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.White;
             foreach (Mezok.Alapok.IInteraktivMezo item in Jatekos.InteraktivMezok)
             {
                 Console.WriteLine(item.Nev);
             }
             Console.CursorTop--;
+            RenderCurrentLine(false);
         }
         /// <summary>
         /// Kezeli az entert
@@ -36,7 +38,12 @@ namespace NagyBeadandó.Utility
             {
                 string[] array = new string[Jatekos.InteraktivMezok[mezoindex].Metodusok.Count];
                 Jatekos.InteraktivMezok[mezoindex].Metodusok.Keys.CopyTo(array, 0);
-                Jatekos.InteraktivMezok[mezoindex].Metodusok[array[Console.CursorTop]].Invoke();
+                Jatekos.InteraktivMezok[mezoindex].Metodusok[
+                        array[Console.CursorTop -
+                            Jatekos.InteraktivMezok[mezoindex].Parameterek.
+                            Split('\n').Length]].Invoke();
+                mezoben = false;
+                AlapRender();
             }
         }
         /// <summary>
@@ -176,23 +183,28 @@ namespace NagyBeadandó.Utility
         /// </summary>
         public static void Render()
         {
-            Console.CursorVisible = false;
-            AlapRender();
-            escaped = false;
-            while (!escaped)
+            if (!Jatekos.Vesztett)
             {
-                InterAkcio();
+                Console.CursorVisible = false;
+                AlapRender();
+                escaped = false;
+                while (!escaped)
+                {
+                    InterAkcio();
+                }
+                Console.Clear();
+                Console.WriteLine("Következő játékos");
+                System.Threading.Thread.Sleep(500);
             }
-            Console.Clear();
-            Console.WriteLine("Következő játékos");
-            System.Threading.Thread.Sleep(500);
         }
 
         #endregion Public Methods
 
         #region Private Fields
 
+#pragma warning disable S1450 // Private fields only used as local variables in methods should become local variables
         private static bool escaped = false;
+#pragma warning restore S1450 // Private fields only used as local variables in methods should become local variables
         private static bool mezoben = false;
         private static int mezoindex;
 

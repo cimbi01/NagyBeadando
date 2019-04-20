@@ -23,12 +23,19 @@ namespace NagyBeadandó.Utility
         /// </summary>
         public static void GorgetMind()
         {
-            foreach (Tevekenyseg item in tevekenysegek)
+            for (int i = 0; i < tevekenysegek.Count; i++)
             {
+                Tevekenyseg item = tevekenysegek[i];
                 if (--item.Ido == 0)
                 {
                     item.VegreHajt();
                     tevekenysegek.Remove(item);
+                    i--;
+                }
+                else if (item.Ido < 0)
+                {
+                    tevekenysegek.Remove(item);
+                    i--;
                 }
             }
         }
@@ -37,7 +44,7 @@ namespace NagyBeadandó.Utility
 
         #region Private Fields
 
-        private static readonly List<Tevekenyseg> tevekenysegek = new List<Tevekenyseg>();
+        public static readonly List<Tevekenyseg> tevekenysegek = new List<Tevekenyseg>();
 
         #endregion Private Fields
     }

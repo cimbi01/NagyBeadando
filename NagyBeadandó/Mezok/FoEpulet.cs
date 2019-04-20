@@ -14,6 +14,18 @@ namespace NagyBeadandó.Mezok
         }
         public FoEpulet(FoEpulet fep) : base(fep)
         { }
+        public int ItthonLevok(Tipusok.Tarolhatok tarolhato)
+        {
+            int itthon = 0;
+            foreach (Lakos item in Lista[tarolhato])
+            {
+                if (item.ItthonVan)
+                {
+                    itthon++;
+                }
+            }
+            return itthon;
+        }
 
         #endregion Public Constructors
 

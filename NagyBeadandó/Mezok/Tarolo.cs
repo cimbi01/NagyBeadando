@@ -68,25 +68,7 @@ namespace NagyBeadandó.Mezok
         /// <param name="kapacitas">Mezo tarolhatok szerinti tipusa</param>
         public Tarolo(Tipusok.MezoTipusok mezotipus, Dictionary<Tipusok.Tarolhatok, int[]> kapacitas) : base(mezotipus)
         {
-            // paraméterek StringBuilder-e (kevesebbet erőforrást igényel a használata, mint ha mindig hozzáadogatnék a string-hez)
-            StringBuilder stringBuilder = new StringBuilder();
             Kapacitas = kapacitas;
-            stringBuilder.AppendLine();
-            stringBuilder.Append("Tárolt típusok: ");
-            stringBuilder.AppendLine();
-            foreach (Tipusok.Tarolhatok item in kapacitas.Keys)
-            {
-                stringBuilder.Append("Típus: ");
-                stringBuilder.Append(item.ToString());
-                stringBuilder.Append(" Mennyiség: ");
-                kapacitas.TryGetValue(item, out int[] value);
-                stringBuilder.Append(value[0].ToString());
-                stringBuilder.Append(", Kapacitás: ");
-                stringBuilder.Append(value[1].ToString());
-                stringBuilder.Append(";");
-                stringBuilder.AppendLine();
-            }
-            Parameterek += stringBuilder.ToString();
             InteraktivMezo = new InteraktívTarolo(this);
         }
         public Tarolo(Tarolo tarolo) : base(tarolo.ID, tarolo.MezoTipus)
