@@ -1,23 +1,100 @@
 ﻿using NagyBeadandó.Kivételek.MezoKivetelek;
 using NagyBeadandó.Lakosok;
 using NagyBeadandó.Mezok.Alapok;
+using NagyBeadandó.Utility;
+using System;
 using System.Collections.Generic;
 
 namespace NagyBeadandó.Mezok
 {
-    public class FoEpulet : Tarolo, ITipusTaroloTermelo<Lakos>
+    /// <summary>
+    /// Tarolo, ami tárolja a Lakosokat
+    /// </summary>
+    public class FoEpulet : Tarolo
     {
+        #region Private Methods
+
+        /// <summary>
+        /// Fogyasztás szerint rendezi a lakosok listáját
+        /// A legkisebb fogyasztású a legkisebb indexen van
+        /// </summary>
+        private void MinimumKivalasztasosRendezes()
+        {
+            for (int i = 0; i < Lista.Count - 1; i++)
+            {
+                int min = i;
+                for (int j = i + 1; j < Lista.Count; j++)
+                {
+                    if (Lista[j].Fogyasztas < Lista[min].Fogyasztas)
+                    {
+                        min = j;
+                    }
+                }
+                Lakos tmp = Lista[i];
+                Lista[i] = Lista[min];
+                Lista[min] = tmp;
+            }
+        }
+
+        #endregion Private Methods
+
+        #region Public Properties
+
+        /// <summary>
+        /// Tarolja a Lakosokategyesevel adataikkal egyutt
+        /// </summary>
+        public List<Lakos> Lista { get; private set; } = new List<Lakos>();
+
+        #endregion Public Properties
+
         #region Public Constructors
 
-        public FoEpulet() : base(Tipusok.MezoTipusok.Foepulet, new Dictionary<Tipusok.Tarolhatok, int[]>() { [Tipusok.Tarolhatok.Lakos] = new int[2] { 0, 1000 } })
+        /// <summary>
+        /// Inicializálja a Főépulet Kapcitását, Listáját, Termelését
+        /// </summary>
+        public FoEpulet() : base(Tipusok.MezoTipusok.Foepulet, new List<Tipusok.Tarolhatok>() { Tipusok.Tarolhatok.Lakos })
         {
+            Random rnd = new Random();
+            this.termeles = rnd.Next(0, 1000);
         }
-        public FoEpulet(FoEpulet fep) : base(fep)
-        { }
-        public int ItthonLevok(Tipusok.Tarolhatok tarolhato)
+
+        #endregion Public Constructors
+
+        #region Private Fields
+
+        /// <summary>
+        /// Tarolja, hogy egy iterációs egység alatt mennyi Lakos-t termel
+        /// </summary>
+        private readonly int termeles;
+
+        #endregion Private Fields
+
+        #region Public Methods
+
+        public void BeteszTipus(List<Lakos> lakosok)
+        {
+            for (int i = 0; i < lakosok.Count && Lista.Count < Kapacitas[Tipusok.Tarolhatok.Lakos][1]; i++)
+            {
+                Lista.Add(lakosok[i]);
+            }
+        }
+        /// <summary>
+        /// Eltávolít egy lakost a Listából
+        /// </summary>
+        /// <param name="lakos">Lakos, amit elvátolítunk a listából</param>
+        public void Eltávolit(Lakos lakos)
+        {
+            Lista.Remove(lakos);
+        }
+        /// <summary>
+        ///Megszámolja, hány lakos van itthon
+        ///Azaz hány lakosnak ItthonVan = true
+        /// </summary>
+        /// <returns>Visszaadja, hány lakos van itthon</returns>
+        public int ItthonLevok()
         {
             int itthon = 0;
-            foreach (Lakos item in Lista[tarolhato])
+            foreach (Lakos item in Lista)
             {
                 if (item.ItthonVan)
                 {
@@ -26,55 +103,62 @@ namespace NagyBeadandó.Mezok
             }
             return itthon;
         }
-
-        #endregion Public Constructors
-
-        #region Private Fields
-
-        public Dictionary<Tipusok.Tarolhatok, List<Lakos>> Lista { get; private set; } = new Dictionary<Tipusok.Tarolhatok, List<Lakos>>()
-        { [Tipusok.Tarolhatok.Lakos] = new List<Lakos>() };
-        private readonly int termeles = 100;
-
-        #endregion Private Fields
-
-        #region Public Methods
-
-        public void BeteszTipus(Tipusok.Tarolhatok tipus, Lakos betevendo)
-        {
-            Lista[tipus].Add(betevendo);
-        }
-        public void Eltávolit(Lakos tipus)
-        {
-            Lista[Tipusok.Tarolhatok.Lakos].Remove(tipus);
-        }
-        public List<Lakos> KiveszTipus(Tipusok.Tarolhatok tipus, int mennyit)
+        /// <summary>
+        /// Visszaad egy Listát, benne mennyit-nyi Lakos
+        /// Ha nincs annyi lakos, vagy nincs annyi itthon levo lakos
+        /// Akkor NincsElegTarolhatoException hibat dob
+        /// </summary>
+        /// <param name="mennyit">A lakosok mennyisege</param>
+        /// <param name="itthon">A itthon legyenek a lakosok?</param>
+        /// <returns></returns>
+        public List<Lakos> KiveszTipus(int mennyit, bool itthon = true)
         {
             List<Lakos> katonak = new List<Lakos>();
-            if (Lista[tipus].Count < mennyit)
+            if ((itthon && ItthonLevok() < mennyit)
+                || Lista.Count < mennyit)
             {
-                throw new NincsElegTarolhatoException(tipus);
+                throw new NincsElegTarolhatoException();
             }
-            for (int i = 0; i < mennyit; i++)
+            /// az otthon levo katonákat hozzáadja a katonákhoz
+            for (int i = 0; i < Lista.Count && mennyit > 0; i++)
             {
-                katonak.Add(Lista[tipus][0]);
-                Lista[tipus].Remove(katonak[i]);
+                if (Lista[i].ItthonVan)
+                {
+                    katonak.Add(Lista[0]);
+                    Lista.Remove(Lista[0]);
+                    i--;
+                    mennyit--;
+                }
             }
+            Logger.Log("Kivettek " + mennyit + " darab lakost a Főépuletbol");
             return katonak;
         }
-        public override bool MegVanTelve(Tipusok.Tarolhatok tarolhato)
+        /// <summary>
+        /// Termeles-nyit termel pluszban a meglevohoz a tarolhato-bol, legfelejebb a kapacitás-ig
+        /// </summary>
+        public void Termel()
         {
-            return Lista[Tipusok.Tarolhatok.Lakos].Count == Kapacitas[Tipusok.Tarolhatok.Lakos][1];
+            for (int i = 0; i < this.termeles && Lista.Count < Kapacitas[Tipusok.Tarolhatok.Lakos][1]; i++)
+            {
+                Lista.Add(new Lakos());
+            }
+            MinimumKivalasztasosRendezes();
+            Logger.Log("Főepulet termelt");
         }
         /// <summary>
-        /// termeles-nyit termel pluszban a meglevohoz a tarolhato-bol
+        /// Visszadja, hogy van-e a meg nem etett lakos
         /// </summary>
-        /// <param name="tarolhato">A tarolhato tipusa, amibol termel</param>
-        public void Termel(Tipusok.Tarolhatok tarolhato)
+        /// <returns></returns>
+        public bool VanMegNemEtetett()
         {
-            for (int i = 0; i < this.termeles && Lista[tarolhato].Count < Kapacitas[tarolhato][1]; i++)
+            foreach (Lakosok.Lakos item2 in Lista)
             {
-                Lista[tarolhato].Add(new Lakos());
+                if (!item2.MegVanEtetve)
+                {
+                    return true;
+                }
             }
+            return false;
         }
 
         #endregion Public Methods

@@ -13,26 +13,47 @@ namespace NagyBeadandó.Tevekenysegek
     /// </summary>
     public class Tamadas
     {
-        #region Public Properties
+        #region Public Methods
 
-        public KatonaiEgyseg KatonaiEgyseg { get; private set; }
-        public int Tamadott_id { get; private set; }
+        /// <summary>
+        /// Hozzáad a Tevekenységkontrollerhez
+        /// </summary>
+        public void Tamad()
+        {
+            TevekenysegController.AddTevekenyseg(MenetidoSzamitas(), TamadasInditas);
+        }
 
-        #endregion Public Properties
+        #endregion Public Methods
+
+        #region Private Fields
+
+        /// <summary>
+        /// Támadó katonaiEgysége
+        /// </summary>
+        private readonly KatonaiEgyseg KatonaiEgyseg;
+        /// <summary>
+        /// A támadott játékos ID-je
+        /// </summary>
+        private readonly int Tamadott_id;
+
+        #endregion Private Fields
 
         #region Public Constructors
 
+        /// <summary>
+        /// Konstruktor
+        /// Iicializálja a támadást
+        /// </summary>
+        /// <param name="katonasag">Támadó Katonai egysége</param>
+        /// <param name="tamadott_jatekos_id">Támadott játékos ID-je</param>
         public Tamadas(KatonaiEgyseg katonasag, int tamadott_jatekos_id)
         {
-            KatonaiEgyseg = katonasag;
-            foreach (Lakos item in KatonaiEgyseg.Katonak)
+            this.KatonaiEgyseg = katonasag;
+            foreach (Lakos item in this.KatonaiEgyseg.Katonak)
             {
                 item.ItthonVan = false;
             }
-            Tamadott_id = tamadott_jatekos_id;
-#pragma warning disable S1848 // Objects should not be created to be dropped immediately without being used
-            new Tevekenyseg(MenetidoSzamitas(), TamadasInditas);
-#pragma warning restore S1848 // Objects should not be created to be dropped immediately without being used
+            this.Tamadott_id = tamadott_jatekos_id;
         }
 
         #endregion Public Constructors
@@ -51,7 +72,7 @@ namespace NagyBeadandó.Tevekenysegek
             Random rnd = new Random();
             int tavolsag = rnd.Next(1, 10);
             int menetido = 0;
-            foreach (Lakos item in KatonaiEgyseg.Katonak)
+            foreach (Lakos item in this.KatonaiEgyseg.Katonak)
             {
                 int tmp_menet_ido = (tavolsag / item.MenetSebesseg) + 1;
                 if (tmp_menet_ido > menetido)
@@ -61,13 +82,17 @@ namespace NagyBeadandó.Tevekenysegek
             }
             return menetido;
         }
+        /// <summary>
+        /// Elindítja a támadást
+        /// Arra kell, hogy legyen egy paraméter és visszatérés nélküli metódus
+        /// Amit át lehet adni a tevekenyseg konstrruktornak
+        /// </summary>
         private void TamadasInditas()
         {
-#pragma warning disable S1848 // Objects should not be created to be dropped immediately without being used
-            new Csata(
-                this,
-                Jatek.JatekosById(Tamadott_id).Vedekezik());
-#pragma warning restore S1848 // Objects should not be created to be dropped immediately without being used
+            Logger.Log("Támadás indult. Idő : " + MenetidoSzamitas());
+            Csata.Csatazas(
+                this.KatonaiEgyseg,
+                Jatek.GetJatekosById(this.Tamadott_id).Vedekezik());
         }
 
         #endregion Private Methods

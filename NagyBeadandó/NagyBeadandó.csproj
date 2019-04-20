@@ -44,17 +44,11 @@
   <ItemGroup>
     <Compile Include="Kivételek\MezoKivetelek\NemTartalmazTarolhatotException.cs" />
     <Compile Include="Kivételek\MezoKivetelek\NincsElegTarolhatoException.cs" />
-    <Compile Include="Kivételek\MezoKivetelek\TarolhatoExceptions.cs" />
     <Compile Include="Kivételek\MezoKivetelek\TaroloTulCsordultException.cs" />
     <Compile Include="Lakosok\Katonasag\KatonaiEgyseg.cs" />
     <Compile Include="Lakosok\Lakos.cs" />
     <Compile Include="Mezok\Alapok\IInteraktivMezo.cs" />
-    <Compile Include="Mezok\Alapok\IMezo.cs" />
-    <Compile Include="Mezok\Alapok\ITipusTaroloTermelo.cs" />
-    <Compile Include="Mezok\Alapok\ITaroloTermelo.cs" />
-    <Compile Include="Mezok\Alapok\ITermelo.cs" />
     <Compile Include="Mezok\Alapok\Mezo.cs" />
-    <Compile Include="Mezok\Alapok\ITarolo.cs" />
     <Compile Include="Mezok\FoEpulet.cs" />
     <Compile Include="Mezok\NyersanyagMezo.cs" />
     <Compile Include="Mezok\Tarolo.cs" />
@@ -68,10 +62,12 @@
     <Compile Include="Utility\Controller.cs" />
     <Compile Include="Utility\Jatek.cs" />
     <Compile Include="Utility\Jatekos.cs" />
+    <Compile Include="Utility\Logger.cs" />
     <Compile Include="Utility\TevekenysegController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

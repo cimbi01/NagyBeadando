@@ -1,33 +1,55 @@
-﻿namespace NagyBeadandó.Lakosok
+﻿using System;
+
+namespace NagyBeadandó.Lakosok
 {
+    /// <summary>
+    /// Jatekos lakosa
+    /// Ő támad, védekezik
+    /// </summary>
     public class Lakos
     {
-        #region Private Fields
+        #region Public Constructors
 
-        private static int CurrentId = 0;
+        /// <summary>
+        /// Beállítja a lakos értékeit random számokkal
+        /// </summary>
+        public Lakos()
+        {
+            Random rnd = new Random();
+            Fogyasztas = rnd.Next(1, 10);
+            MenetSebesseg = rnd.Next(1, 10);
+            TamadoErtek = rnd.Next(1, 10);
+            VedoErtek = rnd.Next(1, 10);
+        }
 
-        #endregion Private Fields
+        #endregion Public Constructors
 
         #region Public Properties
 
-        public Lakos(int _Fogyasztas = 1)
-        {
-            Fogyasztas = _Fogyasztas;
-            ID = CurrentId++;
-        }
-        public Lakos(Lakos lakos)
-        {
-            Fogyasztas = lakos.Fogyasztas;
-            ID = lakos.ID;
-        }
+        /// <summary>
+        /// A Lakos fogyasztasa, amennyit a tarolo búza résézből le kell venni, ahhoz, hogy ne haljon meg
+        /// </summary>
         public int Fogyasztas { get; protected set; }
-        public int ID { get; protected set; }
+        /// <summary>
+        /// Jelzi, hogy itthon van-e a lakos, vagy épp támadásba menetel
+        /// </summary>
         public bool ItthonVan { get; set; } = true;
-        public bool Katona { get; protected set; } = false;
+        /// <summary>
+        /// Jelzi, hogy a Fogyasztását levették-e már a tarolo buza részéből, azaz megetették-e
+        /// </summary>
         public bool MegVanEtetve { get; set; } = false;
-        public int MenetSebesseg { get; private set; } = 5;
-        public int TamadoErtek { get; private set; } = 1;
-        public int VedoErtek { get; protected set; } = 1;
+        /// <summary>
+        /// Beállítja, hogy a lakos mekkora távot tesz meg egy iterációs egység alatt
+        /// </summary>
+        public int MenetSebesseg { get; private set; }
+        /// <summary>
+        /// Beállítja, hogy mennyi Vedőértéknyi lakos-t tud megölni egy támadás alatt
+        /// </summary>
+        public int TamadoErtek { get; private set; }
+        /// <summary>
+        /// Beállítja, hogy mennyi Vedőértéknyi lakos-t tud megölni egy védekezés alatt
+        /// </summary>
+        public int VedoErtek { get; protected set; }
 
         #endregion Public Properties
     }

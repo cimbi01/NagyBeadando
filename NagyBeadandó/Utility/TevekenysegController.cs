@@ -1,4 +1,5 @@
 ﻿using NagyBeadandó.Tevekenysegek;
+using System;
 using System.Collections.Generic;
 
 namespace NagyBeadandó.Utility
@@ -11,9 +12,14 @@ namespace NagyBeadandó.Utility
     {
         #region Public Methods
 
-        public static void AddTevekenyseg(Tevekenyseg tevekenyseg)
+        /// <summary>
+        /// Hozzáad a tevékenységet a tevékenységek-hez
+        /// </summary>
+        /// <param name="ido">A tevékenység ideje</param>
+        /// <param name="vegrehajt">A tevékenység metódusa, ami lefut, amikor az ido = 0</param>
+        public static void AddTevekenyseg(int ido, Action vegrehajt)
         {
-            tevekenysegek.Add(tevekenyseg);
+            tevekenysegek.Add(new Tevekenyseg(ido, vegrehajt));
         }
         /// <summary>
         /// Az összes tevekenyseg-nek az idejét 1-el csökkenti
@@ -26,14 +32,9 @@ namespace NagyBeadandó.Utility
             for (int i = 0; i < tevekenysegek.Count; i++)
             {
                 Tevekenyseg item = tevekenysegek[i];
-                if (--item.Ido == 0)
+                if (--item.Ido == 0 && !Jatek.JatekVege())
                 {
                     item.VegreHajt();
-                    tevekenysegek.Remove(item);
-                    i--;
-                }
-                else if (item.Ido < 0)
-                {
                     tevekenysegek.Remove(item);
                     i--;
                 }
@@ -44,6 +45,9 @@ namespace NagyBeadandó.Utility
 
         #region Private Fields
 
+        /// <summary>
+        /// Tevékenységek listája
+        /// </summary>
         public static readonly List<Tevekenyseg> tevekenysegek = new List<Tevekenyseg>();
 
         #endregion Private Fields

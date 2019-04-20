@@ -1,5 +1,4 @@
-﻿using NagyBeadandó.Utility;
-using System;
+﻿using System;
 
 namespace NagyBeadandó.Tevekenysegek
 {
@@ -30,11 +29,15 @@ namespace NagyBeadandó.Tevekenysegek
 
         #region Public Constructors
 
+        /// <summary>
+        /// Inicializálja a Tevekenyseget
+        /// </summary>
+        /// <param name="_ido">a tevékenység aktiváláshoz szükséges idő</param>
+        /// <param name="_vegrehajt">A metódus, ami végrehajtódik, idő-nyi iterációs egység után</param>
         public Tevekenyseg(int _ido, Action _vegrehajt)
         {
             Ido = _ido;
             VegreHajt = _vegrehajt;
-            TevekenysegController.AddTevekenyseg(this);
         }
 
         #endregion Public Constructors

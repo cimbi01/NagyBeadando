@@ -11,21 +11,29 @@ namespace NagyBeadandó.Mezok
     /// Tárolni a különböző tárolható típusokat
     /// Lekérni a különböző tárolható típusokból
     /// </summary>
-    public class Tarolo : Mezo, ITarolo
+    public class Tarolo : Mezo
     {
         #region Public Methods
 
+        /// <summary>
+        /// A Kapacitás tároló részéhez [0] hozzáad mennyit-nyit
+        /// Ha így nagyobb akkor teletölti, majd dob egy TaroloTulCsordultException-t
+        /// </summary>
+        /// <param name="tarolhato">A tárolható típusa, amelyik rekeszbe szeretnék tenni a mennyit</param>
+        /// <param name="mennyit">A mennyiség, amennyit be szeretnénk tenni a rekeszbe</param>
         public void Betesz(Tipusok.Tarolhatok tarolhato, int mennyit)
         {
             if (!Kapacitas.ContainsKey(tarolhato))
             {
-                throw new NemTartalmazTarolhatotException(tarolhato);
+                throw new NemTartalmazTarolhatotException();
+            }
+            int tarolo_maradekhely = Kapacitas[tarolhato][1] - Kapacitas[tarolhato][0];
+            if (mennyit > tarolo_maradekhely)
+            {
+                Kapacitas[tarolhato][0] += tarolo_maradekhely;
+                throw new TaroloTulCsordultException();
             }
             Kapacitas[tarolhato][0] += mennyit;
-            if (Kapacitas[tarolhato][0] > Kapacitas[tarolhato][1])
-            {
-                throw new TaroloTulCsordultException(tarolhato, mennyit, Kapacitas[tarolhato][1]);
-            }
         }
         /// <summary>
         /// Visszaadja mmenyit-nyit a Tárolhato-ból
@@ -33,27 +41,17 @@ namespace NagyBeadandó.Mezok
         /// <param name="tarolhato">A típus, amiből lekérjük a mennyiséget</param>
         /// <param name="mennyit">A mennyiség, hogy mennyit szeretne kivenni a tárolóból</param>
         /// <returns>Visszaad mennyit-nyit, ha van belőle mennyit-nyi a kapacitásban, ellenkező esetben dob egy NincsElégTarolhatoException-t</returns>
-        public int Kivesz(Tipusok.Tarolhatok tarolhato, int mennyit)
+        public void Kivesz(Tipusok.Tarolhatok tarolhato, int mennyit)
         {
             if (!Kapacitas.TryGetValue(tarolhato, out int[] tarolt_mennyiseg))
             {
-                throw new NemTartalmazTarolhatotException(tarolhato);
+                throw new NemTartalmazTarolhatotException();
             }
             else if (tarolt_mennyiseg[0] < mennyit)
             {
-                throw new NincsElegTarolhatoException(tarolhato);
+                throw new NincsElegTarolhatoException();
             }
             tarolt_mennyiseg[0] -= mennyit;
-            return mennyit;
-        }
-        /// <summary>
-        /// Visszaadja, hogy az adott tipusból a tárolt mennyiség egyenlő-e a maxkapacitással
-        /// </summary>
-        /// <param name="tarolhato">A tárolt tipus fajtája</param>
-        /// <returns>Igazat ad vissza, ha a tárolható típusból maxkapacitásnyi van, minden más esetben hamist</returns>
-        public virtual bool MegVanTelve(Tipusok.Tarolhatok tarolhato)
-        {
-            return Kapacitas[tarolhato][0] == Kapacitas[tarolhato][1];
         }
 
         #endregion Public Methods
@@ -66,16 +64,15 @@ namespace NagyBeadandó.Mezok
         /// <param name="id">Mezo ID-je</param>
         /// <param name="mezotipus">Mezo tipusa</param>
         /// <param name="kapacitas">Mezo tarolhatok szerinti tipusa</param>
-        public Tarolo(Tipusok.MezoTipusok mezotipus, Dictionary<Tipusok.Tarolhatok, int[]> kapacitas) : base(mezotipus)
+        public Tarolo(Tipusok.MezoTipusok mezotipus, List<Tipusok.Tarolhatok> tarolhatok) : base(mezotipus)
         {
-            Kapacitas = kapacitas;
-            InteraktivMezo = new InteraktívTarolo(this);
-        }
-        public Tarolo(Tarolo tarolo) : base(tarolo.ID, tarolo.MezoTipus)
-        {
-            Kapacitas = tarolo.Kapacitas;
-            Parameterek = tarolo.Parameterek;
-            InteraktivMezo = tarolo.InteraktivMezo;
+            VanBennePublikusMetodus = Metodusok.Count != 0;
+            Random rnd = new Random();
+            foreach (Tipusok.Tarolhatok tarolt_tipus in tarolhatok)
+            {
+                int[] kapacitasok = new int[2] { 0, rnd.Next(500, 1000) };
+                Kapacitas.Add(tarolt_tipus, kapacitasok);
+            }
         }
 
         #endregion Public Constructors
@@ -87,20 +84,22 @@ namespace NagyBeadandó.Mezok
         /// A tömb első eleme a mennyiség
         /// Második eleme a maximum kapacitás
         /// </summary>
-        public Dictionary<Tipusok.Tarolhatok, int[]> Kapacitas { get; private set; }
-
-        #endregion Public Properties
-
-        #region Private Classes
-
+        /// Meg lehetne oldani, hogy a value egy objektum tömb legyen
+        /// Így egyszerre meghatározva az objektumok listáját
+        /// És a maximum kapacitást
+        /// Ezzel leegszerűsítve a modellt
+        /// (Hiba: Csak a Lakosnak van osztálya, a nyersanyagok-nak egyáltalán nincs)
+        public Dictionary<Tipusok.Tarolhatok, int[]> Kapacitas { get; protected set; } = new Dictionary<Tipusok.Tarolhatok, int[]>();
+        /// <summary>
+        /// Visszaadja a Tarolo Parametereit:
+        /// Nevét, Tárolt Tipusok szerint mennyiséget, kapacitást, típust
+        /// </summary>
         public override string Parameterek
         {
             get
             {
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.Append("Név : " + Nev);
-                stringBuilder.AppendLine();
-                stringBuilder.Append("Szint : " + Szint);
                 stringBuilder.AppendLine();
                 stringBuilder.Append("Tárolt típusok: ");
                 stringBuilder.AppendLine();
@@ -119,26 +118,7 @@ namespace NagyBeadandó.Mezok
                 return stringBuilder.ToString();
             }
         }
-        private class InteraktívTarolo : Tarolo, IInteraktivMezo
-        {
-            #region Public Constructors
 
-            public InteraktívTarolo(Tarolo tarolo) : base(tarolo)
-            {
-                VanBennePublikusMetodus = Metodusok.Count != 0;
-            }
-
-            #endregion Public Constructors
-
-            #region Public Properties
-
-            public Dictionary<string, Action> Metodusok { get; private set; } = new Dictionary<string, Action>();
-
-            public bool VanBennePublikusMetodus { get; private set; }
-
-            #endregion Public Properties
-        }
-
-        #endregion Private Classes
+        #endregion Public Properties
     }
 }

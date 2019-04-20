@@ -1,14 +1,17 @@
-﻿using NagyBeadandó.Mezok.Alapok;
+﻿using System;
 
 namespace NagyBeadandó.Kivételek.MezoKivetelek
 {
+    /// <summary>
+    /// Kivétel, ami a Tarolok-ban jelentkezik, amikor a tároló nem tartalmazza a paraméterként kapott tarolhatot
+    /// </summary>
 #pragma warning disable S3925 // "ISerializable" should be implemented correctly
-    public class NemTartalmazTarolhatotException : TarolhatoException
+    public class NemTartalmazTarolhatotException : Exception
 #pragma warning restore S3925 // "ISerializable" should be implemented correctly
     {
         #region Public Constructors
 
-        public NemTartalmazTarolhatotException(Tipusok.Tarolhatok tarolhatok) : base(tarolhatok, "Nem tartalmazza a megadott tárolható típust")
+        public NemTartalmazTarolhatotException() : base("Nem tartalmazza a megadott tárolható típust")
         {
         }
 

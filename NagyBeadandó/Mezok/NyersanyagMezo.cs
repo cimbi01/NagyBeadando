@@ -1,4 +1,5 @@
 ﻿using NagyBeadandó.Mezok.Alapok;
+using NagyBeadandó.Utility;
 using System.Collections.Generic;
 
 namespace NagyBeadandó.Mezok
@@ -8,15 +9,18 @@ namespace NagyBeadandó.Mezok
     /// Nyersanyag Termelése
     /// Nyersanyag Betakaríthatósága
     /// </summary>
-    public class NyersanyagMezo : Tarolo, ITaroloTermelo
+    public class NyersanyagMezo : Tarolo
     {
         #region Public Constructors
 
-        public NyersanyagMezo(Tipusok.MezoTipusok mezotipus, Dictionary<Tipusok.Tarolhatok, int[]> kapacitas) : base(mezotipus, kapacitas)
+        /// <summary>
+        /// Inicializalja a nyersanyagmezőt
+        /// </summary>
+        /// <param name="mezotipus">A Mező Típusa</param>
+        /// <param name="kapacitas">A mezőkapacitása</param>
+        public NyersanyagMezo(Tipusok.MezoTipusok mezotipus, List<Tipusok.Tarolhatok> kapacitas) : base(mezotipus, kapacitas)
         {
         }
-        public NyersanyagMezo(NyersanyagMezo mezo) : base(mezo)
-        { }
 
         #endregion Public Constructors
 
@@ -29,6 +33,7 @@ namespace NagyBeadandó.Mezok
         public void Termel(Tipusok.Tarolhatok tarolhato)
         {
             Kapacitas[tarolhato][0] = Kapacitas[tarolhato][1];
+            Logger.Log(MezoTipus + "Mező termelt");
         }
 
         #endregion Public Methods

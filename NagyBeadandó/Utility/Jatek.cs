@@ -17,7 +17,7 @@ namespace NagyBeadandó.Utility
         /// </summary>
         /// <param name="id">Keresett játékos ID-je</param>
         /// <returns></returns>
-        public static Jatekos JatekosById(int id)
+        public static Jatekos GetJatekosById(int id)
         {
             if (jatekosok[0].Id == id)
             {
@@ -26,7 +26,25 @@ namespace NagyBeadandó.Utility
             return jatekosok[1];
         }
         /// <summary>
-        /// Játék
+        /// Visszaadja, hogy van-e játékos, aki vesztett
+        /// </summary>
+        /// <returns></returns>
+        public static bool JatekVege()
+        {
+            foreach (Jatekos item in jatekosok)
+            {
+                if (item.Vesztett)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        /// <summary>
+        /// Játék élet ciklusáért felel
+        /// Kezeli a tevékenységek élet ciklusát
+        /// Kezeli a játékosok interakció élet ciklusát
+        /// Amíg nincs játékos, aki nem vesztett
         /// </summary>
         public static void Play()
         {
@@ -36,22 +54,28 @@ namespace NagyBeadandó.Utility
             {
                 if (index % 2 == 0)
                 {
+                    Logger.Log("Tevékenységek görget leütve");
                     TevekenysegController.GorgetMind();
                 }
-                Controller.Jatekos = jatekosok[index % 2];
-                jatekosok[index % 2].EtetTermel();
-                Controller.Render();
-                index++;
-            } while (!jatekosok[(index + 1) % 2].Vesztett);
+                if (!Jatek.JatekVege())
+                {
+                    Logger.Log("Játákos csere");
+                    Controller.Jatekos = jatekosok[index % 2];
+                    jatekosok[index % 2].EtetTermel();
+                    Controller.Interact();
+                    index++;
+                }
+            } while (!JatekVege());
+            Logger.Close();
             System.Console.WriteLine("Játék vége");
         }
-
         /// <summary>
         /// Inicializálja a játékot:
         /// Két Játékost:
         /// </summary>
         private static void Init()
         {
+            Logger.Log("Játék inicializálása");
             for (int i = 0; i < 2; i++)
             {
                 InitJatekos(i);
@@ -60,29 +84,30 @@ namespace NagyBeadandó.Utility
         /// <summary>
         /// Inicializalja a jatekosokat:
         /// NyersanyagMezők : Búza, Agyag, Fa, Érc
-        /// Raktár, Főépület, Kaszárnya
+        /// Raktár, Főépület
         /// </summary>
         /// <param name="index">A jatekos helye a jatekosok tombben</param>
         private static void InitJatekos(int index)
         {
-            Dictionary<Tipusok.Tarolhatok, int[]> kapacitas_raktar = new Dictionary<Tipusok.Tarolhatok, int[]>()
+            Logger.Log("Játékos inicializálása");
+            List<Tipusok.Tarolhatok> kapacitas_raktar = new List<Tipusok.Tarolhatok>()
             {
-                [Tipusok.Tarolhatok.Agyag] = new int[2] { 0, 1000 },
-                [Tipusok.Tarolhatok.Buza] = new int[2] { 0, 1000 },
-                [Tipusok.Tarolhatok.Erc] = new int[2] { 0, 1000 },
-                [Tipusok.Tarolhatok.Fa] = new int[2] { 0, 1000 }
+                Tipusok.Tarolhatok.Agyag,
+                Tipusok.Tarolhatok.Buza,
+                Tipusok.Tarolhatok.Erc,
+                Tipusok.Tarolhatok.Fa
             };
             Tarolo raktar = new Tarolo(Tipusok.MezoTipusok.Raktar, kapacitas_raktar);
             FoEpulet fep = new FoEpulet();
             List<NyersanyagMezo> _nyersanyagMezok = new List<NyersanyagMezo>()
             {   new NyersanyagMezo(Tipusok.MezoTipusok.Agyagbanya,
-                    new Dictionary<Tipusok.Tarolhatok, int[]> { [Tipusok.Tarolhatok.Agyag] = new int[2] { 0, 1000} }),
+                    new List<Tipusok.Tarolhatok> { Tipusok.Tarolhatok.Agyag}),
                 new NyersanyagMezo(Tipusok.MezoTipusok.Buzamezo,
-                    new Dictionary<Tipusok.Tarolhatok, int[]> { [Tipusok.Tarolhatok.Buza] = new int[2] { 0, 1000} }),
+                    new List<Tipusok.Tarolhatok> { Tipusok.Tarolhatok.Buza }),
                 new NyersanyagMezo(Tipusok.MezoTipusok.Ercbanya,
-                    new Dictionary<Tipusok.Tarolhatok, int[]> { [Tipusok.Tarolhatok.Erc] = new int[2] { 0, 1000} }),
+                    new List<Tipusok.Tarolhatok> { Tipusok.Tarolhatok.Erc }),
                 new NyersanyagMezo(Tipusok.MezoTipusok.Faerdo,
-                    new Dictionary<Tipusok.Tarolhatok, int[]> { [Tipusok.Tarolhatok.Fa] = new int[2] { 0, 1000} })};
+                    new List<Tipusok.Tarolhatok> { Tipusok.Tarolhatok.Fa })};
             jatekosok[index] = new Jatekos(raktar, _nyersanyagMezok, fep);
         }
 
@@ -90,6 +115,9 @@ namespace NagyBeadandó.Utility
 
         #region Private Fields
 
+        /// <summary>
+        /// Játék játékosai, akik játszanak
+        /// </summary>
         private static readonly Jatekos[] jatekosok = new Jatekos[2];
 
         #endregion Private Fields
