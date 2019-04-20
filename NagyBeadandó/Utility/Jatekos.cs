@@ -34,7 +34,6 @@ namespace NagyBeadandó.Utility
                 };
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.Append("Név : " + Nev);
-                stringBuilder.AppendLine();
                 Parameterek = stringBuilder.ToString();
                 VanBennePublikusMetodus = Metodusok.Count != 0;
             }
@@ -79,6 +78,16 @@ namespace NagyBeadandó.Utility
 
         #region Private Methods
 
+        /// <summary>
+        /// Minden Lakos megetetve-t átállítja false-ra
+        /// </summary>
+        private void LakosEtetveReset()
+        {
+            foreach (Lakosok.Lakos item2 in this.foEpulet.Lista)
+            {
+                item2.MegVanEtetve = false;
+            }
+        }
         /// <summary>
         /// Minden Lakost megetet, ha van annyi búza a raktárban, amennyi a fogyasztása a katonának
         /// </summary>
@@ -173,9 +182,12 @@ namespace NagyBeadandó.Utility
                     {
                         mennyit = nyersanyag_mezo.Kapacitas[buzatarolhato][0];
                     }
-                    /// nem csodrulhat túl, mert annyit teszünk bele amennyit még elbír
-                    nyersanyag_mezo.Kivesz(buzatarolhato, mennyit);
-                    this.tarolo.Betesz(buzatarolhato, mennyit);
+                    if (mennyit > 0)
+                    {
+                        /// nem csodrulhat túl, mert annyit teszünk bele amennyit még elbír
+                        nyersanyag_mezo.Kivesz(buzatarolhato, mennyit);
+                        this.tarolo.Betesz(buzatarolhato, mennyit);
+                    }
                 }
             }
         }
@@ -188,22 +200,28 @@ namespace NagyBeadandó.Utility
             {
                 foreach (Tipusok.Tarolhatok item2 in item.Kapacitas.Keys)
                 {
-                    int mennyit;
-                    int tarolo_maradekhely = this.tarolo.Kapacitas[item2][1] - this.tarolo.Kapacitas[item2][0];
-                    /// ha a mezőben több a teremtl anyag, mint amekkkora a maradék hely, akkor csak maradekhelynyit kér le
-                    if (item.Kapacitas[item2][0] > tarolo_maradekhely)
+                    if (item2 != Tipusok.Tarolhatok.Buza)
                     {
-                        mennyit = tarolo_maradekhely;
+                        int mennyit;
+                        int tarolo_maradekhely = this.tarolo.Kapacitas[item2][1] - this.tarolo.Kapacitas[item2][0];
+                        /// ha a mezőben több a teremtl anyag, mint amekkkora a maradék hely, akkor csak maradekhelynyit kér le
+                        if (item.Kapacitas[item2][0] > tarolo_maradekhely)
+                        {
+                            mennyit = tarolo_maradekhely;
+                        }
+                        /// ellenkező esetben az egészet, amit tárol
+                        else
+                        {
+                            mennyit = item.Kapacitas[item2][0];
+                        }
+                        if (mennyit > 0)
+                        {
+                            /// majd kiveszi és beteszi a tárolóba
+                            /// nem csodrulhat túl, mert annyit teszünk bele amennyit még elbír
+                            item.Kivesz(item2, mennyit);
+                            this.tarolo.Betesz(item2, mennyit);
+                        }
                     }
-                    /// ellenkező esetben az egészet, amit tárol
-                    else
-                    {
-                        mennyit = item.Kapacitas[item2][0];
-                    }
-                    /// majd kiveszi és beteszi a tárolóba
-                    /// nem csodrulhat túl, mert annyit teszünk bele amennyit még elbír
-                    item.Kivesz(item2, mennyit);
-                    this.tarolo.Betesz(item2, mennyit);
                 }
             }
         }
@@ -222,23 +240,27 @@ namespace NagyBeadandó.Utility
         /// </summary>
         public void EtetTermel()
         {
+            Logger.Log("Termelési ciklus eleje");
+            LakosEtetveReset();
             MindenMezonTermel();
             RaktarNyersanyagFeltolt();
             /// amíg van megetetlen lakos vagy be nem takaritott búza mező
-            while (this.foEpulet.VanMegNemEtetett() && VanBeNemTakaritottBuzaMezo())
+            do
             {
                 /// Búzát tölt, majd etet
                 RaktarBuzaFeltoltes();
                 EtetniProbal();
-            }
+            } while (this.foEpulet.VanMegNemEtetett() && VanBeNemTakaritottBuzaMezo());
             MegNemEtetettMegol();
             RaktarBuzaFeltoltes();
+            Logger.Log("Termelési ciklus vége");
         }
         /// <summary>
         /// Vesztett-et igaz-ra állítja
         /// </summary>
         public void FoEpuletLeRombol()
         {
+            Logger.Log("Játékos vesztett");
             Vesztett = true;
         }
         /// <summary>
@@ -247,6 +269,8 @@ namespace NagyBeadandó.Utility
         /// <param name="katonaiEgyseg"></param>
         public void KatonakHazaternek(KatonaiEgyseg katonaiEgyseg)
         {
+            Logger.Log("Katonák hazatérnek");
+            this.foEpulet.BeteszTipus(katonaiEgyseg.Katonak);
             foreach (Lakos item in katonaiEgyseg.Katonak)
             {
                 item.ItthonVan = true;
@@ -267,13 +291,21 @@ namespace NagyBeadandó.Utility
         {
             /// nem dob kivételt, mert csak az itthonlevok-et kéri le
             List<Lakos> lakos_katonak = this.foEpulet.KiveszTipus(this.foEpulet.ItthonLevok());
-            new Tamadas(
-                new KatonaiEgyseg(
-                    true,
-                    katonak: lakos_katonak,
-                    jatekos_id: Id),
-                (Id + 1) % 2).
-                Tamad();
+            if (lakos_katonak.Count > 0)
+            {
+                Logger.Log("Támadást kezdeményez");
+                new Tamadas(
+                    new KatonaiEgyseg(
+                        true,
+                        katonak: lakos_katonak,
+                        jatekos_id: Id),
+                    (Id + 1) % 2).
+                    Tamad();
+            }
+            else
+            {
+                Logger.Log("Nincs katonád itthon, amivel támadni tudnál");
+            }
         }
         /// <summary>
         /// Visszaadja, hogy egy tárolhatóból van-e a táróbólban mennyiseg
@@ -298,16 +330,9 @@ namespace NagyBeadandó.Utility
         /// <returns>A katonai egység az összes itthon található katonát belefűzi egy listába, amiből a katonaiegység van</returns>
         public KatonaiEgyseg Vedekezik()
         {
-            KatonaiEgyseg katonaiEgyseg = null;
-            List<Lakos> itthon = new List<Lakos>();
-            foreach (Lakos item in this.foEpulet.Lista)
-            {
-                if (item.ItthonVan)
-                {
-                    itthon.Add(item);
-                }
-            }
-            katonaiEgyseg = new KatonaiEgyseg(false, itthon, Id);
+            Logger.Log("Játékos védekezésre kényszerítve");
+            List<Lakos> itthon = this.foEpulet.KiveszTipus(this.foEpulet.ItthonLevok());
+            KatonaiEgyseg katonaiEgyseg = new KatonaiEgyseg(false, itthon, Id);
             return katonaiEgyseg;
         }
 

@@ -89,6 +89,7 @@ namespace NagyBeadandó.Tevekenysegek
         /// </summary>
         private void TamadasInditas()
         {
+            Logger.Log("Támadás indult. Idő : " + MenetidoSzamitas());
             Csata.Csatazas(
                 this.KatonaiEgyseg,
                 Jatek.GetJatekosById(this.Tamadott_id).Vedekezik());

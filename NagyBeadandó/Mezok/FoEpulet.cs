@@ -1,6 +1,7 @@
 ﻿using NagyBeadandó.Kivételek.MezoKivetelek;
 using NagyBeadandó.Lakosok;
 using NagyBeadandó.Mezok.Alapok;
+using NagyBeadandó.Utility;
 using System;
 using System.Collections.Generic;
 
@@ -19,12 +20,12 @@ namespace NagyBeadandó.Mezok
         /// </summary>
         private void MinimumKivalasztasosRendezes()
         {
-            for (int i = 0; i > Lista.Count - 1; i++)
+            for (int i = 0; i < Lista.Count - 1; i++)
             {
                 int min = i;
                 for (int j = i + 1; j < Lista.Count; j++)
                 {
-                    if (Lista[j].Fogyasztas > Lista[min].Fogyasztas)
+                    if (Lista[j].Fogyasztas < Lista[min].Fogyasztas)
                     {
                         min = j;
                     }
@@ -70,6 +71,13 @@ namespace NagyBeadandó.Mezok
 
         #region Public Methods
 
+        public void BeteszTipus(List<Lakos> lakosok)
+        {
+            for (int i = 0; i < lakosok.Count && Lista.Count < Kapacitas[Tipusok.Tarolhatok.Lakos][1]; i++)
+            {
+                Lista.Add(lakosok[i]);
+            }
+        }
         /// <summary>
         /// Eltávolít egy lakost a Listából
         /// </summary>
@@ -117,9 +125,12 @@ namespace NagyBeadandó.Mezok
                 if (Lista[i].ItthonVan)
                 {
                     katonak.Add(Lista[0]);
+                    Lista.Remove(Lista[0]);
+                    i--;
                     mennyit--;
                 }
             }
+            Logger.Log("Kivettek " + mennyit + " darab lakost a Főépuletbol");
             return katonak;
         }
         /// <summary>
@@ -129,9 +140,11 @@ namespace NagyBeadandó.Mezok
         {
             for (int i = 0; i < this.termeles && Lista.Count < Kapacitas[Tipusok.Tarolhatok.Lakos][1]; i++)
             {
+                System.Threading.Thread.Sleep(1);
                 Lista.Add(new Lakos());
             }
             MinimumKivalasztasosRendezes();
+            Logger.Log("Főepulet termelt");
         }
         /// <summary>
         /// Visszadja, hogy van-e a meg nem etett lakos

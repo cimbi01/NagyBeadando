@@ -14,13 +14,13 @@ namespace NagyBeadandó.Utility
         /// </summary>
         private static void AlapRender()
         {
+            render = true;
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.White;
             foreach (Mezok.Alapok.IInteraktivMezo item in Jatekos.InteraktivMezok)
             {
                 Console.WriteLine(item.Nev);
             }
-            Console.CursorTop--;
             RenderCurrentLine(false);
         }
         /// <summary>
@@ -30,20 +30,22 @@ namespace NagyBeadandó.Utility
         /// </summary>
         private static void Enter()
         {
+            Logger.Log("Enter leütve");
             if (!mezoben)
             {
-                if (Jatekos.InteraktivMezok[Console.CursorTop].VanBennePublikusMetodus)
+                if (Jatekos.InteraktivMezok[kurzorhelye].VanBennePublikusMetodus)
                 {
-                    InteraktivMezoRender(Console.CursorTop);
+                    InteraktivMezoRender(kurzorhelye);
                 }
             }
             /// Végrehajtjat az enter ütés sorában a szöveg-hez tartozó metódust
             else if (Jatekos.InteraktivMezok[mezoindex].Metodusok.Count > 0)
             {
+                render = false;
                 string[] array = new string[Jatekos.InteraktivMezok[mezoindex].Metodusok.Count];
                 Jatekos.InteraktivMezok[mezoindex].Metodusok.Keys.CopyTo(array, 0);
                 Jatekos.InteraktivMezok[mezoindex].Metodusok[
-                        array[Console.CursorTop -
+                        array[kurzorhelye -
                             Jatekos.InteraktivMezok[mezoindex].Parameterek.
                             Split('\n').Length]].Invoke();
                 /// majd kilép a mezőből és alaprender-t végrehajtja
@@ -58,8 +60,10 @@ namespace NagyBeadandó.Utility
         /// </summary>
         private static void Escape()
         {
+            Logger.Log("Escape leütve");
             if (!mezoben)
             {
+                render = false;
                 escaped = true;
             }
             else
@@ -76,6 +80,7 @@ namespace NagyBeadandó.Utility
         private static void InterAkcio()
         {
             ConsoleKey ck = Console.ReadKey(true).Key;
+            kurzorhelye = Console.CursorTop;
             RenderCurrentLine(true);
             switch (ck)
             {
@@ -100,6 +105,8 @@ namespace NagyBeadandó.Utility
         /// <param name="index"></param>
         private static void InteraktivMezoRender(int index)
         {
+            render = true;
+            Logger.Log("Mezőbe lépve");
             Console.Clear();
             mezoindex = index;
             mezoben = true;
@@ -116,14 +123,14 @@ namespace NagyBeadandó.Utility
         /// <param name="eredeti">Ha igaz, akkor a háttérszínt nem vátloztatja meg, ha hamis, akkor a háttérszínt fehérre változtatja</param>
         private static void RenderCurrentLine(bool eredeti)
         {
-            Console.SetCursorPosition(0, Console.CursorTop);
+            Console.SetCursorPosition(0, kurzorhelye);
             if (!eredeti)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
             }
             if (!mezoben)
             {
-                Console.Write(Jatekos.InteraktivMezok[Console.CursorTop].Nev);
+                Console.Write(Jatekos.InteraktivMezok[kurzorhelye].Nev);
             }
             else
             {
@@ -131,7 +138,7 @@ namespace NagyBeadandó.Utility
                 {
                     string[] array = new string[Jatekos.InteraktivMezok[mezoindex].Metodusok.Count];
                     Jatekos.InteraktivMezok[mezoindex].Metodusok.Keys.CopyTo(array, 0);
-                    Console.Write(array[Console.CursorTop - Jatekos.InteraktivMezok[mezoindex].Parameterek.Split('\n').Length]);
+                    Console.Write(array[kurzorhelye - Jatekos.InteraktivMezok[mezoindex].Parameterek.Split('\n').Length]);
                 }
             }
             Console.ForegroundColor = ConsoleColor.White;
@@ -142,6 +149,7 @@ namespace NagyBeadandó.Utility
         /// </summary>
         private static void S()
         {
+            Logger.Log("S leütve");
             int hatar = 0;
             if (!mezoben)
             {
@@ -152,9 +160,9 @@ namespace NagyBeadandó.Utility
                 hatar = Jatekos.InteraktivMezok[mezoindex].Parameterek.Split('\n').Length
                     + Jatekos.InteraktivMezok[mezoindex].Metodusok.Count - 1;
             }
-            if (Console.CursorTop < hatar)
+            if (kurzorhelye < hatar)
             {
-                Console.CursorTop++;
+                kurzorhelye++;
             }
         }
         /// <summary>
@@ -163,14 +171,15 @@ namespace NagyBeadandó.Utility
         /// </summary>
         private static void W()
         {
+            Logger.Log("W leütve");
             int hatar = 1;
             if (mezoben)
             {
                 hatar = Jatekos.InteraktivMezok[mezoindex].Parameterek.Split('\n').Length + 1;
             }
-            if (Console.CursorTop >= hatar)
+            if (kurzorhelye >= hatar)
             {
-                Console.CursorTop--;
+                kurzorhelye--;
             }
         }
 
@@ -191,7 +200,7 @@ namespace NagyBeadandó.Utility
         /// <summary>
         /// Kezeli a játékos interakciójának életciklusát
         /// </summary>
-        public static void Render()
+        public static void Interact()
         {
             if (!Jatek.JatekVege())
             {
@@ -202,9 +211,22 @@ namespace NagyBeadandó.Utility
                 {
                     InterAkcio();
                 }
-                Console.Clear();
-                Console.WriteLine("Következő játékos");
-                System.Threading.Thread.Sleep(500);
+                Logger.Log("Következő játékos");
+            }
+        }
+        public static void Render()
+        {
+            Console.Clear();
+            if (render)
+            {
+                if (mezoben)
+                {
+                    InteraktivMezoRender(mezoindex);
+                }
+                else
+                {
+                    AlapRender();
+                }
             }
         }
 
@@ -212,6 +234,8 @@ namespace NagyBeadandó.Utility
 
         #region Private Fields
 
+        private static bool render = false;
+        private static int kurzorhelye;
 #pragma warning disable S1450 // Private fields only used as local variables in methods should become local variables
         /// <summary>
         /// Tárolja, hogy kilépett-e a játékos az interakcióból

@@ -32,7 +32,7 @@ namespace NagyBeadandó.Utility
             for (int i = 0; i < tevekenysegek.Count; i++)
             {
                 Tevekenyseg item = tevekenysegek[i];
-                if (--item.Ido == 0)
+                if (--item.Ido == 0 && !Jatek.JatekVege())
                 {
                     item.VegreHajt();
                     tevekenysegek.Remove(item);

@@ -1,7 +1,6 @@
 ﻿using NagyBeadandó.Lakosok;
 using NagyBeadandó.Lakosok.Katonasag;
 using NagyBeadandó.Utility;
-using System;
 using System.Collections.Generic;
 
 namespace NagyBeadandó.Tevekenysegek
@@ -17,7 +16,7 @@ namespace NagyBeadandó.Tevekenysegek
         /// <param name="tamad">A katonak támadó vagy védőértéke szerint rendezunk-e</param>
         private static void MaximumKivalasztasosRendezes(List<Lakos> katonak, bool tamad)
         {
-            for (int i = 0; i > katonak.Count - 1; i++)
+            for (int i = 0; i < katonak.Count - 1; i++)
             {
                 int max = i;
                 for (int j = i + 1; j < katonak.Count; j++)
@@ -26,7 +25,7 @@ namespace NagyBeadandó.Tevekenysegek
                     {
                         max = j;
                     }
-                    else if (katonak[j].VedoErtek > katonak[max].VedoErtek)
+                    else if (!tamad && katonak[j].VedoErtek > katonak[max].VedoErtek)
                     {
                         max = j;
                     }
@@ -48,23 +47,17 @@ namespace NagyBeadandó.Tevekenysegek
         /// </summary>
         public static void Csatazas(KatonaiEgyseg tamadas, KatonaiEgyseg vedekezes)
         {
+            Logger.Log("Csata elkezdődött");
             /// ne kelljen mindig lekérni a Jatek-tól az aktuálisan kívánt játkost
-            Jatekos tamado = Jatek.GetJatekosById(tamadas.Jatekos_Id);
             Jatekos vedekezo = Jatek.GetJatekosById(vedekezes.Jatekos_Id);
             if (tamadas.Erő > vedekezes.Erő)
             {
                 vedekezo.FoEpuletLeRombol();
-                Console.Clear();
-                Console.WriteLine("Támadó játékos ID: {0} nyert", tamadas.Jatekos_Id);
-                System.Threading.Thread.Sleep(1000);
-                Console.Clear();
+                Logger.Log("Támadó játékos ID: " + tamadas.Jatekos_Id + "nyert");
             }
             else
             {
-                Console.Clear();
-                Console.WriteLine("Támadó játékos ID: {0} vesztett", tamadas.Jatekos_Id);
-                System.Threading.Thread.Sleep(1000);
-                Console.Clear();
+                Logger.Log("Támadó játékos ID: " + tamadas.Jatekos_Id + "vesztett");
                 /// Rendezi a katonákat erő szerint
                 /// Azért, hogy a ciklusban eloször az erősebbek essenek ki, így közelebb kerulhetunk az ero-hoz
                 /// Rendezessel : (pl. ero = 10, katonak erei = 5, 4, 4, 2 ero = iteracionkent : 5, 1, 1, 1)
@@ -82,17 +75,14 @@ namespace NagyBeadandó.Tevekenysegek
                         if (vedekezes.Katonak[j].VedoErtek < ero)
                         {
                             ero -= vedekezes.Katonak[j].VedoErtek;
-                            vedekezo.KatonaMeghal(vedekezes.Katonak[j]);
                             vedekezes.Katonak.Remove(vedekezes.Katonak[j]);
                             j--;
                         }
                     }
-                    tamado.KatonaMeghal(tamadas.Katonak[i]);
                     tamadas.Katonak.Remove(tamadas.Katonak[i]);
                     i--;
                 }
                 // visszatérés
-                tamado.KatonakHazaternek(tamadas);
                 vedekezo.KatonakHazaternek(vedekezes);
             }
         }

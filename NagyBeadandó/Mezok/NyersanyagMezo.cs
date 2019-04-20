@@ -1,4 +1,5 @@
 ﻿using NagyBeadandó.Mezok.Alapok;
+using NagyBeadandó.Utility;
 using System.Collections.Generic;
 
 namespace NagyBeadandó.Mezok
@@ -32,6 +33,7 @@ namespace NagyBeadandó.Mezok
         public void Termel(Tipusok.Tarolhatok tarolhato)
         {
             Kapacitas[tarolhato][0] = Kapacitas[tarolhato][1];
+            Logger.Log(MezoTipus + "Mező termelt");
         }
 
         #endregion Public Methods

@@ -54,13 +54,19 @@ namespace NagyBeadandó.Utility
             {
                 if (index % 2 == 0)
                 {
+                    Logger.Log("Tevékenységek görget leütve");
                     TevekenysegController.GorgetMind();
                 }
-                Controller.Jatekos = jatekosok[index % 2];
-                jatekosok[index % 2].EtetTermel();
-                Controller.Render();
-                index++;
+                if (!Jatek.JatekVege())
+                {
+                    Logger.Log("Játákos csere");
+                    Controller.Jatekos = jatekosok[index % 2];
+                    jatekosok[index % 2].EtetTermel();
+                    Controller.Interact();
+                    index++;
+                }
             } while (!JatekVege());
+            Logger.Close();
             System.Console.WriteLine("Játék vége");
         }
         /// <summary>
@@ -69,6 +75,7 @@ namespace NagyBeadandó.Utility
         /// </summary>
         private static void Init()
         {
+            Logger.Log("Játék inicializálása");
             for (int i = 0; i < 2; i++)
             {
                 InitJatekos(i);
@@ -82,6 +89,7 @@ namespace NagyBeadandó.Utility
         /// <param name="index">A jatekos helye a jatekosok tombben</param>
         private static void InitJatekos(int index)
         {
+            Logger.Log("Játékos inicializálása");
             List<Tipusok.Tarolhatok> kapacitas_raktar = new List<Tipusok.Tarolhatok>()
             {
                 Tipusok.Tarolhatok.Agyag,

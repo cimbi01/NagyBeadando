@@ -68,10 +68,10 @@ namespace NagyBeadandó.Mezok
         {
             VanBennePublikusMetodus = Metodusok.Count != 0;
             Random rnd = new Random();
-            foreach (Tipusok.Tarolhatok item in tarolhatok)
+            foreach (Tipusok.Tarolhatok tarolt_tipus in tarolhatok)
             {
                 int[] kapacitasok = new int[2] { 0, rnd.Next(500, 1000) };
-                Kapacitas.Add(item, kapacitasok);
+                Kapacitas.Add(tarolt_tipus, kapacitasok);
             }
         }
 
@@ -89,7 +89,7 @@ namespace NagyBeadandó.Mezok
         /// És a maximum kapacitást
         /// Ezzel leegszerűsítve a modellt
         /// (Hiba: Csak a Lakosnak van osztálya, a nyersanyagok-nak egyáltalán nincs)
-        public Dictionary<Tipusok.Tarolhatok, int[]> Kapacitas { get; private set; } = new Dictionary<Tipusok.Tarolhatok, int[]>();
+        public Dictionary<Tipusok.Tarolhatok, int[]> Kapacitas { get; protected set; } = new Dictionary<Tipusok.Tarolhatok, int[]>();
         /// <summary>
         /// Visszaadja a Tarolo Parametereit:
         /// Nevét, Tárolt Tipusok szerint mennyiséget, kapacitást, típust

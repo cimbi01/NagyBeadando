@@ -62,6 +62,7 @@
     <Compile Include="Utility\Controller.cs" />
     <Compile Include="Utility\Jatek.cs" />
     <Compile Include="Utility\Jatekos.cs" />
+    <Compile Include="Utility\Logger.cs" />
     <Compile Include="Utility\TevekenysegController.cs" />
   </ItemGroup>
   <ItemGroup>
