@@ -17,7 +17,7 @@ namespace NagyBeadandó.Utility
         /// </summary>
         /// <param name="id">Keresett játékos ID-je</param>
         /// <returns></returns>
-        public static Jatekos JatekosById(int id)
+        public static Jatekos GetJatekosById(int id)
         {
             if (jatekosok[0].Id == id)
             {
@@ -25,6 +25,10 @@ namespace NagyBeadandó.Utility
             }
             return jatekosok[1];
         }
+        /// <summary>
+        /// Visszaadja, hogy van-e játékos, aki vesztett
+        /// </summary>
+        /// <returns></returns>
         public static bool JatekVege()
         {
             foreach (Jatekos item in jatekosok)
@@ -37,7 +41,10 @@ namespace NagyBeadandó.Utility
             return false;
         }
         /// <summary>
-        /// Játék
+        /// Játék élet ciklusáért felel
+        /// Kezeli a tevékenységek élet ciklusát
+        /// Kezeli a játékosok interakció élet ciklusát
+        /// Amíg nincs játékos, aki nem vesztett
         /// </summary>
         public static void Play()
         {
@@ -70,7 +77,7 @@ namespace NagyBeadandó.Utility
         /// <summary>
         /// Inicializalja a jatekosokat:
         /// NyersanyagMezők : Búza, Agyag, Fa, Érc
-        /// Raktár, Főépület, Kaszárnya
+        /// Raktár, Főépület
         /// </summary>
         /// <param name="index">A jatekos helye a jatekosok tombben</param>
         private static void InitJatekos(int index)
@@ -100,6 +107,9 @@ namespace NagyBeadandó.Utility
 
         #region Private Fields
 
+        /// <summary>
+        /// Játék játékosai, akik játszanak
+        /// </summary>
         private static readonly Jatekos[] jatekosok = new Jatekos[2];
 
         #endregion Private Fields

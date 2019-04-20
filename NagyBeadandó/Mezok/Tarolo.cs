@@ -15,17 +15,25 @@ namespace NagyBeadandó.Mezok
     {
         #region Public Methods
 
+        /// <summary>
+        /// A Kapacitás tároló részéhez [0] hozzáad mennyit-nyit
+        /// Ha így nagyobb akkor teletölti, majd dob egy TaroloTulCsordultException-t
+        /// </summary>
+        /// <param name="tarolhato">A tárolható típusa, amelyik rekeszbe szeretnék tenni a mennyit</param>
+        /// <param name="mennyit">A mennyiség, amennyit be szeretnénk tenni a rekeszbe</param>
         public void Betesz(Tipusok.Tarolhatok tarolhato, int mennyit)
         {
             if (!Kapacitas.ContainsKey(tarolhato))
             {
-                throw new NemTartalmazTarolhatotException(tarolhato);
+                throw new NemTartalmazTarolhatotException();
+            }
+            int tarolo_maradekhely = Kapacitas[tarolhato][1] - Kapacitas[tarolhato][0];
+            if (mennyit > tarolo_maradekhely)
+            {
+                Kapacitas[tarolhato][0] += tarolo_maradekhely;
+                throw new TaroloTulCsordultException();
             }
             Kapacitas[tarolhato][0] += mennyit;
-            if (Kapacitas[tarolhato][0] > Kapacitas[tarolhato][1])
-            {
-                throw new TaroloTulCsordultException(tarolhato, mennyit, Kapacitas[tarolhato][1]);
-            }
         }
         /// <summary>
         /// Visszaadja mmenyit-nyit a Tárolhato-ból
@@ -33,27 +41,17 @@ namespace NagyBeadandó.Mezok
         /// <param name="tarolhato">A típus, amiből lekérjük a mennyiséget</param>
         /// <param name="mennyit">A mennyiség, hogy mennyit szeretne kivenni a tárolóból</param>
         /// <returns>Visszaad mennyit-nyit, ha van belőle mennyit-nyi a kapacitásban, ellenkező esetben dob egy NincsElégTarolhatoException-t</returns>
-        public int Kivesz(Tipusok.Tarolhatok tarolhato, int mennyit)
+        public void Kivesz(Tipusok.Tarolhatok tarolhato, int mennyit)
         {
             if (!Kapacitas.TryGetValue(tarolhato, out int[] tarolt_mennyiseg))
             {
-                throw new NemTartalmazTarolhatotException(tarolhato);
+                throw new NemTartalmazTarolhatotException();
             }
             else if (tarolt_mennyiseg[0] < mennyit)
             {
-                throw new NincsElegTarolhatoException(tarolhato);
+                throw new NincsElegTarolhatoException();
             }
             tarolt_mennyiseg[0] -= mennyit;
-            return mennyit;
-        }
-        /// <summary>
-        /// Visszaadja, hogy az adott tipusból a tárolt mennyiség egyenlő-e a maxkapacitással
-        /// </summary>
-        /// <param name="tarolhato">A tárolt tipus fajtája</param>
-        /// <returns>Igazat ad vissza, ha a tárolható típusból maxkapacitásnyi van, minden más esetben hamist</returns>
-        public virtual bool MegVanTelve(Tipusok.Tarolhatok tarolhato)
-        {
-            return Kapacitas[tarolhato][0] == Kapacitas[tarolhato][1];
         }
 
         #endregion Public Methods
@@ -76,12 +74,6 @@ namespace NagyBeadandó.Mezok
                 Kapacitas.Add(item, kapacitasok);
             }
         }
-        public Tarolo(Tarolo tarolo) : base(tarolo.MezoTipus)
-        {
-            Kapacitas = tarolo.Kapacitas;
-            Parameterek = tarolo.Parameterek;
-            VanBennePublikusMetodus = Metodusok.Count != 0;
-        }
 
         #endregion Public Constructors
 
@@ -92,10 +84,16 @@ namespace NagyBeadandó.Mezok
         /// A tömb első eleme a mennyiség
         /// Második eleme a maximum kapacitás
         /// </summary>
+        /// Meg lehetne oldani, hogy a value egy objektum tömb legyen
+        /// Így egyszerre meghatározva az objektumok listáját
+        /// És a maximum kapacitást
+        /// Ezzel leegszerűsítve a modellt
+        /// (Hiba: Csak a Lakosnak van osztálya, a nyersanyagok-nak egyáltalán nincs)
         public Dictionary<Tipusok.Tarolhatok, int[]> Kapacitas { get; private set; } = new Dictionary<Tipusok.Tarolhatok, int[]>();
-
-        #endregion Public Properties
-
+        /// <summary>
+        /// Visszaadja a Tarolo Parametereit:
+        /// Nevét, Tárolt Tipusok szerint mennyiséget, kapacitást, típust
+        /// </summary>
         public override string Parameterek
         {
             get
@@ -120,5 +118,7 @@ namespace NagyBeadandó.Mezok
                 return stringBuilder.ToString();
             }
         }
+
+        #endregion Public Properties
     }
 }

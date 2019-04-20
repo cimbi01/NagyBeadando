@@ -44,12 +44,10 @@
   <ItemGroup>
     <Compile Include="Kivételek\MezoKivetelek\NemTartalmazTarolhatotException.cs" />
     <Compile Include="Kivételek\MezoKivetelek\NincsElegTarolhatoException.cs" />
-    <Compile Include="Kivételek\MezoKivetelek\TarolhatoExceptions.cs" />
     <Compile Include="Kivételek\MezoKivetelek\TaroloTulCsordultException.cs" />
     <Compile Include="Lakosok\Katonasag\KatonaiEgyseg.cs" />
     <Compile Include="Lakosok\Lakos.cs" />
     <Compile Include="Mezok\Alapok\IInteraktivMezo.cs" />
-    <Compile Include="Mezok\Alapok\ITermelo.cs" />
     <Compile Include="Mezok\Alapok\Mezo.cs" />
     <Compile Include="Mezok\FoEpulet.cs" />
     <Compile Include="Mezok\NyersanyagMezo.cs" />

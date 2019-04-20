@@ -16,6 +16,9 @@ namespace NagyBeadandó.Mezok.Alapok
         /// Tárolja az osztályban található metódusokat és egy szöveget hozzá A szöveget írja ki a console-ra
         /// </summary>
         public Dictionary<string, Action> Metodusok { get; protected set; } = new Dictionary<string, Action>();
+        /// <summary>
+        /// Tárolja a Mező Típusát (AgyagBanya, stb.)
+        /// </summary>
         public Tipusok.MezoTipusok MezoTipus { get; protected set; }
         public string Nev { get; protected set; }
         public virtual string Parameterek { get; protected set; }
@@ -28,6 +31,12 @@ namespace NagyBeadandó.Mezok.Alapok
 
         #region Protected Constructors
 
+        /// <summary>
+        /// Beállítja a mező adattait
+        /// Mezőtípus alapján
+        /// Beállítja a Paramért
+        /// </summary>
+        /// <param name="mezotipus"></param>
         protected Mezo(Tipusok.MezoTipusok mezotipus)
         {
             MezoTipus = mezotipus;

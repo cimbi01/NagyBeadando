@@ -1,16 +1,14 @@
-﻿using NagyBeadandó.Mezok.Alapok;
+﻿using System;
 
 namespace NagyBeadandó.Kivételek.MezoKivetelek
 {
-    internal class TaroloTulCsordultException : TarolhatoException
+#pragma warning disable S3925 // "ISerializable" should be implemented correctly
+    /// <summary>
+    /// Kivétel, ami akkor jelentkezik, amikor a Tarolo-ban a maximum kapacitásának megfelelőnél több Tarolhato-t szeretnenk beletenni
+    /// </summary>
+    public class TaroloTulCsordultException : Exception
+#pragma warning restore S3925 // "ISerializable" should be implemented correctly
     {
-        #region Public Properties
-
-        public int AdottMennyiseg { get; private set; }
-        public int MaxKapacitas { get; private set; }
-
-        #endregion Public Properties
-
         #region Public Constructors
 
         /// <summary>
@@ -19,10 +17,8 @@ namespace NagyBeadandó.Kivételek.MezoKivetelek
         /// <param name="tarolhatok">A tárolható típusa, ami a Tárolóba próbált tenni</param>
         /// <param name="mennyiseg">A tárolható mennyisége, amennyit a Tárolóba próbált tenni</param>
         /// <param name="kapacitas">A Tároló max kapacitása az adott tárolhatóból</param>
-        public TaroloTulCsordultException(Tipusok.Tarolhatok tarolhatok, int mennyiseg, int kapacitas) : base(tarolhatok, "A tárolóban nincs több hely")
+        public TaroloTulCsordultException() : base("A tárolóban nincs több hely")
         {
-            AdottMennyiseg = mennyiseg;
-            MaxKapacitas = kapacitas;
         }
 
         #endregion Public Constructors

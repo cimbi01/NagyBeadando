@@ -12,11 +12,14 @@ namespace NagyBeadandó.Mezok
     {
         #region Public Constructors
 
+        /// <summary>
+        /// Inicializalja a nyersanyagmezőt
+        /// </summary>
+        /// <param name="mezotipus">A Mező Típusa</param>
+        /// <param name="kapacitas">A mezőkapacitása</param>
         public NyersanyagMezo(Tipusok.MezoTipusok mezotipus, List<Tipusok.Tarolhatok> kapacitas) : base(mezotipus, kapacitas)
         {
         }
-        public NyersanyagMezo(NyersanyagMezo mezo) : base(mezo)
-        { }
 
         #endregion Public Constructors
 

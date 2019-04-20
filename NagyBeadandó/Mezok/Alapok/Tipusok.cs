@@ -2,24 +2,21 @@
 {
     /// <summary>
     /// Feladata, hogy tárolja  Programban használt típusokat, hogy ne legyen elírás
-    /// </summary>
+    /// Elírások elkerüléséért használom Programon belül ha típusokat szeretnénk kifejezni csak
+    /// használjuk a megadott típusokat, és nincs elírási hiba
+    /// /// <summary>
     public static class Tipusok
     {
-        /// <summary>
-        /// Elírások elkerüléséért használom Programon belül ha típusokat szeretnénk kifejezni csak
-        /// használjuk a megadott típusokat, és nincs elírási hiba
-        /// </summary>
-
         #region Public Enums
 
         /// <summary>
         /// A Programban használt Mező típusok Ha új mező fajtát szeretnénk létrehozni, bővíteni kell
         /// </summary>
-        public enum MezoTipusok { Raktar, Kaszarnya, Foepulet, Buzamezo, Agyagbanya, Faerdo, Ercbanya };
+        public enum MezoTipusok { Raktar, Foepulet, Buzamezo, Agyagbanya, Faerdo, Ercbanya };
         /// <summary>
         /// A Programban használt tárolhatóegység típusok Ha új tárolhatóegység fajtát szeretnénk létrehozni, bővíteni kell
         /// </summary>
-        public enum Tarolhatok { Buza, Agyag, Erc, Fa, Katona, Lakos };
+        public enum Tarolhatok { Buza, Agyag, Erc, Fa, Lakos };
 
         #endregion Public Enums
     }

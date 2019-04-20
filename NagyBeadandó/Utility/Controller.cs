@@ -2,6 +2,9 @@
 
 namespace NagyBeadandó.Utility
 {
+    /// <summary>
+    /// A játékos Interakciójáért felel
+    /// </summary>
     internal static class Controller
     {
         #region Private Methods
@@ -34,6 +37,7 @@ namespace NagyBeadandó.Utility
                     InteraktivMezoRender(Console.CursorTop);
                 }
             }
+            /// Végrehajtjat az enter ütés sorában a szöveg-hez tartozó metódust
             else if (Jatekos.InteraktivMezok[mezoindex].Metodusok.Count > 0)
             {
                 string[] array = new string[Jatekos.InteraktivMezok[mezoindex].Metodusok.Count];
@@ -42,6 +46,7 @@ namespace NagyBeadandó.Utility
                         array[Console.CursorTop -
                             Jatekos.InteraktivMezok[mezoindex].Parameterek.
                             Split('\n').Length]].Invoke();
+                /// majd kilép a mezőből és alaprender-t végrehajtja
                 mezoben = false;
                 AlapRender();
             }
@@ -65,6 +70,8 @@ namespace NagyBeadandó.Utility
         }
         /// <summary>
         /// Kezeli a játékos gomb lenyomását
+        /// És kiemeli a kurzor sorának szövegét
+        /// És visszaállítja a kurzor előző helyén a szöveget
         /// </summary>
         private static void InterAkcio()
         {
@@ -150,7 +157,6 @@ namespace NagyBeadandó.Utility
                 Console.CursorTop++;
             }
         }
-
         /// <summary>
         /// W megnyomását kezeli:
         /// Egyel feljebb ugrik, ha van feljebb
@@ -172,6 +178,10 @@ namespace NagyBeadandó.Utility
 
         #region Public Properties
 
+        /// <summary>
+        /// Az aktuálisan aktív játékos, aki a controllert irányítja
+        /// Vagy akit a kontroller irányít
+        /// </summary>
         public static Jatekos Jatekos { private get; set; }
 
         #endregion Public Properties
@@ -203,9 +213,18 @@ namespace NagyBeadandó.Utility
         #region Private Fields
 
 #pragma warning disable S1450 // Private fields only used as local variables in methods should become local variables
+        /// <summary>
+        /// Tárolja, hogy kilépett-e a játékos az interakcióból
+        /// </summary>
         private static bool escaped = false;
 #pragma warning restore S1450 // Private fields only used as local variables in methods should become local variables
+        /// <summary>
+        /// Tárolja, hogy a játékos éppen mezőben van, vagy az alap kiírásoknál
+        /// </summary>
         private static bool mezoben = false;
+        /// <summary>
+        /// Tárolja, hogy melyik mezőben van a játékos
+        /// </summary>
         private static int mezoindex;
 
         #endregion Private Fields

@@ -2,6 +2,9 @@
 
 namespace NagyBeadandó.Utility
 {
+    /// <summary>
+    /// AdatBekérésért felelős osztály
+    /// </summary>
     public static class AdatBekeres
     {
         #region Public Methods
