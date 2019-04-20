@@ -53,7 +53,7 @@ namespace NagyBeadandó.Utility
                 jatekosok[index % 2].EtetTermel();
                 Controller.Render();
                 index++;
-            } while (JatekVege());
+            } while (!JatekVege());
             System.Console.WriteLine("Játék vége");
         }
         /// <summary>

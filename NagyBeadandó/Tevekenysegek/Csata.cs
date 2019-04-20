@@ -33,8 +33,16 @@ namespace NagyBeadandó.Tevekenysegek
                 Console.Clear();
                 for (int i = 0; i < tamadas.KatonaiEgyseg.Katonak.Count; i++)
                 {
+                    int ero = tamadas.KatonaiEgyseg.Katonak[i].TamadoErtek;
+                    for (int j = 0; j < vedekezes.Katonak.Count && ero > 0; j++)
+                    {
+                        if (vedekezes.Katonak[j].VedoErtek < ero)
+                        {
+                            ero -= vedekezes.Katonak[j].VedoErtek;
+                            vedekezo.KatonaMeghal(vedekezes.Katonak[j]);
+                        }
+                    }
                     tamado.KatonaMeghal(tamadas.KatonaiEgyseg.Katonak[i]);
-                    vedekezo.KatonaMeghal(vedekezes.Katonak[i]);
                 }
                 // visszatérés
                 Jatek.JatekosById(tamadas.KatonaiEgyseg.Jatekos_Id).KatonakHazaternek(tamadas.KatonaiEgyseg);
