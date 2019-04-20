@@ -1,6 +1,7 @@
 ﻿using NagyBeadandó.Lakosok;
 using NagyBeadandó.Lakosok.Katonasag;
 using NagyBeadandó.Utility;
+using System;
 
 namespace NagyBeadandó.Tevekenysegek
 {
@@ -47,10 +48,12 @@ namespace NagyBeadandó.Tevekenysegek
         /// </summary>
         private int MenetidoSzamitas()
         {
+            Random rnd = new Random();
+            int tavolsag = rnd.Next(1, 10);
             int menetido = 0;
             foreach (Lakos item in KatonaiEgyseg.Katonak)
             {
-                int tmp_menet_ido = Tamadas.tavolsag / item.MenetSebesseg;
+                int tmp_menet_ido = (tavolsag / item.MenetSebesseg) + 1;
                 if (tmp_menet_ido > menetido)
                 {
                     menetido = tmp_menet_ido;
@@ -68,7 +71,5 @@ namespace NagyBeadandó.Tevekenysegek
         }
 
         #endregion Private Methods
-
-        private const int tavolsag = 5;
     }
 }
