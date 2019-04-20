@@ -1,5 +1,6 @@
 ﻿using NagyBeadandó.Kivételek.MezoKivetelek;
 using NagyBeadandó.Mezok.Alapok;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -65,10 +66,15 @@ namespace NagyBeadandó.Mezok
         /// <param name="id">Mezo ID-je</param>
         /// <param name="mezotipus">Mezo tipusa</param>
         /// <param name="kapacitas">Mezo tarolhatok szerinti tipusa</param>
-        public Tarolo(Tipusok.MezoTipusok mezotipus, Dictionary<Tipusok.Tarolhatok, int[]> kapacitas) : base(mezotipus)
+        public Tarolo(Tipusok.MezoTipusok mezotipus, List<Tipusok.Tarolhatok> tarolhatok) : base(mezotipus)
         {
-            Kapacitas = kapacitas;
             VanBennePublikusMetodus = Metodusok.Count != 0;
+            Random rnd = new Random();
+            foreach (Tipusok.Tarolhatok item in tarolhatok)
+            {
+                int[] kapacitasok = new int[2] { 0, rnd.Next(500, 1000) };
+                Kapacitas.Add(item, kapacitasok);
+            }
         }
         public Tarolo(Tarolo tarolo) : base(tarolo.MezoTipus)
         {
@@ -86,7 +92,7 @@ namespace NagyBeadandó.Mezok
         /// A tömb első eleme a mennyiség
         /// Második eleme a maximum kapacitás
         /// </summary>
-        public Dictionary<Tipusok.Tarolhatok, int[]> Kapacitas { get; private set; }
+        public Dictionary<Tipusok.Tarolhatok, int[]> Kapacitas { get; private set; } = new Dictionary<Tipusok.Tarolhatok, int[]>();
 
         #endregion Public Properties
 

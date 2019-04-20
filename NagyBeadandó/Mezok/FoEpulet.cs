@@ -1,6 +1,7 @@
 ﻿using NagyBeadandó.Kivételek.MezoKivetelek;
 using NagyBeadandó.Lakosok;
 using NagyBeadandó.Mezok.Alapok;
+using System;
 using System.Collections.Generic;
 
 namespace NagyBeadandó.Mezok
@@ -9,11 +10,16 @@ namespace NagyBeadandó.Mezok
     {
         #region Public Constructors
 
-        public FoEpulet() : base(Tipusok.MezoTipusok.Foepulet, new Dictionary<Tipusok.Tarolhatok, int[]>() { [Tipusok.Tarolhatok.Lakos] = new int[2] { 0, 1000 } })
+        public FoEpulet() : base(Tipusok.MezoTipusok.Foepulet, new List<Tipusok.Tarolhatok>() { Tipusok.Tarolhatok.Lakos })
         {
+            Random rnd = new Random();
+            this.termeles = rnd.Next(0, 1000);
         }
         public FoEpulet(FoEpulet fep) : base(fep)
-        { }
+        {
+            Random rnd = new Random();
+            this.termeles = rnd.Next(0, 1000);
+        }
         public int ItthonLevok(Tipusok.Tarolhatok tarolhato)
         {
             int itthon = 0;
@@ -33,7 +39,7 @@ namespace NagyBeadandó.Mezok
 
         public Dictionary<Tipusok.Tarolhatok, List<Lakos>> Lista { get; private set; } = new Dictionary<Tipusok.Tarolhatok, List<Lakos>>()
         { [Tipusok.Tarolhatok.Lakos] = new List<Lakos>() };
-        private readonly int termeles = 100;
+        private readonly int termeles;
 
         #endregion Private Fields
 

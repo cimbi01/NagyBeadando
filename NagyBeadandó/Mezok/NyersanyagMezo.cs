@@ -12,7 +12,7 @@ namespace NagyBeadandó.Mezok
     {
         #region Public Constructors
 
-        public NyersanyagMezo(Tipusok.MezoTipusok mezotipus, Dictionary<Tipusok.Tarolhatok, int[]> kapacitas) : base(mezotipus, kapacitas)
+        public NyersanyagMezo(Tipusok.MezoTipusok mezotipus, List<Tipusok.Tarolhatok> kapacitas) : base(mezotipus, kapacitas)
         {
         }
         public NyersanyagMezo(NyersanyagMezo mezo) : base(mezo)

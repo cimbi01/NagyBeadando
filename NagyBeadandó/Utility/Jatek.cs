@@ -65,24 +65,24 @@ namespace NagyBeadandó.Utility
         /// <param name="index">A jatekos helye a jatekosok tombben</param>
         private static void InitJatekos(int index)
         {
-            Dictionary<Tipusok.Tarolhatok, int[]> kapacitas_raktar = new Dictionary<Tipusok.Tarolhatok, int[]>()
+            List<Tipusok.Tarolhatok> kapacitas_raktar = new List<Tipusok.Tarolhatok>()
             {
-                [Tipusok.Tarolhatok.Agyag] = new int[2] { 0, 1000 },
-                [Tipusok.Tarolhatok.Buza] = new int[2] { 0, 1000 },
-                [Tipusok.Tarolhatok.Erc] = new int[2] { 0, 1000 },
-                [Tipusok.Tarolhatok.Fa] = new int[2] { 0, 1000 }
+                Tipusok.Tarolhatok.Agyag,
+                Tipusok.Tarolhatok.Buza,
+                Tipusok.Tarolhatok.Erc,
+                Tipusok.Tarolhatok.Fa
             };
             Tarolo raktar = new Tarolo(Tipusok.MezoTipusok.Raktar, kapacitas_raktar);
             FoEpulet fep = new FoEpulet();
             List<NyersanyagMezo> _nyersanyagMezok = new List<NyersanyagMezo>()
             {   new NyersanyagMezo(Tipusok.MezoTipusok.Agyagbanya,
-                    new Dictionary<Tipusok.Tarolhatok, int[]> { [Tipusok.Tarolhatok.Agyag] = new int[2] { 0, 1000} }),
+                    new List<Tipusok.Tarolhatok> { Tipusok.Tarolhatok.Agyag}),
                 new NyersanyagMezo(Tipusok.MezoTipusok.Buzamezo,
-                    new Dictionary<Tipusok.Tarolhatok, int[]> { [Tipusok.Tarolhatok.Buza] = new int[2] { 0, 1000} }),
+                    new List<Tipusok.Tarolhatok> { Tipusok.Tarolhatok.Buza }),
                 new NyersanyagMezo(Tipusok.MezoTipusok.Ercbanya,
-                    new Dictionary<Tipusok.Tarolhatok, int[]> { [Tipusok.Tarolhatok.Erc] = new int[2] { 0, 1000} }),
+                    new List<Tipusok.Tarolhatok> { Tipusok.Tarolhatok.Erc }),
                 new NyersanyagMezo(Tipusok.MezoTipusok.Faerdo,
-                    new Dictionary<Tipusok.Tarolhatok, int[]> { [Tipusok.Tarolhatok.Fa] = new int[2] { 0, 1000} })};
+                    new List<Tipusok.Tarolhatok> { Tipusok.Tarolhatok.Fa })};
             jatekosok[index] = new Jatekos(raktar, _nyersanyagMezok, fep);
         }
 
