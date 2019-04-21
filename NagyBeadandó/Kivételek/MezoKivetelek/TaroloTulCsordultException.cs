@@ -6,6 +6,7 @@ namespace NagyBeadandó.Kivételek.MezoKivetelek
     /// <summary>
     /// Kivétel, ami akkor jelentkezik, amikor a Tarolo-ban a maximum kapacitásának megfelelőnél több Tarolhato-t szeretnenk beletenni
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2237:MarkISerializableTypesWithSerializable")]
     public class TaroloTulCsordultException : Exception
 #pragma warning restore S3925 // "ISerializable" should be implemented correctly
     {

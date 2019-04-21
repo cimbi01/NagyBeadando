@@ -6,6 +6,7 @@ namespace NagyBeadandó.Kivételek.MezoKivetelek
     /// Kivétel, ami akkor jelentkezik, amikor egy Taroloban nincs annyi Tarolhato, amennyit probalnak belole lekerni
     /// </summary>
 #pragma warning disable S3925 // "ISerializable" should be implemented correctly
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2237:MarkISerializableTypesWithSerializable")]
     public class NincsElegTarolhatoException : Exception
 #pragma warning restore S3925 // "ISerializable" should be implemented correctly
     {

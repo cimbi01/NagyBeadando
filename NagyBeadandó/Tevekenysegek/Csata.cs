@@ -64,29 +64,50 @@ namespace NagyBeadandó.Tevekenysegek
                 /// Rendezes nelkul : (ero ugyanaz katonak ugyanazok sorrend mas = 2, 5, 4, 4 ero iteracionkent = 8, 3, 3, 3)
                 MaximumKivalasztasosRendezes(vedekezes.Katonak, false);
                 MaximumKivalasztasosRendezes(tamadas.Katonak, true);
-                /// eltávolitja összes támadó játékost
-                for (int i = 0; i < tamadas.Katonak.Count; i++)
-                {
-                    /// és eltávolít védő katonákat, az erejének megfeleloen
-                    /// (nem mindig addig fut, amig az ero 0, mert lehet hogy az sose jon ki mert a jatekosok erejei random szamok)
-                    int ero = tamadas.Katonak[i].TamadoErtek;
-                    for (int j = 0; j < vedekezes.Katonak.Count && ero > 0; j++)
-                    {
-                        if (vedekezes.Katonak[j].VedoErtek < ero)
-                        {
-                            ero -= vedekezes.Katonak[j].VedoErtek;
-                            vedekezes.Katonak.Remove(vedekezes.Katonak[j]);
-                            j--;
-                        }
-                    }
-                    tamadas.Katonak.Remove(tamadas.Katonak[i]);
-                    i--;
-                }
+                Gyilkol(tamadas, vedekezes);
                 // visszatérés
                 vedekezo.KatonakHazaternek(vedekezes);
             }
         }
-    }
 
-    #endregion Public Methods
+        #endregion Public Methods
+
+        /// <summary>
+        /// A csatában szereplő támadó és védő egységekből vonja ki katonakat
+        /// Amíg a támadó erő nagyobb mint a védekezők leggyengébb védője, vagy elfogy a védő
+        /// </summary>
+        /// <param name="tamadas"></param>
+        /// <param name="vedekezes"></param>
+        private static void Gyilkol(KatonaiEgyseg tamadas, KatonaiEgyseg vedekezes)
+        {
+            int min = VedekezesMinimum(vedekezes);
+            int ero = tamadas.Erő;
+            while (ero >= min && min > 0)
+            {
+                /// eltávolít védő katonákat támadás erejének függvényében
+                /// (nem mindig addig fut, amig az ero 0, mert lehet hogy az sose jon ki mert a jatekosok erejei random szamok)
+                for (int j = 0; j < vedekezes.Katonak.Count && ero > 0; j++)
+                {
+                    if (vedekezes.Katonak[j].VedoErtek <= ero)
+                    {
+                        ero -= vedekezes.Katonak[j].VedoErtek;
+                        vedekezes.Katonak.Remove(vedekezes.Katonak[j]);
+                        j--;
+                    }
+                }
+                min = VedekezesMinimum(vedekezes);
+            }
+        }
+        private static int VedekezesMinimum(KatonaiEgyseg katonaiEgyseg)
+        {
+            if (katonaiEgyseg.Katonak.Count > 0)
+            {
+                return katonaiEgyseg.Katonak[katonaiEgyseg.Katonak.Count - 1].VedoErtek;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+    }
 }

@@ -6,6 +6,7 @@ namespace NagyBeadandó.Kivételek.MezoKivetelek
     /// Kivétel, ami a Tarolok-ban jelentkezik, amikor a tároló nem tartalmazza a paraméterként kapott tarolhatot
     /// </summary>
 #pragma warning disable S3925 // "ISerializable" should be implemented correctly
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2237:MarkISerializableTypesWithSerializable")]
     public class NemTartalmazTarolhatotException : Exception
 #pragma warning restore S3925 // "ISerializable" should be implemented correctly
     {

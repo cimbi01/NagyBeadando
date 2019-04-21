@@ -119,6 +119,7 @@ namespace NagyBeadandó.Mezok
             {
                 throw new NincsElegTarolhatoException();
             }
+            Logger.Log("Kivettek " + mennyit + " darab lakost a Főépuletbol");
             /// az otthon levo katonákat hozzáadja a katonákhoz
             for (int i = 0; i < Lista.Count && mennyit > 0; i++)
             {
@@ -130,7 +131,6 @@ namespace NagyBeadandó.Mezok
                     mennyit--;
                 }
             }
-            Logger.Log("Kivettek " + mennyit + " darab lakost a Főépuletbol");
             return katonak;
         }
         /// <summary>
