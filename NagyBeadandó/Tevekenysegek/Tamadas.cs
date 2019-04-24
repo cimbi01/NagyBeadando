@@ -64,9 +64,6 @@ namespace NagyBeadandó.Tevekenysegek
         /// <summary>
         /// Katonaiegyésg katonái között menetidők maximumát keresi > az a menetidő
         /// v = s/t > t = s/v
-        /// s = 5
-        /// v = menetsebesseg
-        /// t = v/s
         /// </summary>
         private int MenetidoSzamitas()
         {
@@ -90,7 +87,7 @@ namespace NagyBeadandó.Tevekenysegek
         /// </summary>
         private void TamadasInditas()
         {
-            Logger.Log("Támadás indult. Idő : " + MenetidoSzamitas());
+            Logger.Log("Támadás indult.");
             Csata.Csatazas(
                 this.KatonaiEgyseg,
                 Jatek.GetJatekosById(this.Tamadott_id).Vedekezik());
