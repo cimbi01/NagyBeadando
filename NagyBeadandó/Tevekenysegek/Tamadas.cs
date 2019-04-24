@@ -20,6 +20,7 @@ namespace NagyBeadandó.Tevekenysegek
         /// </summary>
         public void Tamad()
         {
+            Logger.Log("Támadás menetideje : " + MenetidoSzamitas());
             TevekenysegController.AddTevekenyseg(MenetidoSzamitas(), TamadasInditas);
         }
 
