@@ -217,6 +217,9 @@ namespace NagyBeadandó.Utility
                 Logger.Log("Következő játékos");
             }
         }
+        /// <summary>
+        /// Rendereli az aktualis menut
+        /// </summary>
         public static void Render()
         {
             Console.Clear();
