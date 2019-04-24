@@ -48,7 +48,7 @@ namespace NagyBeadandó.Utility
         /// <summary>
         /// Tevékenységek listája
         /// </summary>
-        public static readonly List<Tevekenyseg> tevekenysegek = new List<Tevekenyseg>();
+        private static readonly List<Tevekenyseg> tevekenysegek = new List<Tevekenyseg>();
 
         #endregion Private Fields
     }
