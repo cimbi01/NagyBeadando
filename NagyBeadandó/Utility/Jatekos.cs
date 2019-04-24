@@ -258,7 +258,7 @@ namespace NagyBeadandó.Utility
         /// <summary>
         /// Vesztett-et igaz-ra állítja
         /// </summary>
-        public void FoEpuletLeRombol()
+        public void Veszit()
         {
             Logger.Log("Játékos vesztett");
             Vesztett = true;
