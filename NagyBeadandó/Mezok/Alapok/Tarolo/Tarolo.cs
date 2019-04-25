@@ -1,7 +1,7 @@
 ﻿using NagyBeadandó.Kivételek.MezoKivetelek;
 using System;
 
-namespace NagyBeadandó.Mezok.Alapok
+namespace NagyBeadandó.Mezok.Alapok.Tarolo
 {
     internal class Tarolo
     {
