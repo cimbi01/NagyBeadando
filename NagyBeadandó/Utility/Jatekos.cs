@@ -260,10 +260,7 @@ namespace NagyBeadandó.Utility
         {
             Logger.Log("Katonák hazatérnek");
             this.foEpulet.BeteszTipus(katonaiEgyseg.Katonak);
-            foreach (Lakos item in katonaiEgyseg.Katonak)
-            {
-                item.ItthonVan = true;
-            }
+            katonaiEgyseg.Katonak.ForEach(lakos => lakos.ItthonVan = true);
         }
         /// <summary>
         /// Katonát eltávolítja a főépület listájából
