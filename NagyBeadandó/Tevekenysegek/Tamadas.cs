@@ -1,7 +1,7 @@
-﻿using NagyBeadandó.Lakosok;
-using NagyBeadandó.Lakosok.Katonasag;
+﻿using NagyBeadandó.Lakosok.Katonasag;
 using NagyBeadandó.Utility;
 using System;
+using System.Linq;
 
 namespace NagyBeadandó.Tevekenysegek
 {
@@ -42,15 +42,8 @@ namespace NagyBeadandó.Tevekenysegek
         {
             Random rnd = new Random();
             int tavolsag = rnd.Next(1, 10);
-            int menetido = 0;
-            foreach (Lakos item in katonaiEgyseg.Katonak)
-            {
-                int tmp_menet_ido = (tavolsag / item.MenetSebesseg) + 1;
-                if (tmp_menet_ido > menetido)
-                {
-                    menetido = tmp_menet_ido;
-                }
-            }
+            int minsebesseg = katonaiEgyseg.Katonak.Min(lakos => lakos.MenetSebesseg);
+            int menetido = tavolsag / minsebesseg;
             return menetido;
         }
 
