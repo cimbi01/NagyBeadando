@@ -42,13 +42,6 @@ namespace NagyBeadandó.Utility
             public Dictionary<string, Action> Metodusok { get; set; }
 
             public bool VanBennePublikusMetodus { get; set; }
-
-            public int ID { get; set; }
-
-            public IInteraktivMezo InteraktivMezo { get; set; }
-
-            public Tipusok.MezoTipusok MezoTipus { get; set; }
-
             public string Nev { get; set; } = "Jatekos";
 
             public string Parameterek { get; set; }
