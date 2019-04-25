@@ -37,6 +37,7 @@ namespace NagyBeadandó.Mezok.Alapok
         /// Beállítja a Paramért
         /// </summary>
         /// <param name="mezotipus"></param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         protected Mezo(Tipusok.MezoTipusok mezotipus)
         {
             MezoTipus = mezotipus;
