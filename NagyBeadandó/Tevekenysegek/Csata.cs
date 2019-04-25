@@ -1,7 +1,6 @@
-﻿using NagyBeadandó.Lakosok;
-using NagyBeadandó.Lakosok.Katonasag;
+﻿using NagyBeadandó.Lakosok.Katonasag;
 using NagyBeadandó.Utility;
-using System.Collections.Generic;
+using System.Linq;
 
 namespace NagyBeadandó.Tevekenysegek
 {
@@ -17,8 +16,8 @@ namespace NagyBeadandó.Tevekenysegek
         /// <param name="vedekezes"></param>
         private static void Gyilkol(KatonaiEgyseg tamadas, KatonaiEgyseg vedekezes)
         {
-            int min = VedekezesMinimum(vedekezes);
             int ero = tamadas.Erő;
+            int min = vedekezes.Katonak.Min(t => t.VedoErtek);
             while (ero >= min && min > 0)
             {
                 /// eltávolít védő katonákat támadás erejének függvényében
@@ -39,43 +38,6 @@ namespace NagyBeadandó.Tevekenysegek
                         return;
                     }
                 }
-            }
-        }
-        /// <summary>
-        /// Rendezi a katonákat, úgy, hogy a legnagyobb ereju lesz legelol
-        /// </summary>
-        /// <param name="katonak">Katona lista amit rendezunk</param>
-        /// <param name="tamad">A katonak támadó vagy védőértéke szerint rendezunk-e</param>
-        private static void MaximumKivalasztasosRendezes(List<Lakos> katonak, bool tamad)
-        {
-            for (int i = 0; i < katonak.Count - 1; i++)
-            {
-                int max = i;
-                for (int j = i + 1; j < katonak.Count; j++)
-                {
-                    if (tamad && katonak[j].TamadoErtek > katonak[max].TamadoErtek)
-                    {
-                        max = j;
-                    }
-                    else if (!tamad && katonak[j].VedoErtek > katonak[max].VedoErtek)
-                    {
-                        max = j;
-                    }
-                }
-                Lakos tmp = katonak[i];
-                katonak[i] = katonak[max];
-                katonak[max] = tmp;
-            }
-        }
-        private static int VedekezesMinimum(KatonaiEgyseg katonaiEgyseg)
-        {
-            if (katonaiEgyseg.Katonak.Count > 0)
-            {
-                return katonaiEgyseg.Katonak[katonaiEgyseg.Katonak.Count - 1].VedoErtek;
-            }
-            else
-            {
-                return -1;
             }
         }
 
@@ -103,8 +65,7 @@ namespace NagyBeadandó.Tevekenysegek
                 Logger.Log("Támadó játékos ID: " + tamadas.Jatekos_Id + "vesztett");
                 /// Rendezi a katonákat erő szerint
                 /// Hogy Gyilkolásban a minimumkeresés-nél ne kelljen mindig végigfutni a listán
-                MaximumKivalasztasosRendezes(vedekezes.Katonak, false);
-                MaximumKivalasztasosRendezes(tamadas.Katonak, true);
+                vedekezes.Katonak.Sort((x, y) => y.VedoErtek.CompareTo(x.VedoErtek));
                 Gyilkol(tamadas, vedekezes);
                 // visszatérés
                 vedekezo.KatonakHazaternek(vedekezes);

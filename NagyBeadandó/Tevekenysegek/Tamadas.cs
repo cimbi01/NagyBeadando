@@ -11,35 +11,9 @@ namespace NagyBeadandó.Tevekenysegek
     ///     Hadászati értékek számítása
     ///     Menetelés indítása > Tevékenység indítása, Csata indítása
     /// </summary>
-    public class Tamadas
+    public static class Tamadas
     {
         #region Public Methods
-
-        /// <summary>
-        /// Hozzáad a Tevekenységkontrollerhez
-        /// </summary>
-        public void Tamad()
-        {
-            Logger.Log("Támadás menetideje : " + MenetidoSzamitas());
-            TevekenysegController.AddTevekenyseg(MenetidoSzamitas(), TamadasInditas);
-        }
-
-        #endregion Public Methods
-
-        #region Private Fields
-
-        /// <summary>
-        /// Támadó katonaiEgysége
-        /// </summary>
-        private readonly KatonaiEgyseg KatonaiEgyseg;
-        /// <summary>
-        /// A támadott játékos ID-je
-        /// </summary>
-        private readonly int Tamadott_id;
-
-        #endregion Private Fields
-
-        #region Public Constructors
 
         /// <summary>
         /// Konstruktor
@@ -47,17 +21,19 @@ namespace NagyBeadandó.Tevekenysegek
         /// </summary>
         /// <param name="katonasag">Támadó Katonai egysége</param>
         /// <param name="tamadott_jatekos_id">Támadott játékos ID-je</param>
-        public Tamadas(KatonaiEgyseg katonasag, int tamadott_jatekos_id)
+        public static void TamadasInditas(KatonaiEgyseg katonasag, int tamadott_jatekos_id)
         {
-            this.KatonaiEgyseg = katonasag;
-            foreach (Lakos item in this.KatonaiEgyseg.Katonak)
+            Logger.Log("Támadás menetideje : " + MenetidoSzamitas(katonasag));
+            foreach (Lakos item in katonasag.Katonak)
             {
                 item.ItthonVan = false;
             }
-            this.Tamadott_id = tamadott_jatekos_id;
+            TevekenysegController.AddTevekenyseg(
+                MenetidoSzamitas(katonasag),
+                () => Csata.Csatazas(katonasag, Jatek.GetJatekosById(tamadott_jatekos_id).Vedekezik()));
         }
 
-        #endregion Public Constructors
+        #endregion Public Methods
 
         #region Private Methods
 
@@ -65,12 +41,12 @@ namespace NagyBeadandó.Tevekenysegek
         /// Katonaiegyésg katonái között menetidők maximumát keresi > az a menetidő
         /// v = s/t > t = s/v
         /// </summary>
-        private int MenetidoSzamitas()
+        private static int MenetidoSzamitas(KatonaiEgyseg katonaiEgyseg)
         {
             Random rnd = new Random();
             int tavolsag = rnd.Next(1, 10);
             int menetido = 0;
-            foreach (Lakos item in this.KatonaiEgyseg.Katonak)
+            foreach (Lakos item in katonaiEgyseg.Katonak)
             {
                 int tmp_menet_ido = (tavolsag / item.MenetSebesseg) + 1;
                 if (tmp_menet_ido > menetido)
@@ -79,18 +55,6 @@ namespace NagyBeadandó.Tevekenysegek
                 }
             }
             return menetido;
-        }
-        /// <summary>
-        /// Elindítja a támadást
-        /// Arra kell, hogy legyen egy paraméter és visszatérés nélküli metódus
-        /// Amit át lehet adni a tevekenyseg konstrruktornak
-        /// </summary>
-        private void TamadasInditas()
-        {
-            Logger.Log("Támadás indult.");
-            Csata.Csatazas(
-                this.KatonaiEgyseg,
-                Jatek.GetJatekosById(this.Tamadott_id).Vedekezik());
         }
 
         #endregion Private Methods

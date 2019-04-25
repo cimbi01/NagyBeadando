@@ -1,10 +1,12 @@
-﻿using NagyBeadandó.Lakosok;
+﻿using NagyBeadandó.Kivételek.MezoKivetelek;
+using NagyBeadandó.Lakosok;
 using NagyBeadandó.Lakosok.Katonasag;
 using NagyBeadandó.Mezok;
 using NagyBeadandó.Mezok.Alapok;
 using NagyBeadandó.Tevekenysegek;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace NagyBeadandó.Utility
@@ -83,34 +85,20 @@ namespace NagyBeadandó.Utility
         /// </summary>
         private void LakosEtetveReset()
         {
-            foreach (Lakosok.Lakos item2 in this.foEpulet.Lista)
-            {
-                item2.MegVanEtetve = false;
-            }
+            this.foEpulet.Lista.ForEach(t => t.MegVanEtetve = true);
         }
         /// <summary>
         /// Minden Lakost megetet, ha van annyi búza a raktárban, amennyi a fogyasztása a katonának
         /// </summary>
         private void EtetniProbal()
         {
-            foreach (Lakosok.Lakos item2 in this.foEpulet.Lista)
-            {
-                if (!item2.MegVanEtetve)
+            this.foEpulet.Lista.ForEach(
+                t =>
                 {
-                    try
-                    {
-                        this.tarolo.Kivesz(Tipusok.Tarolhatok.Buza, item2.Fogyasztas);
-                        item2.MegVanEtetve = true;
-                    }
-                    /// ha nincs elég búza, akkor a következőknek sincs
-                    /// mivel minden egyes termelés után rendezi
-                    /// ezért kilép a metódusból
-                    catch (Kivételek.MezoKivetelek.NincsElegTarolhatoException)
-                    {
-                        return;
-                    }
+                    this.tarolo.Kivesz(Tipusok.Tarolhatok.Buza, t.Fogyasztas);
+                    t.MegVanEtetve = true;
                 }
-            }
+            );
         }
         /// <summary>
         /// Aki nem lett megetetve, azt kiveszi a főépulet listájából
@@ -244,15 +232,36 @@ namespace NagyBeadandó.Utility
             LakosEtetveReset();
             MindenMezonTermel();
             RaktarNyersanyagFeltolt();
+            bool van_meg_nem_etetett;
+            bool van_be_nem_takaritott;
             /// amíg van megetetlen lakos vagy be nem takaritott búza mező
             do
             {
                 /// Búzát tölt, majd etet
                 RaktarBuzaFeltoltes();
-                EtetniProbal();
-            } while (this.foEpulet.VanMegNemEtetett() && VanBeNemTakaritottBuzaMezo());
-            MegNemEtetettMegol();
-            RaktarBuzaFeltoltes();
+                try
+                {
+                    EtetniProbal();
+                    van_meg_nem_etetett = false;
+                }
+                catch (NincsElegTarolhatoException)
+                {
+                    van_meg_nem_etetett = true;
+                }
+                IEnumerable<NyersanyagMezo> buzamezok = this.nyersanyagMezok.Where(
+                    mezo =>
+                    mezo.Kapacitas.ContainsKey(Tipusok.Tarolhatok.Buza));
+                van_be_nem_takaritott = buzamezok.Any(mezo2 =>
+                    mezo2.Kapacitas[Tipusok.Tarolhatok.Buza][0] > 0);
+            } while (van_meg_nem_etetett && van_be_nem_takaritott);
+            if (van_meg_nem_etetett)
+            {
+                MegNemEtetettMegol();
+            }
+            if (van_be_nem_takaritott)
+            {
+                RaktarBuzaFeltoltes();
+            }
             Logger.Log("Termelési ciklus vége");
         }
         /// <summary>
@@ -294,13 +303,12 @@ namespace NagyBeadandó.Utility
             if (lakos_katonak.Count > 0)
             {
                 Logger.Log("Támadást kezdeményez");
-                new Tamadas(
+                Tamadas.TamadasInditas(
                     new KatonaiEgyseg(
                         true,
                         katonak: lakos_katonak,
                         jatekos_id: Id),
-                    (Id + 1) % 2).
-                    Tamad();
+                    (Id + 1) % 2);
             }
             else
             {
