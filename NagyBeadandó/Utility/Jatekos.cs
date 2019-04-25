@@ -263,14 +263,6 @@ namespace NagyBeadandó.Utility
             katonaiEgyseg.Katonak.ForEach(lakos => lakos.ItthonVan = true);
         }
         /// <summary>
-        /// Katonát eltávolítja a főépület listájából
-        /// </summary>
-        /// <param name="katona"></param>
-        public void KatonaMeghal(Lakos katona)
-        {
-            this.foEpulet.Eltávolit(katona);
-        }
-        /// <summary>
         /// Minden itthon tartozkodo katonat elkuld Támadni
         /// </summary>
         public void Tamad()
