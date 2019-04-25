@@ -24,10 +24,7 @@ namespace NagyBeadandó.Tevekenysegek
         public static void TamadasInditas(KatonaiEgyseg katonasag, int tamadott_jatekos_id)
         {
             Logger.Log("Támadás menetideje : " + MenetidoSzamitas(katonasag));
-            foreach (Lakos item in katonasag.Katonak)
-            {
-                item.ItthonVan = false;
-            }
+            katonasag.Katonak.ForEach(lakos => lakos.ItthonVan = false);
             TevekenysegController.AddTevekenyseg(
                 MenetidoSzamitas(katonasag),
                 () => Csata.Csatazas(katonasag, Jatek.GetJatekosById(tamadott_jatekos_id).Vedekezik()));
