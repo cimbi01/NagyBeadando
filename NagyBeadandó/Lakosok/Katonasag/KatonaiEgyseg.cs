@@ -19,7 +19,14 @@ namespace NagyBeadandó.Lakosok.Katonasag
         {
             Jatekos_Id = jatekos_id;
             Katonak = katonak;
-            EroSzamitas(tamad);
+            if (tamad)
+            {
+                Katonak.ForEach(lakos => Erő += lakos.TamadoErtek);
+            }
+            else
+            {
+                Katonak.ForEach(lakos => Erő += lakos.VedoErtek);
+            }
         }
 
         #endregion Public Constructors
@@ -40,27 +47,5 @@ namespace NagyBeadandó.Lakosok.Katonasag
         public List<Lakos> Katonak { get; protected set; }
 
         #endregion Public Properties
-
-        #region Private Methods
-
-        /// <summary>
-        /// Kiszamitja a katonak összeerejét
-        /// Úgy, hogy egyesével hozzadja az aktualis tamadas függvényében
-        /// Az erejuket az Ero-hoz
-        /// </summary>
-        private void EroSzamitas(bool tamad)
-        {
-            foreach (Lakos item in Katonak)
-            {
-                Erő += item.VedoErtek;
-                if (tamad)
-                {
-                    Erő -= item.VedoErtek;
-                    Erő += item.TamadoErtek;
-                }
-            }
-        }
-
-        #endregion Private Methods
     }
 }
