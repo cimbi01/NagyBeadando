@@ -134,29 +134,28 @@ namespace NagyBeadandó.Utility
         /// </summary>
         private void RaktarBuzaFeltoltes()
         {
-            foreach (NyersanyagMezo nyersanyag_mezo in this.nyersanyagMezok)
+            // TODO: try catch kivesz mindent a mezobol, betesz mindent a mezobe
+            IEnumerable<NyersanyagMezo> buzamezok = this.nyersanyagMezok.Where(mezo => mezo.Kapacitas.ContainsKey(Tipusok.Tarolhatok.Buza));
+            foreach (NyersanyagMezo nyersanyag_mezo in buzamezok)
             {
-                if (nyersanyag_mezo.Kapacitas.ContainsKey(Tipusok.Tarolhatok.Buza))
+                Tipusok.Tarolhatok buzatarolhato = Tipusok.Tarolhatok.Buza;
+                int mennyit;
+                int tarolo_maradekhely = this.tarolo.Kapacitas[buzatarolhato][1] - this.tarolo.Kapacitas[buzatarolhato][0];
+                // ha a mezőben több a teremtl anyag, mint amekkkora a maradék hely, akkor csak maradekhelynyit kér le
+                if (nyersanyag_mezo.Kapacitas[buzatarolhato][0] > tarolo_maradekhely)
                 {
-                    Tipusok.Tarolhatok buzatarolhato = Tipusok.Tarolhatok.Buza;
-                    int mennyit;
-                    int tarolo_maradekhely = this.tarolo.Kapacitas[buzatarolhato][1] - this.tarolo.Kapacitas[buzatarolhato][0];
-                    // ha a mezőben több a teremtl anyag, mint amekkkora a maradék hely, akkor csak maradekhelynyit kér le
-                    if (nyersanyag_mezo.Kapacitas[buzatarolhato][0] > tarolo_maradekhely)
-                    {
-                        mennyit = tarolo_maradekhely;
-                    }
-                    // ellenkező esetben az egészet, amit tárol
-                    else
-                    {
-                        mennyit = nyersanyag_mezo.Kapacitas[buzatarolhato][0];
-                    }
-                    if (mennyit > 0)
-                    {
-                        /// nem csodrulhat túl, mert annyit teszünk bele amennyit még elbír
-                        nyersanyag_mezo.Kivesz(buzatarolhato, mennyit);
-                        this.tarolo.Betesz(buzatarolhato, mennyit);
-                    }
+                    mennyit = tarolo_maradekhely;
+                }
+                // ellenkező esetben az egészet, amit tárol
+                else
+                {
+                    mennyit = nyersanyag_mezo.Kapacitas[buzatarolhato][0];
+                }
+                if (mennyit > 0)
+                {
+                    /// nem csodrulhat túl, mert annyit teszünk bele amennyit még elbír
+                    nyersanyag_mezo.Kivesz(buzatarolhato, mennyit);
+                    this.tarolo.Betesz(buzatarolhato, mennyit);
                 }
             }
         }
