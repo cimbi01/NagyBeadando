@@ -1,6 +1,7 @@
 ﻿using NagyBeadandó.Mezok;
 using NagyBeadandó.Mezok.Alapok;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace NagyBeadandó.Utility
 {
@@ -31,14 +32,7 @@ namespace NagyBeadandó.Utility
         /// <returns></returns>
         public static bool JatekVege()
         {
-            foreach (Jatekos item in jatekosok)
-            {
-                if (item.Vesztett)
-                {
-                    return true;
-                }
-            }
-            return false;
+            return jatekosok.Any(jatekos => jatekos.Vesztett);
         }
         /// <summary>
         /// Játék élet ciklusáért felel
