@@ -1,7 +1,17 @@
-TipusTarolo<T>: alap típus tároló where T is enumrator
-Van Benne Tuple<tarolhato tipus, T, kapacitas>
+Tarolo: alap tarolo
+Van benne Tuple<tarolhato tipus, taroltmennyiseg, kapacitas>
+Betesz, Kivesz
+
+TipusTarolo<T>: alap típus tároló
+Van Benne Tuple<tarolhato tipus, lista<T>, kapacitas>
 Betesz(T)
+Betesz(List<T>)
+Kivesz(List<T>)
 Kivesz(T)
+Kivesz(Predicate)
+
+TaroloTarolo : alap tarolokat tarolnak
+Van benne Tarolo lista
 
 TaroloTipusTarolo : alap tipus tarolokat tarolnak
 Van benne TipusTarolo lista
