@@ -130,25 +130,6 @@ namespace NagyBeadandó.Utility
             }
         }
         /// <summary>
-        /// Visszaadja, hogy van-e búzamező, ahol a kapacitástárolt rekesze nulla
-        /// </summary>
-        /// <returns>Visszaadja, hogy van-e búzamező, ahol a kapacitástárolt rekesze nulla</returns>
-        private bool VanBeNemTakaritottBuzaMezo()
-        {
-            foreach (NyersanyagMezo item in this.nyersanyagMezok)
-            {
-                if (item.Kapacitas.ContainsKey(Tipusok.Tarolhatok.Buza))
-                {
-                    Tipusok.Tarolhatok buzatarolhato = Tipusok.Tarolhatok.Buza;
-                    if (item.Kapacitas[buzatarolhato][0] > 0)
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-        /// <summary>
         /// Feltolti a raktár Búza részét
         /// </summary>
         private void RaktarBuzaFeltoltes()
