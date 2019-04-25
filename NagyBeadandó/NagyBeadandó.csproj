@@ -53,6 +53,7 @@
     <Compile Include="Mezok\Alapok\IInteraktivMezo.cs" />
     <Compile Include="Mezok\Alapok\Mezo.cs" />
     <Compile Include="Mezok\Alapok\Tarolo\Tarolo.cs" />
+    <Compile Include="Mezok\Alapok\Tarolo\TipusTarolo.cs" />
     <Compile Include="Mezok\FoEpulet.cs" />
     <Compile Include="Mezok\NyersanyagMezo.cs" />
     <Compile Include="Mezok\Tarolo.cs" />

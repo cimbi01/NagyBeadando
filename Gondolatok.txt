@@ -6,8 +6,6 @@ TipusTarolo<T>: alap típus tároló
 Van Benne Tuple<tarolhato tipus, lista<T>, kapacitas>
 Betesz(T)
 Betesz(List<T>)
-Kivesz(List<T>)
-Kivesz(T)
 Kivesz(Predicate)
 
 TaroloTarolo : alap tarolokat tarolnak
