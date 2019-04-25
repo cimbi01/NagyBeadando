@@ -4,6 +4,7 @@ using NagyBeadandó.Mezok.Alapok;
 using NagyBeadandó.Utility;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace NagyBeadandó.Mezok
 {
@@ -67,15 +68,7 @@ namespace NagyBeadandó.Mezok
         /// <returns>Visszaadja, hány lakos van itthon</returns>
         public int ItthonLevok()
         {
-            int itthon = 0;
-            foreach (Lakos item in Lista)
-            {
-                if (item.ItthonVan)
-                {
-                    itthon++;
-                }
-            }
-            return itthon;
+            return Lista.Count(lakos => lakos.ItthonVan);
         }
         /// <summary>
         /// Visszaad egy Listát, benne mennyit-nyi Lakos
