@@ -12,32 +12,6 @@ namespace NagyBeadandó.Mezok
     /// </summary>
     public class FoEpulet : Tarolo
     {
-        #region Private Methods
-
-        /// <summary>
-        /// Fogyasztás szerint rendezi a lakosok listáját
-        /// A legkisebb fogyasztású a legkisebb indexen van
-        /// </summary>
-        private void MinimumKivalasztasosRendezes()
-        {
-            for (int i = 0; i < Lista.Count - 1; i++)
-            {
-                int min = i;
-                for (int j = i + 1; j < Lista.Count; j++)
-                {
-                    if (Lista[j].Fogyasztas < Lista[min].Fogyasztas)
-                    {
-                        min = j;
-                    }
-                }
-                Lakos tmp = Lista[i];
-                Lista[i] = Lista[min];
-                Lista[min] = tmp;
-            }
-        }
-
-        #endregion Private Methods
-
         #region Public Properties
 
         /// <summary>
@@ -142,7 +116,7 @@ namespace NagyBeadandó.Mezok
             {
                 Lista.Add(new Lakos());
             }
-            MinimumKivalasztasosRendezes();
+            Lista.Sort((lak1, lak2) => lak1.Fogyasztas.CompareTo(lak2.Fogyasztas));
             Logger.Log("Főepulet termelt");
         }
         /// <summary>
