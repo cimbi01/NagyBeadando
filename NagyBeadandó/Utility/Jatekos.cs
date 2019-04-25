@@ -293,23 +293,6 @@ namespace NagyBeadandó.Utility
             }
         }
         /// <summary>
-        /// Visszaadja, hogy egy tárolhatóból van-e a táróbólban mennyiseg
-        /// </summary>
-        /// <param name="tarolhato">A tárolható típusa</param>
-        /// <param name="mennyiseg">A mennyiseg</param>
-        /// <returns></returns>
-        public bool VanEleg(Tipusok.Tarolhatok tarolhato, int mennyiseg)
-        {
-            if (tarolhato != Tipusok.Tarolhatok.Lakos)
-            {
-                return this.tarolo.Kapacitas[tarolhato][0] > mennyiseg;
-            }
-            else
-            {
-                return this.foEpulet.Lista.Count > mennyiseg;
-            }
-        }
-        /// <summary>
         /// Visszaad egy katonai egységet az itthon levo lakosokból
         /// </summary>
         /// <returns>A katonai egység az összes itthon található katonát belefűzi egy listába, amiből a katonaiegység van</returns>
