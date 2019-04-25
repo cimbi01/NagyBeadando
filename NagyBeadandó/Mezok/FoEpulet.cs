@@ -112,14 +112,6 @@ namespace NagyBeadandó.Mezok
             Lista.Sort((lak1, lak2) => lak1.Fogyasztas.CompareTo(lak2.Fogyasztas));
             Logger.Log("Főepulet termelt");
         }
-        /// <summary>
-        /// Visszadja, hogy van-e a meg nem etett lakos
-        /// </summary>
-        /// <returns></returns>
-        public bool VanMegNemEtetett()
-        {
-            return Lista.Any(lakos => !lakos.MegVanEtetve);
-        }
 
         #endregion Public Methods
     }
