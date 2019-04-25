@@ -118,14 +118,7 @@ namespace NagyBeadandó.Mezok
         /// <returns></returns>
         public bool VanMegNemEtetett()
         {
-            foreach (Lakosok.Lakos item2 in Lista)
-            {
-                if (!item2.MegVanEtetve)
-                {
-                    return true;
-                }
-            }
-            return false;
+            return Lista.Any(lakos => !lakos.MegVanEtetve);
         }
 
         #endregion Public Methods
