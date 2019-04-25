@@ -341,10 +341,7 @@ namespace NagyBeadandó.Utility
             this.foEpulet = _foEpulet;
             InteraktivMezok.Add(this.foEpulet);
             InteraktivMezok.Add(this.tarolo);
-            foreach (NyersanyagMezo item in this.nyersanyagMezok)
-            {
-                InteraktivMezok.Add(item);
-            }
+            this.nyersanyagMezok.ForEach(mezo => InteraktivMezok.Add(mezo));
             InteraktivMezok.Add(new InteraktivJatekos(this));
         }
 
