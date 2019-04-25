@@ -17,10 +17,7 @@ namespace NagyBeadandó.Utility
             render = true;
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.White;
-            foreach (Mezok.Alapok.IInteraktivMezo item in Jatekos.InteraktivMezok)
-            {
-                Console.WriteLine(item.Nev);
-            }
+            Jatekos.InteraktivMezok.ForEach(mezo => Console.WriteLine(mezo.Nev));
             RenderCurrentLine(false);
             kurzorhelye = Console.CursorTop;
         }
