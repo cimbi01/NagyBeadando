@@ -85,7 +85,7 @@ namespace NagyBeadandó.Utility
         /// </summary>
         private void LakosEtetveReset()
         {
-            this.foEpulet.Lista.ForEach(t => t.MegVanEtetve = true);
+            this.foEpulet.Lista.ForEach(t => t.MegVanEtetve = false);
         }
         /// <summary>
         /// Minden Lakost megetet, ha van annyi búza a raktárban, amennyi a fogyasztása a katonának
